@@ -15,7 +15,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -34,11 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV">
-      <HintPath>bin\Emgu.CV.dll</HintPath>
+    <Reference Include="Emgu.CV, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Emgu.CV.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.Util">
-      <HintPath>bin\Emgu.Util.dll</HintPath>
+    <Reference Include="Emgu.Util, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Emgu.Util.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -82,10 +84,28 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="lib\" />
+    <Content Include="lib\cudart64_50_35.dll" />
+    <Content Include="lib\cvextern.dll" />
+    <Content Include="lib\npp64_50_35.dll" />
+    <Content Include="lib\opencv_calib3d249.dll" />
+    <Content Include="lib\opencv_contrib249.dll" />
+    <Content Include="lib\opencv_core249.dll" />
+    <Content Include="lib\opencv_features2d249.dll" />
+    <Content Include="lib\opencv_flann249.dll" />
+    <Content Include="lib\opencv_highgui249.dll" />
+    <Content Include="lib\opencv_imgproc249.dll" />
+    <Content Include="lib\opencv_legacy249.dll" />
+    <Content Include="lib\opencv_ml249.dll" />
+    <Content Include="lib\opencv_nonfree249.dll" />
+    <Content Include="lib\opencv_objdetect249.dll" />
+    <Content Include="lib\opencv_video249.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /d "$(ProjectDir)lib\*.dll" "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

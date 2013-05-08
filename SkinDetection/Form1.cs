@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Emgu.CV;
+using Emgu.CV.Structure;
+
 namespace SkinDetection
 {
     public partial class Form1 : Form
