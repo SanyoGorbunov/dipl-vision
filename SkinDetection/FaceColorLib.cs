@@ -12,11 +12,19 @@ using Emgu.CV.Structure;
 
 namespace SkinDetection
 {
-    public partial class Form1 : Form
+    public partial class FaceColorLib : Form
     {
-        public Form1()
+        public FaceColorLib()
         {
             InitializeComponent();
+        }
+
+        private void btnLibAdd_Click(object sender, EventArgs e)
+        {
+            if (dlgLibOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
         }
     }
 }
