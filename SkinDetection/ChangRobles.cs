@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 
 namespace SkinDetection
@@ -93,6 +94,43 @@ namespace SkinDetection
         public TwoDimVector Mean { get; private set; }
         public TwoDimMatrix Covariance { get; private set; }
         public TwoDimMatrix InvertCovariance { get; private set; }
+
+        public void Save(string path)
+        {
+            using (var stream = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            {
+                using (var sw = new StreamWriter(stream))
+                {
+                    sw.WriteLine(Mean.a1);
+                    sw.WriteLine(Mean.a2);
+                    sw.WriteLine(Covariance.a);
+                    sw.WriteLine(Covariance.b);
+                    sw.WriteLine(Covariance.c);
+                    sw.WriteLine(Covariance.d);
+                }
+            }
+        }
+
+        public static ChangRobles Load(string path)
+        {
+            ChangRobles cr = new ChangRobles();
+            cr.Mean = new TwoDimVector();
+            cr.Covariance = new TwoDimMatrix();
+            using (var stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (var sr = new StreamReader(stream))
+                {
+                    cr.Mean.a1 = double.Parse(sr.ReadLine().Trim());
+                    cr.Mean.a2 = double.Parse(sr.ReadLine().Trim());
+                    cr.Covariance.a = double.Parse(sr.ReadLine().Trim());
+                    cr.Covariance.b = double.Parse(sr.ReadLine().Trim());
+                    cr.Covariance.c = double.Parse(sr.ReadLine().Trim());
+                    cr.Covariance.d = double.Parse(sr.ReadLine().Trim());
+                }
+            }
+            cr.InvertCovariance = cr.Covariance.GetInvertibleMatrix();
+            return cr;
+        }
 
         public void SetModel(List<double> r, List<double> b)
         {

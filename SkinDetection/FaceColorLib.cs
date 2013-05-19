@@ -145,10 +145,31 @@ namespace SkinDetection
                 }
             }
             model.SetModel(cr, cb);
+            PrintColorModel();
+        }
 
-            lblMean.Text = string.Format("{0:0.0000} {1:0000}", model.Mean.a1, model.Mean.a2);
-            lblCov1.Text = string.Format("{0:0.0000} {1:0000}", model.Covariance.a, model.Covariance.b);
-            lblCov2.Text = string.Format("{0:0.0000} {1:0000}", model.Covariance.c, model.Covariance.d);
+        private void PrintColorModel()
+        {
+            lblMean.Text = string.Format("{0:0.000000} {1:0.000000}", model.Mean.a1, model.Mean.a2);
+            lblCov1.Text = string.Format("{0:0.000000} {1:0.000000}", model.Covariance.a, model.Covariance.b);
+            lblCov2.Text = string.Format("{0:0.000000} {1:0.000000}", model.Covariance.c, model.Covariance.d);
+        }
+
+        private void btnSaveColorModel_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveColorModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                model.Save(dlgSaveColorModel.FileName);
+            }
+        }
+
+        private void btnLoadColorModel_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadColorModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                model = ChangRobles.Load(dlgLoadColorModel.FileName);
+                PrintColorModel();
+            }
         }
     }
 }

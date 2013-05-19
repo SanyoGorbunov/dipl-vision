@@ -41,14 +41,13 @@
             this.pbFace = new System.Windows.Forms.PictureBox();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.pnlResults = new System.Windows.Forms.Panel();
-            this.lblRedMean = new System.Windows.Forms.Label();
-            this.lblRedMeanRes = new System.Windows.Forms.Label();
-            this.lblRedDispRes = new System.Windows.Forms.Label();
-            this.lblRedDisp = new System.Windows.Forms.Label();
-            this.lblBlueDispRes = new System.Windows.Forms.Label();
-            this.lblBlueDisp = new System.Windows.Forms.Label();
-            this.lblBlueMeanRes = new System.Windows.Forms.Label();
-            this.lblBlueMean = new System.Windows.Forms.Label();
+            this.lblMean = new System.Windows.Forms.Label();
+            this.lblCov1 = new System.Windows.Forms.Label();
+            this.lblCov2 = new System.Windows.Forms.Label();
+            this.btnSaveColorModel = new System.Windows.Forms.Button();
+            this.dlgSaveColorModel = new System.Windows.Forms.SaveFileDialog();
+            this.btnLoadColorModel = new System.Windows.Forms.Button();
+            this.dlgLoadColorModel = new System.Windows.Forms.OpenFileDialog();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -174,90 +173,62 @@
             // 
             // pnlResults
             // 
-            this.pnlResults.Controls.Add(this.lblBlueDispRes);
-            this.pnlResults.Controls.Add(this.lblBlueDisp);
-            this.pnlResults.Controls.Add(this.lblBlueMeanRes);
-            this.pnlResults.Controls.Add(this.lblBlueMean);
-            this.pnlResults.Controls.Add(this.lblRedDispRes);
-            this.pnlResults.Controls.Add(this.lblRedDisp);
-            this.pnlResults.Controls.Add(this.lblRedMeanRes);
-            this.pnlResults.Controls.Add(this.lblRedMean);
+            this.pnlResults.Controls.Add(this.btnLoadColorModel);
+            this.pnlResults.Controls.Add(this.btnSaveColorModel);
+            this.pnlResults.Controls.Add(this.lblCov2);
+            this.pnlResults.Controls.Add(this.lblCov1);
+            this.pnlResults.Controls.Add(this.lblMean);
             this.pnlResults.Location = new System.Drawing.Point(682, 61);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 135);
+            this.pnlResults.Size = new System.Drawing.Size(171, 169);
             this.pnlResults.TabIndex = 4;
             // 
-            // lblRedMean
+            // lblMean
             // 
-            this.lblRedMean.AutoSize = true;
-            this.lblRedMean.Location = new System.Drawing.Point(3, 10);
-            this.lblRedMean.Name = "lblRedMean";
-            this.lblRedMean.Size = new System.Drawing.Size(107, 13);
-            this.lblRedMean.TabIndex = 0;
-            this.lblRedMean.Text = "Chromatic Red Mean";
+            this.lblMean.AutoSize = true;
+            this.lblMean.Location = new System.Drawing.Point(27, 17);
+            this.lblMean.Name = "lblMean";
+            this.lblMean.Size = new System.Drawing.Size(35, 13);
+            this.lblMean.TabIndex = 0;
+            this.lblMean.Text = "label1";
             // 
-            // lblRedMeanRes
+            // lblCov1
             // 
-            this.lblRedMeanRes.AutoSize = true;
-            this.lblRedMeanRes.Location = new System.Drawing.Point(116, 10);
-            this.lblRedMeanRes.Name = "lblRedMeanRes";
-            this.lblRedMeanRes.Size = new System.Drawing.Size(35, 13);
-            this.lblRedMeanRes.TabIndex = 1;
-            this.lblRedMeanRes.Text = "label1";
+            this.lblCov1.AutoSize = true;
+            this.lblCov1.Location = new System.Drawing.Point(27, 51);
+            this.lblCov1.Name = "lblCov1";
+            this.lblCov1.Size = new System.Drawing.Size(35, 13);
+            this.lblCov1.TabIndex = 1;
+            this.lblCov1.Text = "label1";
             // 
-            // lblRedDispRes
+            // lblCov2
             // 
-            this.lblRedDispRes.AutoSize = true;
-            this.lblRedDispRes.Location = new System.Drawing.Point(116, 35);
-            this.lblRedDispRes.Name = "lblRedDispRes";
-            this.lblRedDispRes.Size = new System.Drawing.Size(35, 13);
-            this.lblRedDispRes.TabIndex = 3;
-            this.lblRedDispRes.Text = "label1";
+            this.lblCov2.AutoSize = true;
+            this.lblCov2.Location = new System.Drawing.Point(27, 74);
+            this.lblCov2.Name = "lblCov2";
+            this.lblCov2.Size = new System.Drawing.Size(35, 13);
+            this.lblCov2.TabIndex = 2;
+            this.lblCov2.Text = "label1";
             // 
-            // lblRedDisp
+            // btnSaveColorModel
             // 
-            this.lblRedDisp.AutoSize = true;
-            this.lblRedDisp.Location = new System.Drawing.Point(3, 35);
-            this.lblRedDisp.Name = "lblRedDisp";
-            this.lblRedDisp.Size = new System.Drawing.Size(101, 13);
-            this.lblRedDisp.TabIndex = 2;
-            this.lblRedDisp.Text = "Chromatic Red Disp";
+            this.btnSaveColorModel.Location = new System.Drawing.Point(23, 98);
+            this.btnSaveColorModel.Name = "btnSaveColorModel";
+            this.btnSaveColorModel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveColorModel.TabIndex = 3;
+            this.btnSaveColorModel.Text = "Save";
+            this.btnSaveColorModel.UseVisualStyleBackColor = true;
+            this.btnSaveColorModel.Click += new System.EventHandler(this.btnSaveColorModel_Click);
             // 
-            // lblBlueDispRes
+            // btnLoadColorModel
             // 
-            this.lblBlueDispRes.AutoSize = true;
-            this.lblBlueDispRes.Location = new System.Drawing.Point(116, 94);
-            this.lblBlueDispRes.Name = "lblBlueDispRes";
-            this.lblBlueDispRes.Size = new System.Drawing.Size(35, 13);
-            this.lblBlueDispRes.TabIndex = 7;
-            this.lblBlueDispRes.Text = "label1";
-            // 
-            // lblBlueDisp
-            // 
-            this.lblBlueDisp.AutoSize = true;
-            this.lblBlueDisp.Location = new System.Drawing.Point(3, 94);
-            this.lblBlueDisp.Name = "lblBlueDisp";
-            this.lblBlueDisp.Size = new System.Drawing.Size(102, 13);
-            this.lblBlueDisp.TabIndex = 6;
-            this.lblBlueDisp.Text = "Chromatic Blue Disp";
-            // 
-            // lblBlueMeanRes
-            // 
-            this.lblBlueMeanRes.AutoSize = true;
-            this.lblBlueMeanRes.Location = new System.Drawing.Point(116, 69);
-            this.lblBlueMeanRes.Name = "lblBlueMeanRes";
-            this.lblBlueMeanRes.Size = new System.Drawing.Size(35, 13);
-            this.lblBlueMeanRes.TabIndex = 5;
-            this.lblBlueMeanRes.Text = "label1";
-            // 
-            // lblBlueMean
-            // 
-            this.lblBlueMean.AutoSize = true;
-            this.lblBlueMean.Location = new System.Drawing.Point(3, 69);
-            this.lblBlueMean.Name = "lblBlueMean";
-            this.lblBlueMean.Size = new System.Drawing.Size(108, 13);
-            this.lblBlueMean.TabIndex = 4;
-            this.lblBlueMean.Text = "Chromatic Blue Mean";
+            this.btnLoadColorModel.Location = new System.Drawing.Point(23, 127);
+            this.btnLoadColorModel.Name = "btnLoadColorModel";
+            this.btnLoadColorModel.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadColorModel.TabIndex = 4;
+            this.btnLoadColorModel.Text = "Load";
+            this.btnLoadColorModel.UseVisualStyleBackColor = true;
+            this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
             // FaceColorLib
             // 
@@ -298,14 +269,13 @@
         private System.Windows.Forms.PictureBox pbFace;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Panel pnlResults;
-        private System.Windows.Forms.Label lblBlueDispRes;
-        private System.Windows.Forms.Label lblBlueDisp;
-        private System.Windows.Forms.Label lblBlueMeanRes;
-        private System.Windows.Forms.Label lblBlueMean;
-        private System.Windows.Forms.Label lblRedDispRes;
-        private System.Windows.Forms.Label lblRedDisp;
-        private System.Windows.Forms.Label lblRedMeanRes;
-        private System.Windows.Forms.Label lblRedMean;
+        private System.Windows.Forms.Label lblCov2;
+        private System.Windows.Forms.Label lblCov1;
+        private System.Windows.Forms.Label lblMean;
+        private System.Windows.Forms.Button btnSaveColorModel;
+        private System.Windows.Forms.SaveFileDialog dlgSaveColorModel;
+        private System.Windows.Forms.Button btnLoadColorModel;
+        private System.Windows.Forms.OpenFileDialog dlgLoadColorModel;
 
     }
 }
