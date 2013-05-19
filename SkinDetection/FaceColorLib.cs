@@ -173,6 +173,7 @@ namespace SkinDetection
         }
 
         private Image<Bgr, Byte> imgTest;
+        private Image<Gray, Byte> imgLikelihood;
         private void btnLoadTestImage_Click(object sender, EventArgs e)
         {
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -184,7 +185,19 @@ namespace SkinDetection
 
         private void btnDisplayLikelihood_Click(object sender, EventArgs e)
         {
-            pbFace.Image = model.GetLikelihoodImage(imgTest).ToBitmap();
+            imgLikelihood = model.GetLikelihoodImage(imgTest);
+            pbFace.Image = imgLikelihood.ToBitmap();
+        }
+
+        private void btnSetTreshold_Click(object sender, EventArgs e)
+        {
+            byte bound = byte.Parse(txtTreshBound.Text);
+            pbFace.Image = model.GetBinaryThreshold(imgLikelihood, bound).ToBitmap();
+        }
+
+        private void btnRunThresh_Click(object sender, EventArgs e)
+        {
+            pbFace.Image = model.GetAdaptiveBinaryThreshold(imgLikelihood).ToBitmap();
         }
     }
 }

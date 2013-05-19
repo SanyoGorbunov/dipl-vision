@@ -51,12 +51,18 @@
             this.btnLoadTestImage = new System.Windows.Forms.Button();
             this.dlgLoadTestImage = new System.Windows.Forms.OpenFileDialog();
             this.btnDisplayLikelihood = new System.Windows.Forms.Button();
+            this.pnlThresholdingDemo = new System.Windows.Forms.Panel();
+            this.lblTreshBound = new System.Windows.Forms.Label();
+            this.txtTreshBound = new System.Windows.Forms.TextBox();
+            this.btnSetTreshold = new System.Windows.Forms.Button();
+            this.btnRunThresh = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
             this.pnlResults.SuspendLayout();
+            this.pnlThresholdingDemo.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLib
@@ -186,7 +192,7 @@
             this.pnlResults.Controls.Add(this.lblMean);
             this.pnlResults.Location = new System.Drawing.Point(682, 61);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 269);
+            this.pnlResults.Size = new System.Drawing.Size(171, 194);
             this.pnlResults.TabIndex = 4;
             // 
             // lblMean
@@ -263,7 +269,7 @@
             // 
             // btnDisplayLikelihood
             // 
-            this.btnDisplayLikelihood.Location = new System.Drawing.Point(27, 175);
+            this.btnDisplayLikelihood.Location = new System.Drawing.Point(23, 156);
             this.btnDisplayLikelihood.Name = "btnDisplayLikelihood";
             this.btnDisplayLikelihood.Size = new System.Drawing.Size(105, 30);
             this.btnDisplayLikelihood.TabIndex = 5;
@@ -271,11 +277,59 @@
             this.btnDisplayLikelihood.UseVisualStyleBackColor = true;
             this.btnDisplayLikelihood.Click += new System.EventHandler(this.btnDisplayLikelihood_Click);
             // 
+            // pnlThresholdingDemo
+            // 
+            this.pnlThresholdingDemo.Controls.Add(this.btnRunThresh);
+            this.pnlThresholdingDemo.Controls.Add(this.btnSetTreshold);
+            this.pnlThresholdingDemo.Controls.Add(this.txtTreshBound);
+            this.pnlThresholdingDemo.Controls.Add(this.lblTreshBound);
+            this.pnlThresholdingDemo.Location = new System.Drawing.Point(683, 268);
+            this.pnlThresholdingDemo.Name = "pnlThresholdingDemo";
+            this.pnlThresholdingDemo.Size = new System.Drawing.Size(170, 106);
+            this.pnlThresholdingDemo.TabIndex = 6;
+            // 
+            // lblTreshBound
+            // 
+            this.lblTreshBound.AutoSize = true;
+            this.lblTreshBound.Location = new System.Drawing.Point(3, 20);
+            this.lblTreshBound.Name = "lblTreshBound";
+            this.lblTreshBound.Size = new System.Drawing.Size(41, 13);
+            this.lblTreshBound.TabIndex = 0;
+            this.lblTreshBound.Text = "Bound:";
+            // 
+            // txtTreshBound
+            // 
+            this.txtTreshBound.Location = new System.Drawing.Point(82, 17);
+            this.txtTreshBound.Name = "txtTreshBound";
+            this.txtTreshBound.Size = new System.Drawing.Size(73, 20);
+            this.txtTreshBound.TabIndex = 1;
+            // 
+            // btnSetTreshold
+            // 
+            this.btnSetTreshold.Location = new System.Drawing.Point(68, 43);
+            this.btnSetTreshold.Name = "btnSetTreshold";
+            this.btnSetTreshold.Size = new System.Drawing.Size(87, 23);
+            this.btnSetTreshold.TabIndex = 4;
+            this.btnSetTreshold.Text = "Set Threshold";
+            this.btnSetTreshold.UseVisualStyleBackColor = true;
+            this.btnSetTreshold.Click += new System.EventHandler(this.btnSetTreshold_Click);
+            // 
+            // btnRunThresh
+            // 
+            this.btnRunThresh.Location = new System.Drawing.Point(6, 72);
+            this.btnRunThresh.Name = "btnRunThresh";
+            this.btnRunThresh.Size = new System.Drawing.Size(149, 23);
+            this.btnRunThresh.TabIndex = 5;
+            this.btnRunThresh.Text = "Run Thresholding";
+            this.btnRunThresh.UseVisualStyleBackColor = true;
+            this.btnRunThresh.Click += new System.EventHandler(this.btnRunThresh_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 409);
+            this.Controls.Add(this.pnlThresholdingDemo);
             this.Controls.Add(this.btnLoadTestImage);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.btnCalculate);
@@ -292,6 +346,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).EndInit();
             this.pnlResults.ResumeLayout(false);
             this.pnlResults.PerformLayout();
+            this.pnlThresholdingDemo.ResumeLayout(false);
+            this.pnlThresholdingDemo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -321,6 +377,11 @@
         private System.Windows.Forms.Button btnLoadTestImage;
         private System.Windows.Forms.OpenFileDialog dlgLoadTestImage;
         private System.Windows.Forms.Button btnDisplayLikelihood;
+        private System.Windows.Forms.Panel pnlThresholdingDemo;
+        private System.Windows.Forms.Button btnSetTreshold;
+        private System.Windows.Forms.TextBox txtTreshBound;
+        private System.Windows.Forms.Label lblTreshBound;
+        private System.Windows.Forms.Button btnRunThresh;
 
     }
 }

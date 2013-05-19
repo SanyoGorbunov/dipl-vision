@@ -166,6 +166,25 @@ namespace SkinDetection
         {
             return (byte) (255 * GetLikelihood(1.0 * r / (1.0 * r + g + b), 1.0 * b / (1.0 * r + g + b)));
         }
+        public int GetWhitePixels(Image<Gray, Byte> img)
+        {
+            int sum = 0;
+            byte[, ,] data = img.Data;
+
+            for (int i = img.Rows - 1; i >= 0; i--)
+            {
+                for (int j = img.Cols - 1; j >= 0; j--)
+                {
+                    if (data[i, j, 0] == 255)
+                    {
+                        sum++;
+                    }
+                }
+            }
+
+            return sum;
+        }
+
         public Image<Gray, byte> GetLikelihoodImage(Image<Bgr, byte> img)
         {
             byte[, ,] data = img.Data;
@@ -182,6 +201,30 @@ namespace SkinDetection
             }
             
             return imgLikelihood;
+        }
+        public Image<Gray, Byte> GetBinaryThreshold(Image<Gray, byte> img, byte bound)
+        {
+            return img.ThresholdBinary(new Gray(bound), new Gray(255));
+        }
+        public Image<Gray, Byte> GetAdaptiveBinaryThreshold(Image<Gray, byte> img, byte initialBound = 180, byte step = 5)
+        {
+            Image<Gray, byte> imgAdaptive = GetBinaryThreshold(img, initialBound);
+            int whPxls0 = GetWhitePixels(imgAdaptive), dif0 = 0, whPxls1, dif1;
+            initialBound -= step;
+            while (initialBound > 0)
+            {
+                imgAdaptive = GetBinaryThreshold(img, initialBound);
+                whPxls1 = GetWhitePixels(imgAdaptive);
+                dif1 = whPxls1 - whPxls0;
+                if (dif0 > 0 && dif1 > dif0)
+                {
+                    break;
+                }
+                initialBound -= step;
+                whPxls0 = whPxls1;
+                dif0 = dif1;
+            }
+            return GetBinaryThreshold(img, (byte) (initialBound + step / 2));
         }
     }
 }
