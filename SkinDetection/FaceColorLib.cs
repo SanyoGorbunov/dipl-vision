@@ -25,34 +25,60 @@ namespace SkinDetection
             if (dlgLibOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 lbLib.Items.Add(dlgLibOpen.FileName);
+                personRects.Add(new List<Rectangle>());
             }
         }
 
         #region Select Area on pbFace
 
+        private List<List<Rectangle>> personRects = new List<List<Rectangle>>();
+        private Rectangle tmpRect;
+
         private Point RectStartPoint;
-        private Rectangle Rect = new Rectangle();
         private Brush selectionBrush = new SolidBrush(Color.FromArgb(128, 72, 145, 220));
 
         private void pbFace_Paint(object sender, PaintEventArgs e)
         {
             if (pbFace.Image != null)
             {
-                if (Rect != null && Rect.Width > 0 && Rect.Height > 0)
+                if (!tmpRect.IsEmpty)
                 {
-                    e.Graphics.FillRectangle(selectionBrush, Rect);
+                    e.Graphics.FillRectangle(selectionBrush, tmpRect);
+                }
+                if (lbLib.SelectedIndex > -1)
+                {
+                    foreach (var Rect in personRects[lbLib.SelectedIndex])
+                    {
+                        if (Rect != null && Rect.Width > 0 && Rect.Height > 0)
+                        {
+                            e.Graphics.FillRectangle(selectionBrush, Rect);
+                        }
+                    }
                 }
             }
         }
 
         private void pbFace_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                if (Rect.Contains(e.Location))
-                {
+                Point tempEndPoint = e.Location;
 
+                var Rect = new Rectangle();
+                Rect.Location = new Point(
+                    Math.Min(RectStartPoint.X, tempEndPoint.X),
+                    Math.Min(RectStartPoint.Y, tempEndPoint.Y)
+                    );
+                Rect.Size = new Size(
+                    Math.Abs(RectStartPoint.X - tempEndPoint.X),
+                    Math.Abs(RectStartPoint.Y - tempEndPoint.Y)
+                    );
+
+                if (lbLib.SelectedIndex > -1)
+                {
+                    personRects[lbLib.SelectedIndex].Add(Rect);
                 }
+                tmpRect = new Rectangle();
             }
         }
 
@@ -63,14 +89,17 @@ namespace SkinDetection
                 return;
             }
             Point tempEndPoint = e.Location;
-            Rect.Location = new Point(
+
+            tmpRect = new Rectangle();
+            tmpRect.Location = new Point(
                 Math.Min(RectStartPoint.X, tempEndPoint.X),
                 Math.Min(RectStartPoint.Y, tempEndPoint.Y)
                 );
-            Rect.Size = new Size(
+            tmpRect.Size = new Size(
                 Math.Abs(RectStartPoint.X - tempEndPoint.X),
                 Math.Abs(RectStartPoint.Y - tempEndPoint.Y)
                 );
+
             pbFace.Invalidate();
         }
 
@@ -91,49 +120,35 @@ namespace SkinDetection
 
         #endregion
 
-        private double crMean, cbMean, crD, cbD;
+        private ChangRobles model = new ChangRobles();
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             List<double> cr = new List<double>();
             List<double> cb = new List<double>();
-            foreach (var item in lbLib.Items)
+            for (int k = 0; k < lbLib.Items.Count; k++)
             {
-                Image<Bgr, Byte> img = new Image<Bgr, byte>(item.ToString());
-                for (int i = Rect.Top; i < Rect.Top + Rect.Height; i++)
+                Image<Bgr, Byte> img = new Image<Bgr, byte>(lbLib.Items[k].ToString());
+                foreach (var Rect in personRects[k])
                 {
-                    for (int j = Rect.Left; j < Rect.Left + Rect.Width; j++)
+                    for (int i = Rect.Top; i < Rect.Top + Rect.Height; i++)
                     {
-                        double s = img[i, j].Red + img[i, j].Green + img[i, j].Blue;
-                        double r = img[i, j].Red / s;
-                        double b = img[i, j].Blue / s;
-                        cr.Add(r);
-                        cb.Add(b);
-                    }
+                        for (int j = Rect.Left; j < Rect.Left + Rect.Width; j++)
+                        {
+                            double s = img[i, j].Red + img[i, j].Green + img[i, j].Blue;
+                            double r = img[i, j].Red / s;
+                            double b = img[i, j].Blue / s;
+                            cr.Add(r);
+                            cb.Add(b);
+                        }
+                    }   
                 }
             }
-            CalcMeanAndDisp(cr, cb);
-            PrintMeanAndDisp();
-        }
-        private void PrintMeanAndDisp()
-        {
-            lblRedMeanRes.Text = crMean.ToString("0.0000");
-            lblRedDispRes.Text = crD.ToString("0.0000");
-            lblBlueMeanRes.Text = crMean.ToString("0.0000");
-            lblBlueDispRes.Text = cbD.ToString("0.0000");
-        }
-        private void CalcMeanAndDisp(List<double> cr, List<double> cb)
-        {
-            crMean = cr.Average();
-            cbMean = cr.Average();
-            crD = 0; cbD = 0;
-            for (int i = 0; i < cr.Count; i++)
-            {
-                crD += (cr[i] - crMean) * (cr[i] - crMean);
-                cbD += (cb[i] - cbMean) * (cb[i] - cbMean);
-            }
-            crD /= (cr.Count - 1);
-            cbD /= (cb.Count - 1);
+            model.SetModel(cr, cb);
+
+            lblMean.Text = string.Format("{0:0.0000} {1:0000}", model.Mean.a1, model.Mean.a2);
+            lblCov1.Text = string.Format("{0:0.0000} {1:0000}", model.Covariance.a, model.Covariance.b);
+            lblCov2.Text = string.Format("{0:0.0000} {1:0000}", model.Covariance.c, model.Covariance.d);
         }
     }
 }
