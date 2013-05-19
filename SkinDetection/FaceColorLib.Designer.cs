@@ -91,7 +91,7 @@
             // 
             this.dlgLibOpen.FileName = "openFileDialog1";
             this.dlgLibOpen.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
-                "ces94\\male\\9326871";
+                "ces94\\";
             // 
             // pnlLibType
             // 
@@ -259,7 +259,7 @@
             // dlgLoadTestImage
             // 
             this.dlgLoadTestImage.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
-                "ces94\\male\\9326871";
+                "ces94\\";
             // 
             // btnDisplayLikelihood
             // 
