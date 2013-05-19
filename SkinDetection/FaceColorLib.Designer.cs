@@ -90,6 +90,8 @@
             // dlgLibOpen
             // 
             this.dlgLibOpen.FileName = "openFileDialog1";
+            this.dlgLibOpen.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
+                "ces94\\male\\9326871";
             // 
             // pnlLibType
             // 
@@ -224,6 +226,11 @@
             this.btnSaveColorModel.UseVisualStyleBackColor = true;
             this.btnSaveColorModel.Click += new System.EventHandler(this.btnSaveColorModel_Click);
             // 
+            // dlgSaveColorModel
+            // 
+            this.dlgSaveColorModel.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\SkinC" +
+                "olorModels";
+            // 
             // btnLoadColorModel
             // 
             this.btnLoadColorModel.Location = new System.Drawing.Point(23, 127);
@@ -234,6 +241,11 @@
             this.btnLoadColorModel.UseVisualStyleBackColor = true;
             this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
+            // dlgLoadColorModel
+            // 
+            this.dlgLoadColorModel.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\SkinC" +
+                "olorModels";
+            // 
             // btnLoadTestImage
             // 
             this.btnLoadTestImage.Location = new System.Drawing.Point(394, 23);
@@ -243,6 +255,11 @@
             this.btnLoadTestImage.Text = "Load Test Image";
             this.btnLoadTestImage.UseVisualStyleBackColor = true;
             this.btnLoadTestImage.Click += new System.EventHandler(this.btnLoadTestImage_Click);
+            // 
+            // dlgLoadTestImage
+            // 
+            this.dlgLoadTestImage.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
+                "ces94\\male\\9326871";
             // 
             // btnDisplayLikelihood
             // 
