@@ -48,6 +48,9 @@
             this.dlgSaveColorModel = new System.Windows.Forms.SaveFileDialog();
             this.btnLoadColorModel = new System.Windows.Forms.Button();
             this.dlgLoadColorModel = new System.Windows.Forms.OpenFileDialog();
+            this.btnLoadTestImage = new System.Windows.Forms.Button();
+            this.dlgLoadTestImage = new System.Windows.Forms.OpenFileDialog();
+            this.btnDisplayLikelihood = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -173,6 +176,7 @@
             // 
             // pnlResults
             // 
+            this.pnlResults.Controls.Add(this.btnDisplayLikelihood);
             this.pnlResults.Controls.Add(this.btnLoadColorModel);
             this.pnlResults.Controls.Add(this.btnSaveColorModel);
             this.pnlResults.Controls.Add(this.lblCov2);
@@ -180,7 +184,7 @@
             this.pnlResults.Controls.Add(this.lblMean);
             this.pnlResults.Location = new System.Drawing.Point(682, 61);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 169);
+            this.pnlResults.Size = new System.Drawing.Size(171, 240);
             this.pnlResults.TabIndex = 4;
             // 
             // lblMean
@@ -230,11 +234,32 @@
             this.btnLoadColorModel.UseVisualStyleBackColor = true;
             this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
+            // btnLoadTestImage
+            // 
+            this.btnLoadTestImage.Location = new System.Drawing.Point(394, 23);
+            this.btnLoadTestImage.Name = "btnLoadTestImage";
+            this.btnLoadTestImage.Size = new System.Drawing.Size(106, 23);
+            this.btnLoadTestImage.TabIndex = 5;
+            this.btnLoadTestImage.Text = "Load Test Image";
+            this.btnLoadTestImage.UseVisualStyleBackColor = true;
+            this.btnLoadTestImage.Click += new System.EventHandler(this.btnLoadTestImage_Click);
+            // 
+            // btnDisplayLikelihood
+            // 
+            this.btnDisplayLikelihood.Location = new System.Drawing.Point(27, 175);
+            this.btnDisplayLikelihood.Name = "btnDisplayLikelihood";
+            this.btnDisplayLikelihood.Size = new System.Drawing.Size(105, 30);
+            this.btnDisplayLikelihood.TabIndex = 5;
+            this.btnDisplayLikelihood.Text = "Test Likelihood";
+            this.btnDisplayLikelihood.UseVisualStyleBackColor = true;
+            this.btnDisplayLikelihood.Click += new System.EventHandler(this.btnDisplayLikelihood_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 409);
+            this.Controls.Add(this.btnLoadTestImage);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.pnlSelectRegion);
@@ -276,6 +301,9 @@
         private System.Windows.Forms.SaveFileDialog dlgSaveColorModel;
         private System.Windows.Forms.Button btnLoadColorModel;
         private System.Windows.Forms.OpenFileDialog dlgLoadColorModel;
+        private System.Windows.Forms.Button btnLoadTestImage;
+        private System.Windows.Forms.OpenFileDialog dlgLoadTestImage;
+        private System.Windows.Forms.Button btnDisplayLikelihood;
 
     }
 }

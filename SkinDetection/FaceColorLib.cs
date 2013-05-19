@@ -171,5 +171,28 @@ namespace SkinDetection
                 PrintColorModel();
             }
         }
+
+        private Image<Bgr, Byte> imgTest;
+        private void btnLoadTestImage_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName);
+                pbFace.Image = imgTest.ToBitmap();
+            }
+        }
+
+        private void btnDisplayLikelihood_Click(object sender, EventArgs e)
+        {
+            Image<Gray, Byte> imgLikelihood = new Image<Gray, byte>(imgTest.Size);
+            for (int i = 0; i < imgLikelihood.Height; i++)
+            {
+                for (int j = 0; j < imgLikelihood.Width; j++)
+                {
+                    imgLikelihood[i, j] = new Gray(model.GetLikelihood(imgTest[i, j]));
+                }
+            }
+            pbFace.Image = imgLikelihood.ToBitmap();
+        }
     }
 }

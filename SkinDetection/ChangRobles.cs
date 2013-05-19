@@ -4,6 +4,8 @@ using System.Linq;
 using System.IO;
 using System.Text;
 
+using Emgu.CV.Structure;
+
 namespace SkinDetection
 {
     class TwoDimVector
@@ -152,6 +154,11 @@ namespace SkinDetection
                 a1 = r - Mean.a1, a2 = b - Mean.a2
             };
             return Math.Exp(0.5 * (v * InvertCovariance * v));
+        }
+        public double GetLikelihood(Bgr bgr)
+        {
+            double sum = bgr.Blue + bgr.Green + bgr.Red;
+            return GetLikelihood(bgr.Red / sum, bgr.Blue / sum);
         }
     }
 }
