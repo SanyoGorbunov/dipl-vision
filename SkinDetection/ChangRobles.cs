@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Text;
 
+using Emgu.CV;
 using Emgu.CV.Structure;
 
 namespace SkinDetection
@@ -159,6 +160,28 @@ namespace SkinDetection
         {
             double sum = bgr.Blue + bgr.Green + bgr.Red;
             return GetLikelihood(bgr.Red / sum, bgr.Blue / sum);
+        }
+
+        public byte GetByteLikelihood(byte b, byte g, byte r)
+        {
+            return (byte) (255 * GetLikelihood(1.0 * r / (1.0 * r + g + b), 1.0 * b / (1.0 * r + g + b)));
+        }
+        public Image<Gray, byte> GetLikelihoodImage(Image<Bgr, byte> img)
+        {
+            byte[, ,] data = img.Data;
+
+            Image<Gray, byte> imgLikelihood = new Image<Gray, byte>(img.Size);
+            byte[, ,] grayData = imgLikelihood.Data;
+
+            for (int i = img.Rows - 1; i >= 0; i--)
+            {
+                for (int j = img.Cols - 1; j >= 0; j--)
+                {
+                    grayData[i, j, 0] = GetByteLikelihood(data[i, j, 0], data[i, j, 1], data[i, j, 2]);
+                }
+            }
+            
+            return imgLikelihood;
         }
     }
 }

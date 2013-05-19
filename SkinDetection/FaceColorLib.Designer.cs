@@ -186,7 +186,7 @@
             this.pnlResults.Controls.Add(this.lblMean);
             this.pnlResults.Location = new System.Drawing.Point(682, 61);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 240);
+            this.pnlResults.Size = new System.Drawing.Size(171, 269);
             this.pnlResults.TabIndex = 4;
             // 
             // lblMean

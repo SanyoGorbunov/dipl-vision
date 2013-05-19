@@ -184,15 +184,7 @@ namespace SkinDetection
 
         private void btnDisplayLikelihood_Click(object sender, EventArgs e)
         {
-            Image<Gray, Byte> imgLikelihood = new Image<Gray, byte>(imgTest.Size);
-            for (int i = 0; i < imgLikelihood.Height; i++)
-            {
-                for (int j = 0; j < imgLikelihood.Width; j++)
-                {
-                    imgLikelihood[i, j] = new Gray(255 * model.GetLikelihood(imgTest[i, j]));
-                }
-            }
-            pbFace.Image = imgLikelihood.ToBitmap();
+            pbFace.Image = model.GetLikelihoodImage(imgTest).ToBitmap();
         }
     }
 }
