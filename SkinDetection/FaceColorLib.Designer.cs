@@ -41,21 +41,29 @@
             this.pbFace = new System.Windows.Forms.PictureBox();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.pnlResults = new System.Windows.Forms.Panel();
-            this.lblMean = new System.Windows.Forms.Label();
-            this.lblCov1 = new System.Windows.Forms.Label();
-            this.lblCov2 = new System.Windows.Forms.Label();
-            this.btnSaveColorModel = new System.Windows.Forms.Button();
-            this.dlgSaveColorModel = new System.Windows.Forms.SaveFileDialog();
+            this.btnDisplayLikelihood = new System.Windows.Forms.Button();
             this.btnLoadColorModel = new System.Windows.Forms.Button();
+            this.btnSaveColorModel = new System.Windows.Forms.Button();
+            this.lblCov2 = new System.Windows.Forms.Label();
+            this.lblCov1 = new System.Windows.Forms.Label();
+            this.lblMean = new System.Windows.Forms.Label();
+            this.dlgSaveColorModel = new System.Windows.Forms.SaveFileDialog();
             this.dlgLoadColorModel = new System.Windows.Forms.OpenFileDialog();
             this.btnLoadTestImage = new System.Windows.Forms.Button();
             this.dlgLoadTestImage = new System.Windows.Forms.OpenFileDialog();
-            this.btnDisplayLikelihood = new System.Windows.Forms.Button();
             this.pnlThresholdingDemo = new System.Windows.Forms.Panel();
-            this.lblTreshBound = new System.Windows.Forms.Label();
-            this.txtTreshBound = new System.Windows.Forms.TextBox();
-            this.btnSetTreshold = new System.Windows.Forms.Button();
             this.btnRunThresh = new System.Windows.Forms.Button();
+            this.btnSetTreshold = new System.Windows.Forms.Button();
+            this.txtTreshBound = new System.Windows.Forms.TextBox();
+            this.lblTreshBound = new System.Windows.Forms.Label();
+            this.pnlSkinRegions = new System.Windows.Forms.Panel();
+            this.btnFindSkinRegions = new System.Windows.Forms.Button();
+            this.lbSkinRegions = new System.Windows.Forms.ListBox();
+            this.lblSkinRegionPixels = new System.Windows.Forms.Label();
+            this.lblSkinRegionLeft = new System.Windows.Forms.Label();
+            this.lblSkinRegionTop = new System.Windows.Forms.Label();
+            this.lblSkinRegionWidth = new System.Windows.Forms.Label();
+            this.lblSkinRegionHeight = new System.Windows.Forms.Label();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -63,6 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
             this.pnlResults.SuspendLayout();
             this.pnlThresholdingDemo.SuspendLayout();
+            this.pnlSkinRegions.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLib
@@ -195,32 +204,25 @@
             this.pnlResults.Size = new System.Drawing.Size(171, 194);
             this.pnlResults.TabIndex = 4;
             // 
-            // lblMean
+            // btnDisplayLikelihood
             // 
-            this.lblMean.AutoSize = true;
-            this.lblMean.Location = new System.Drawing.Point(27, 17);
-            this.lblMean.Name = "lblMean";
-            this.lblMean.Size = new System.Drawing.Size(35, 13);
-            this.lblMean.TabIndex = 0;
-            this.lblMean.Text = "label1";
+            this.btnDisplayLikelihood.Location = new System.Drawing.Point(23, 156);
+            this.btnDisplayLikelihood.Name = "btnDisplayLikelihood";
+            this.btnDisplayLikelihood.Size = new System.Drawing.Size(105, 30);
+            this.btnDisplayLikelihood.TabIndex = 5;
+            this.btnDisplayLikelihood.Text = "Test Likelihood";
+            this.btnDisplayLikelihood.UseVisualStyleBackColor = true;
+            this.btnDisplayLikelihood.Click += new System.EventHandler(this.btnDisplayLikelihood_Click);
             // 
-            // lblCov1
+            // btnLoadColorModel
             // 
-            this.lblCov1.AutoSize = true;
-            this.lblCov1.Location = new System.Drawing.Point(27, 51);
-            this.lblCov1.Name = "lblCov1";
-            this.lblCov1.Size = new System.Drawing.Size(35, 13);
-            this.lblCov1.TabIndex = 1;
-            this.lblCov1.Text = "label1";
-            // 
-            // lblCov2
-            // 
-            this.lblCov2.AutoSize = true;
-            this.lblCov2.Location = new System.Drawing.Point(27, 74);
-            this.lblCov2.Name = "lblCov2";
-            this.lblCov2.Size = new System.Drawing.Size(35, 13);
-            this.lblCov2.TabIndex = 2;
-            this.lblCov2.Text = "label1";
+            this.btnLoadColorModel.Location = new System.Drawing.Point(23, 127);
+            this.btnLoadColorModel.Name = "btnLoadColorModel";
+            this.btnLoadColorModel.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadColorModel.TabIndex = 4;
+            this.btnLoadColorModel.Text = "Load";
+            this.btnLoadColorModel.UseVisualStyleBackColor = true;
+            this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
             // btnSaveColorModel
             // 
@@ -232,20 +234,37 @@
             this.btnSaveColorModel.UseVisualStyleBackColor = true;
             this.btnSaveColorModel.Click += new System.EventHandler(this.btnSaveColorModel_Click);
             // 
+            // lblCov2
+            // 
+            this.lblCov2.AutoSize = true;
+            this.lblCov2.Location = new System.Drawing.Point(27, 74);
+            this.lblCov2.Name = "lblCov2";
+            this.lblCov2.Size = new System.Drawing.Size(35, 13);
+            this.lblCov2.TabIndex = 2;
+            this.lblCov2.Text = "label1";
+            // 
+            // lblCov1
+            // 
+            this.lblCov1.AutoSize = true;
+            this.lblCov1.Location = new System.Drawing.Point(27, 51);
+            this.lblCov1.Name = "lblCov1";
+            this.lblCov1.Size = new System.Drawing.Size(35, 13);
+            this.lblCov1.TabIndex = 1;
+            this.lblCov1.Text = "label1";
+            // 
+            // lblMean
+            // 
+            this.lblMean.AutoSize = true;
+            this.lblMean.Location = new System.Drawing.Point(27, 17);
+            this.lblMean.Name = "lblMean";
+            this.lblMean.Size = new System.Drawing.Size(35, 13);
+            this.lblMean.TabIndex = 0;
+            this.lblMean.Text = "label1";
+            // 
             // dlgSaveColorModel
             // 
             this.dlgSaveColorModel.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\SkinC" +
                 "olorModels";
-            // 
-            // btnLoadColorModel
-            // 
-            this.btnLoadColorModel.Location = new System.Drawing.Point(23, 127);
-            this.btnLoadColorModel.Name = "btnLoadColorModel";
-            this.btnLoadColorModel.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadColorModel.TabIndex = 4;
-            this.btnLoadColorModel.Text = "Load";
-            this.btnLoadColorModel.UseVisualStyleBackColor = true;
-            this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
             // dlgLoadColorModel
             // 
@@ -267,16 +286,6 @@
             this.dlgLoadTestImage.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
                 "ces94\\";
             // 
-            // btnDisplayLikelihood
-            // 
-            this.btnDisplayLikelihood.Location = new System.Drawing.Point(23, 156);
-            this.btnDisplayLikelihood.Name = "btnDisplayLikelihood";
-            this.btnDisplayLikelihood.Size = new System.Drawing.Size(105, 30);
-            this.btnDisplayLikelihood.TabIndex = 5;
-            this.btnDisplayLikelihood.Text = "Test Likelihood";
-            this.btnDisplayLikelihood.UseVisualStyleBackColor = true;
-            this.btnDisplayLikelihood.Click += new System.EventHandler(this.btnDisplayLikelihood_Click);
-            // 
             // pnlThresholdingDemo
             // 
             this.pnlThresholdingDemo.Controls.Add(this.btnRunThresh);
@@ -288,21 +297,15 @@
             this.pnlThresholdingDemo.Size = new System.Drawing.Size(170, 106);
             this.pnlThresholdingDemo.TabIndex = 6;
             // 
-            // lblTreshBound
+            // btnRunThresh
             // 
-            this.lblTreshBound.AutoSize = true;
-            this.lblTreshBound.Location = new System.Drawing.Point(3, 20);
-            this.lblTreshBound.Name = "lblTreshBound";
-            this.lblTreshBound.Size = new System.Drawing.Size(41, 13);
-            this.lblTreshBound.TabIndex = 0;
-            this.lblTreshBound.Text = "Bound:";
-            // 
-            // txtTreshBound
-            // 
-            this.txtTreshBound.Location = new System.Drawing.Point(82, 17);
-            this.txtTreshBound.Name = "txtTreshBound";
-            this.txtTreshBound.Size = new System.Drawing.Size(73, 20);
-            this.txtTreshBound.TabIndex = 1;
+            this.btnRunThresh.Location = new System.Drawing.Point(6, 72);
+            this.btnRunThresh.Name = "btnRunThresh";
+            this.btnRunThresh.Size = new System.Drawing.Size(149, 23);
+            this.btnRunThresh.TabIndex = 5;
+            this.btnRunThresh.Text = "Run Thresholding";
+            this.btnRunThresh.UseVisualStyleBackColor = true;
+            this.btnRunThresh.Click += new System.EventHandler(this.btnRunThresh_Click);
             // 
             // btnSetTreshold
             // 
@@ -314,21 +317,106 @@
             this.btnSetTreshold.UseVisualStyleBackColor = true;
             this.btnSetTreshold.Click += new System.EventHandler(this.btnSetTreshold_Click);
             // 
-            // btnRunThresh
+            // txtTreshBound
             // 
-            this.btnRunThresh.Location = new System.Drawing.Point(6, 72);
-            this.btnRunThresh.Name = "btnRunThresh";
-            this.btnRunThresh.Size = new System.Drawing.Size(149, 23);
-            this.btnRunThresh.TabIndex = 5;
-            this.btnRunThresh.Text = "Run Thresholding";
-            this.btnRunThresh.UseVisualStyleBackColor = true;
-            this.btnRunThresh.Click += new System.EventHandler(this.btnRunThresh_Click);
+            this.txtTreshBound.Location = new System.Drawing.Point(82, 17);
+            this.txtTreshBound.Name = "txtTreshBound";
+            this.txtTreshBound.Size = new System.Drawing.Size(73, 20);
+            this.txtTreshBound.TabIndex = 1;
+            // 
+            // lblTreshBound
+            // 
+            this.lblTreshBound.AutoSize = true;
+            this.lblTreshBound.Location = new System.Drawing.Point(3, 20);
+            this.lblTreshBound.Name = "lblTreshBound";
+            this.lblTreshBound.Size = new System.Drawing.Size(41, 13);
+            this.lblTreshBound.TabIndex = 0;
+            this.lblTreshBound.Text = "Bound:";
+            // 
+            // pnlSkinRegions
+            // 
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHeight);
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionTop);
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionWidth);
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionLeft);
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionPixels);
+            this.pnlSkinRegions.Controls.Add(this.lbSkinRegions);
+            this.pnlSkinRegions.Controls.Add(this.btnFindSkinRegions);
+            this.pnlSkinRegions.Location = new System.Drawing.Point(859, 12);
+            this.pnlSkinRegions.Name = "pnlSkinRegions";
+            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 243);
+            this.pnlSkinRegions.TabIndex = 7;
+            // 
+            // btnFindSkinRegions
+            // 
+            this.btnFindSkinRegions.Location = new System.Drawing.Point(3, 7);
+            this.btnFindSkinRegions.Name = "btnFindSkinRegions";
+            this.btnFindSkinRegions.Size = new System.Drawing.Size(75, 23);
+            this.btnFindSkinRegions.TabIndex = 0;
+            this.btnFindSkinRegions.Text = "Find";
+            this.btnFindSkinRegions.UseVisualStyleBackColor = true;
+            this.btnFindSkinRegions.Click += new System.EventHandler(this.btnFindSkinRegions_Click);
+            // 
+            // lbSkinRegions
+            // 
+            this.lbSkinRegions.FormattingEnabled = true;
+            this.lbSkinRegions.Location = new System.Drawing.Point(3, 36);
+            this.lbSkinRegions.Name = "lbSkinRegions";
+            this.lbSkinRegions.Size = new System.Drawing.Size(165, 108);
+            this.lbSkinRegions.TabIndex = 1;
+            this.lbSkinRegions.SelectedIndexChanged += new System.EventHandler(this.lbSkinRegions_SelectedIndexChanged);
+            // 
+            // lblSkinRegionPixels
+            // 
+            this.lblSkinRegionPixels.AutoSize = true;
+            this.lblSkinRegionPixels.Location = new System.Drawing.Point(8, 151);
+            this.lblSkinRegionPixels.Name = "lblSkinRegionPixels";
+            this.lblSkinRegionPixels.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionPixels.TabIndex = 2;
+            this.lblSkinRegionPixels.Text = "label1";
+            // 
+            // lblSkinRegionLeft
+            // 
+            this.lblSkinRegionLeft.AutoSize = true;
+            this.lblSkinRegionLeft.Location = new System.Drawing.Point(8, 164);
+            this.lblSkinRegionLeft.Name = "lblSkinRegionLeft";
+            this.lblSkinRegionLeft.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionLeft.TabIndex = 3;
+            this.lblSkinRegionLeft.Text = "label1";
+            // 
+            // lblSkinRegionTop
+            // 
+            this.lblSkinRegionTop.AutoSize = true;
+            this.lblSkinRegionTop.Location = new System.Drawing.Point(8, 190);
+            this.lblSkinRegionTop.Name = "lblSkinRegionTop";
+            this.lblSkinRegionTop.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionTop.TabIndex = 5;
+            this.lblSkinRegionTop.Text = "label1";
+            // 
+            // lblSkinRegionWidth
+            // 
+            this.lblSkinRegionWidth.AutoSize = true;
+            this.lblSkinRegionWidth.Location = new System.Drawing.Point(8, 177);
+            this.lblSkinRegionWidth.Name = "lblSkinRegionWidth";
+            this.lblSkinRegionWidth.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionWidth.TabIndex = 4;
+            this.lblSkinRegionWidth.Text = "label1";
+            // 
+            // lblSkinRegionHeight
+            // 
+            this.lblSkinRegionHeight.AutoSize = true;
+            this.lblSkinRegionHeight.Location = new System.Drawing.Point(8, 203);
+            this.lblSkinRegionHeight.Name = "lblSkinRegionHeight";
+            this.lblSkinRegionHeight.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHeight.TabIndex = 6;
+            this.lblSkinRegionHeight.Text = "label1";
             // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 409);
+            this.ClientSize = new System.Drawing.Size(1042, 409);
+            this.Controls.Add(this.pnlSkinRegions);
             this.Controls.Add(this.pnlThresholdingDemo);
             this.Controls.Add(this.btnLoadTestImage);
             this.Controls.Add(this.pnlResults);
@@ -348,6 +436,8 @@
             this.pnlResults.PerformLayout();
             this.pnlThresholdingDemo.ResumeLayout(false);
             this.pnlThresholdingDemo.PerformLayout();
+            this.pnlSkinRegions.ResumeLayout(false);
+            this.pnlSkinRegions.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -382,6 +472,14 @@
         private System.Windows.Forms.TextBox txtTreshBound;
         private System.Windows.Forms.Label lblTreshBound;
         private System.Windows.Forms.Button btnRunThresh;
+        private System.Windows.Forms.Panel pnlSkinRegions;
+        private System.Windows.Forms.ListBox lbSkinRegions;
+        private System.Windows.Forms.Button btnFindSkinRegions;
+        private System.Windows.Forms.Label lblSkinRegionPixels;
+        private System.Windows.Forms.Label lblSkinRegionHeight;
+        private System.Windows.Forms.Label lblSkinRegionTop;
+        private System.Windows.Forms.Label lblSkinRegionWidth;
+        private System.Windows.Forms.Label lblSkinRegionLeft;
 
     }
 }

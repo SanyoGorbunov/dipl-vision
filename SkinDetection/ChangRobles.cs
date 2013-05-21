@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.IO;
 using System.Text;
@@ -89,6 +90,73 @@ namespace SkinDetection
                 c = -c / a / (d - b * c / a),
                 d = 1 / (d - b * c / a)
             };
+        }
+    }
+
+    class SkinRegion
+    {
+        public Image<Gray, byte> Region { get; private set; }
+
+        public int Pixels { get; private set; }
+        public int Left { get; private set; }
+        public int Top { get; private set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
+        public SkinRegion(Image<Gray, byte> img, int r, int c)
+        {
+            Region = new Image<Gray, byte>(img.Size);
+            byte[, ,] regionData = Region.Data;
+            byte[, ,] imgData = img.Data;
+            imgData[r, c, 0] = 0;
+
+            Pixels = 1;
+            Left = img.Cols;
+            Top = img.Rows;
+            int right = 0, bottom = 0;
+            
+            Queue<Point> points = new Queue<Point>();
+            points.Enqueue(new Point(r, c));
+            while (points.Count > 0)
+            {
+                Point p = points.Dequeue();
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (!(i == 0 && j == 0) &&
+                            (p.X + i >= 0 && p.X + i < img.Rows) &&
+                            (p.Y + j >= 0 && p.Y + j < img.Cols) &&
+                            (imgData[p.X + i, p.Y + j, 0] == 255))
+                        {
+                            imgData[p.X + i, p.Y + j, 0] = 0;
+                            regionData[p.X + i, p.Y + j, 0] = 255;
+                            points.Enqueue(new Point(p.X + i, p.Y + j));
+
+                            Pixels++;
+                            if (p.X + i < Top)
+                            {
+                                Top = p.X + i;
+                            }
+                            if (p.X + i > bottom)
+                            {
+                                bottom = p.X + i;
+                            }
+                            if (p.Y + j < Left)
+                            {
+                                Left = p.Y + j;
+                            }
+                            if (p.Y + j > right)
+                            {
+                                right = p.Y + j;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Width = right == 0 ? 0 : right - Left;
+            Height = bottom == 0 ? 0 : bottom - Top;
         }
     }
 
@@ -225,6 +293,25 @@ namespace SkinDetection
                 dif0 = dif1;
             }
             return GetBinaryThreshold(img, (byte) (initialBound + step / 2));
+        }
+
+        public List<SkinRegion> GetSkinRegions(Image<Gray, byte> img)
+        {
+            List<SkinRegion> regions = new List<SkinRegion>();
+            byte[, ,] data = img.Data;
+
+            for (int i = img.Rows - 1; i >= 0; i--)
+            {
+                for (int j = img.Cols - 1; j >= 0; j--)
+                {
+                    if (data[i, j, 0] == 255)
+                    {
+                        regions.Add(new SkinRegion(img, i, j));
+                    }
+                }
+            }
+
+            return regions;
         }
     }
 }

@@ -174,6 +174,7 @@ namespace SkinDetection
 
         private Image<Bgr, Byte> imgTest;
         private Image<Gray, Byte> imgLikelihood;
+        private Image<Gray, Byte> imgBinary;
         private void btnLoadTestImage_Click(object sender, EventArgs e)
         {
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -192,12 +193,41 @@ namespace SkinDetection
         private void btnSetTreshold_Click(object sender, EventArgs e)
         {
             byte bound = byte.Parse(txtTreshBound.Text);
-            pbFace.Image = model.GetBinaryThreshold(imgLikelihood, bound).ToBitmap();
+            imgBinary = model.GetBinaryThreshold(imgLikelihood, bound);
+            pbFace.Image = imgBinary.ToBitmap();
         }
 
         private void btnRunThresh_Click(object sender, EventArgs e)
         {
-            pbFace.Image = model.GetAdaptiveBinaryThreshold(imgLikelihood).ToBitmap();
+            imgBinary = model.GetAdaptiveBinaryThreshold(imgLikelihood);
+            pbFace.Image = imgBinary.ToBitmap();
+        }
+
+        private List<SkinRegion> skinRegions;
+        private void btnFindSkinRegions_Click(object sender, EventArgs e)
+        {
+            skinRegions = model.GetSkinRegions(imgBinary);
+
+            lbSkinRegions.Items.Clear();
+            for (int i = 0; i < skinRegions.Count; i++)
+            {
+                lbSkinRegions.Items.Add("SkinRegion #" + i);
+            }
+        }
+
+        private void lbSkinRegions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = lbSkinRegions.SelectedIndex;
+            if (skinRegions != null && selectedIndex >= 0 && selectedIndex < skinRegions.Count)
+            {
+                pbFace.Image = skinRegions[selectedIndex].Region.ToBitmap();
+
+                lblSkinRegionPixels.Text = string.Format("Skin Region has {0} pixels.", skinRegions[selectedIndex].Pixels);
+                lblSkinRegionLeft.Text = string.Format("Skin Region Left is {0}.", skinRegions[selectedIndex].Left);
+                lblSkinRegionWidth.Text = string.Format("Skin Region Width is {0}.", skinRegions[selectedIndex].Width);
+                lblSkinRegionTop.Text = string.Format("Skin Region Top is {0}.", skinRegions[selectedIndex].Top);
+                lblSkinRegionHeight.Text = string.Format("Skin Region Height is {0}.", skinRegions[selectedIndex].Height);
+            }
         }
     }
 }
