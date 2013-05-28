@@ -233,6 +233,7 @@ namespace SkinDetection
                 lblSkinRegionHoles.Text = string.Format("Skin Region has {0} holes.", skinRegions[selectedIndex].Holes);
                 lblSkinRegionCentroid.Text = string.Format("Skin Region centroid is ({0},{1}).", skinRegions[selectedIndex].Centroid.X, skinRegions[selectedIndex].Centroid.Y);
                 lblSkinRegionInclination.Text = string.Format("Skin Region inclination is {0}.", skinRegions[selectedIndex].Inclination);
+                lblSkinRegionRatio.Text = string.Format("Skin Region ratio is {0}.", skinRegions[selectedIndex].Ratio);
             }
         }
 

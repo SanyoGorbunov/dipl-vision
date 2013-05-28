@@ -69,6 +69,7 @@
             this.btnApplyKernel = new System.Windows.Forms.Button();
             this.lblSkinRegionCentroid = new System.Windows.Forms.Label();
             this.lblSkinRegionInclination = new System.Windows.Forms.Label();
+            this.lblSkinRegionRatio = new System.Windows.Forms.Label();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -340,6 +341,7 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionRatio);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionInclination);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionCentroid);
             this.pnlSkinRegions.Controls.Add(this.btnFilterByHoles);
@@ -353,12 +355,12 @@
             this.pnlSkinRegions.Controls.Add(this.btnFindSkinRegions);
             this.pnlSkinRegions.Location = new System.Drawing.Point(859, 12);
             this.pnlSkinRegions.Name = "pnlSkinRegions";
-            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 293);
+            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 322);
             this.pnlSkinRegions.TabIndex = 7;
             // 
             // btnFilterByHoles
             // 
-            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 259);
+            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 286);
             this.btnFilterByHoles.Name = "btnFilterByHoles";
             this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
             this.btnFilterByHoles.TabIndex = 8;
@@ -467,6 +469,15 @@
             this.lblSkinRegionInclination.TabIndex = 10;
             this.lblSkinRegionInclination.Text = "label1";
             // 
+            // lblSkinRegionRatio
+            // 
+            this.lblSkinRegionRatio.AutoSize = true;
+            this.lblSkinRegionRatio.Location = new System.Drawing.Point(8, 256);
+            this.lblSkinRegionRatio.Name = "lblSkinRegionRatio";
+            this.lblSkinRegionRatio.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionRatio.TabIndex = 11;
+            this.lblSkinRegionRatio.Text = "label1";
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,6 +553,7 @@
         private System.Windows.Forms.Button btnApplyKernel;
         private System.Windows.Forms.Label lblSkinRegionInclination;
         private System.Windows.Forms.Label lblSkinRegionCentroid;
+        private System.Windows.Forms.Label lblSkinRegionRatio;
 
     }
 }

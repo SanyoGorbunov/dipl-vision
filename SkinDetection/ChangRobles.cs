@@ -109,6 +109,13 @@ namespace SkinDetection
                 return Width * Height;
             }
         }
+        public double Ratio
+        {
+            get
+            {
+                return 1.0 * Height / Width;
+            }
+        }
 
         public int Holes { get; private set; }
         public Point Centroid { get; private set; }
