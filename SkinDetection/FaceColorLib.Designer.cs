@@ -57,13 +57,14 @@
             this.txtTreshBound = new System.Windows.Forms.TextBox();
             this.lblTreshBound = new System.Windows.Forms.Label();
             this.pnlSkinRegions = new System.Windows.Forms.Panel();
-            this.btnFindSkinRegions = new System.Windows.Forms.Button();
-            this.lbSkinRegions = new System.Windows.Forms.ListBox();
-            this.lblSkinRegionPixels = new System.Windows.Forms.Label();
-            this.lblSkinRegionLeft = new System.Windows.Forms.Label();
+            this.lblSkinRegionHeight = new System.Windows.Forms.Label();
             this.lblSkinRegionTop = new System.Windows.Forms.Label();
             this.lblSkinRegionWidth = new System.Windows.Forms.Label();
-            this.lblSkinRegionHeight = new System.Windows.Forms.Label();
+            this.lblSkinRegionLeft = new System.Windows.Forms.Label();
+            this.lblSkinRegionPixels = new System.Windows.Forms.Label();
+            this.lbSkinRegions = new System.Windows.Forms.ListBox();
+            this.btnFindSkinRegions = new System.Windows.Forms.Button();
+            this.lblSkinRegionHoles = new System.Windows.Forms.Label();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -335,6 +336,7 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHoles);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHeight);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionTop);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionWidth);
@@ -347,42 +349,14 @@
             this.pnlSkinRegions.Size = new System.Drawing.Size(171, 243);
             this.pnlSkinRegions.TabIndex = 7;
             // 
-            // btnFindSkinRegions
+            // lblSkinRegionHeight
             // 
-            this.btnFindSkinRegions.Location = new System.Drawing.Point(3, 7);
-            this.btnFindSkinRegions.Name = "btnFindSkinRegions";
-            this.btnFindSkinRegions.Size = new System.Drawing.Size(75, 23);
-            this.btnFindSkinRegions.TabIndex = 0;
-            this.btnFindSkinRegions.Text = "Find";
-            this.btnFindSkinRegions.UseVisualStyleBackColor = true;
-            this.btnFindSkinRegions.Click += new System.EventHandler(this.btnFindSkinRegions_Click);
-            // 
-            // lbSkinRegions
-            // 
-            this.lbSkinRegions.FormattingEnabled = true;
-            this.lbSkinRegions.Location = new System.Drawing.Point(3, 36);
-            this.lbSkinRegions.Name = "lbSkinRegions";
-            this.lbSkinRegions.Size = new System.Drawing.Size(165, 108);
-            this.lbSkinRegions.TabIndex = 1;
-            this.lbSkinRegions.SelectedIndexChanged += new System.EventHandler(this.lbSkinRegions_SelectedIndexChanged);
-            // 
-            // lblSkinRegionPixels
-            // 
-            this.lblSkinRegionPixels.AutoSize = true;
-            this.lblSkinRegionPixels.Location = new System.Drawing.Point(8, 151);
-            this.lblSkinRegionPixels.Name = "lblSkinRegionPixels";
-            this.lblSkinRegionPixels.Size = new System.Drawing.Size(35, 13);
-            this.lblSkinRegionPixels.TabIndex = 2;
-            this.lblSkinRegionPixels.Text = "label1";
-            // 
-            // lblSkinRegionLeft
-            // 
-            this.lblSkinRegionLeft.AutoSize = true;
-            this.lblSkinRegionLeft.Location = new System.Drawing.Point(8, 164);
-            this.lblSkinRegionLeft.Name = "lblSkinRegionLeft";
-            this.lblSkinRegionLeft.Size = new System.Drawing.Size(35, 13);
-            this.lblSkinRegionLeft.TabIndex = 3;
-            this.lblSkinRegionLeft.Text = "label1";
+            this.lblSkinRegionHeight.AutoSize = true;
+            this.lblSkinRegionHeight.Location = new System.Drawing.Point(8, 203);
+            this.lblSkinRegionHeight.Name = "lblSkinRegionHeight";
+            this.lblSkinRegionHeight.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHeight.TabIndex = 6;
+            this.lblSkinRegionHeight.Text = "label1";
             // 
             // lblSkinRegionTop
             // 
@@ -402,14 +376,51 @@
             this.lblSkinRegionWidth.TabIndex = 4;
             this.lblSkinRegionWidth.Text = "label1";
             // 
-            // lblSkinRegionHeight
+            // lblSkinRegionLeft
             // 
-            this.lblSkinRegionHeight.AutoSize = true;
-            this.lblSkinRegionHeight.Location = new System.Drawing.Point(8, 203);
-            this.lblSkinRegionHeight.Name = "lblSkinRegionHeight";
-            this.lblSkinRegionHeight.Size = new System.Drawing.Size(35, 13);
-            this.lblSkinRegionHeight.TabIndex = 6;
-            this.lblSkinRegionHeight.Text = "label1";
+            this.lblSkinRegionLeft.AutoSize = true;
+            this.lblSkinRegionLeft.Location = new System.Drawing.Point(8, 164);
+            this.lblSkinRegionLeft.Name = "lblSkinRegionLeft";
+            this.lblSkinRegionLeft.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionLeft.TabIndex = 3;
+            this.lblSkinRegionLeft.Text = "label1";
+            // 
+            // lblSkinRegionPixels
+            // 
+            this.lblSkinRegionPixels.AutoSize = true;
+            this.lblSkinRegionPixels.Location = new System.Drawing.Point(8, 151);
+            this.lblSkinRegionPixels.Name = "lblSkinRegionPixels";
+            this.lblSkinRegionPixels.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionPixels.TabIndex = 2;
+            this.lblSkinRegionPixels.Text = "label1";
+            // 
+            // lbSkinRegions
+            // 
+            this.lbSkinRegions.FormattingEnabled = true;
+            this.lbSkinRegions.Location = new System.Drawing.Point(3, 36);
+            this.lbSkinRegions.Name = "lbSkinRegions";
+            this.lbSkinRegions.Size = new System.Drawing.Size(165, 108);
+            this.lbSkinRegions.TabIndex = 1;
+            this.lbSkinRegions.SelectedIndexChanged += new System.EventHandler(this.lbSkinRegions_SelectedIndexChanged);
+            // 
+            // btnFindSkinRegions
+            // 
+            this.btnFindSkinRegions.Location = new System.Drawing.Point(3, 7);
+            this.btnFindSkinRegions.Name = "btnFindSkinRegions";
+            this.btnFindSkinRegions.Size = new System.Drawing.Size(75, 23);
+            this.btnFindSkinRegions.TabIndex = 0;
+            this.btnFindSkinRegions.Text = "Find";
+            this.btnFindSkinRegions.UseVisualStyleBackColor = true;
+            this.btnFindSkinRegions.Click += new System.EventHandler(this.btnFindSkinRegions_Click);
+            // 
+            // lblSkinRegionHoles
+            // 
+            this.lblSkinRegionHoles.AutoSize = true;
+            this.lblSkinRegionHoles.Location = new System.Drawing.Point(8, 216);
+            this.lblSkinRegionHoles.Name = "lblSkinRegionHoles";
+            this.lblSkinRegionHoles.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHoles.TabIndex = 7;
+            this.lblSkinRegionHoles.Text = "label1";
             // 
             // FaceColorLib
             // 
@@ -480,6 +491,7 @@
         private System.Windows.Forms.Label lblSkinRegionTop;
         private System.Windows.Forms.Label lblSkinRegionWidth;
         private System.Windows.Forms.Label lblSkinRegionLeft;
+        private System.Windows.Forms.Label lblSkinRegionHoles;
 
     }
 }

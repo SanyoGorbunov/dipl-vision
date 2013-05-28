@@ -103,6 +103,66 @@ namespace SkinDetection
         public int Width { get; private set; }
         public int Height { get; private set; }
 
+        private int _holes = -1;
+        public int Holes {
+            get
+            {
+                if (_holes == -1)
+                {
+                    FindHoles();
+                }
+                return _holes;
+            }
+        }
+
+        private void FindHoles()
+        {
+            Image<Gray, Byte> cpy = Region.Copy();
+            byte[, ,] cpyData = cpy.Data;
+
+            for (int i = Top; i <= Top + Height; i++)
+            {
+                if (cpyData[i, Left, 0] == 0)
+                {
+                    cpyData[i, Left, 0] = 1;
+                    Utils.FloodFill(cpyData, i, Left, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+                if (cpyData[i, Left + Width, 0] == 0)
+                {
+                    cpyData[i, Left, 0] = 1;
+                    Utils.FloodFill(cpyData, i, Left + Width, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+            }
+            for (int j = Left; j <= Left + Width; j++)
+            {
+                if (cpyData[Top, j, 0] == 0)
+                {
+                    cpyData[Top, j, 0] = 1;
+                    Utils.FloodFill(cpyData, Top, j, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+                if (cpyData[Top + Height, j, 0] == 0)
+                {
+                    cpyData[Top + Height, j, 0] = 1;
+                    Utils.FloodFill(cpyData, Top + Height, j, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+            }
+
+            _holes = 0;
+            for (int i = Top; i <= Top + Height; i++)
+            {
+                for (int j = Left; j <= Left + Width; j++)
+                {
+                    if (cpyData[i, j, 0] == 0)
+                    {
+                        _holes++;
+                        byte clrNew = (byte)(_holes + 1);
+                        cpyData[i, j, 0] = clrNew;
+                        Utils.FloodFill(cpyData, i, j, Left, Left + Width, Top, Top + Height, 0, clrNew);
+                    }
+                }
+            }
+        }
+
         public SkinRegion(Image<Gray, byte> img, int r, int c)
         {
             Region = new Image<Gray, byte>(img.Size);
@@ -111,8 +171,8 @@ namespace SkinDetection
             imgData[r, c, 0] = 0;
 
             Pixels = 1;
-            Left = img.Cols;
-            Top = img.Rows;
+            Left = img.Cols - 1;
+            Top = img.Rows - 1;
             int right = 0, bottom = 0;
             
             Queue<Point> points = new Queue<Point>();
@@ -312,6 +372,46 @@ namespace SkinDetection
             }
 
             return regions;
+        }
+    }
+
+    static class Utils
+    {
+        /// <summary>
+        /// Flood fill
+        /// </summary>
+        /// <param name="data">Image data</param>
+        /// <param name="pr">Start point row</param>
+        /// <param name="pc">Start point column</param>
+        /// <param name="l">Left border</param>
+        /// <param name="r">Right border</param>
+        /// <param name="t">Top border</param>
+        /// <param name="b">Bottom border</param>
+        /// <param name="clrOld">Old color</param>
+        /// <param name="clrNew">New color</param>
+        public static void FloodFill(byte[, ,] data, int pr, int pc,
+            int l, int r, int t, int b,
+            byte clrOld, byte clrNew)
+        {
+            Queue<Point> q = new Queue<Point>();
+            q.Enqueue(new Point(pr, pc));
+            while (q.Count > 0)
+            {
+                Point p = q.Dequeue();
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j < 1; j++)
+                    {
+                        Point pNew = new Point(p.X + i, p.Y + j);
+                        if (pNew.X >= t && pNew.X <= b && pNew.Y >= l && pNew.Y <= r &&
+                            data[pNew.X, pNew.Y, 0] == clrOld)
+                        {
+                            data[pNew.X, pNew.Y, 0] = clrNew;
+                            q.Enqueue(pNew);
+                        }
+                    }
+                }
+            }
         }
     }
 }
