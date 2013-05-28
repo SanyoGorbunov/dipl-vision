@@ -112,6 +112,7 @@ namespace SkinDetection
 
         public int Holes { get; private set; }
         public Point Centroid { get; private set; }
+        public double Inclination { get; private set; }
 
         public SkinRegion(Image<Gray, byte> img, int r, int c)
         {
@@ -170,6 +171,7 @@ namespace SkinDetection
 
             var hMap = GetHolesMap();
             GetCentroid(hMap);
+            GetInclination(hMap);
         }
 
         private byte[, ,] GetHolesMap()
@@ -238,6 +240,26 @@ namespace SkinDetection
             x /= Area;
             y /= Area;
             Centroid = new Point((int)x, (int)y);
+        }
+        private void GetInclination(byte[,,] hMap)
+        {
+            double a = 0, b = 0, c = 0;
+
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    if (hMap[i, j, 0] > 1)
+                    {
+                        a += (j - Centroid.X) * (j - Centroid.X);
+                        b += (j - Centroid.X) * (i - Centroid.Y);
+                        c += (i - Centroid.Y) * (i - Centroid.Y);
+                    }
+                }
+            }
+
+            b *= 2;
+            Inclination = 0.5 * Math.Atan(b / (a - c));
         }
     }
 

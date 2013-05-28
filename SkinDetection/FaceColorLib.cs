@@ -231,6 +231,8 @@ namespace SkinDetection
                 lblSkinRegionTop.Text = string.Format("Skin Region Top is {0}.", skinRegions[selectedIndex].Top);
                 lblSkinRegionHeight.Text = string.Format("Skin Region Height is {0}.", skinRegions[selectedIndex].Height);
                 lblSkinRegionHoles.Text = string.Format("Skin Region has {0} holes.", skinRegions[selectedIndex].Holes);
+                lblSkinRegionCentroid.Text = string.Format("Skin Region centroid is ({0},{1}).", skinRegions[selectedIndex].Centroid.X, skinRegions[selectedIndex].Centroid.Y);
+                lblSkinRegionInclination.Text = string.Format("Skin Region inclination is {0}.", skinRegions[selectedIndex].Inclination);
             }
         }
 

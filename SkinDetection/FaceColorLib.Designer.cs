@@ -67,6 +67,8 @@
             this.lbSkinRegions = new System.Windows.Forms.ListBox();
             this.btnFindSkinRegions = new System.Windows.Forms.Button();
             this.btnApplyKernel = new System.Windows.Forms.Button();
+            this.lblSkinRegionCentroid = new System.Windows.Forms.Label();
+            this.lblSkinRegionInclination = new System.Windows.Forms.Label();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -338,6 +340,8 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionInclination);
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionCentroid);
             this.pnlSkinRegions.Controls.Add(this.btnFilterByHoles);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHoles);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHeight);
@@ -349,12 +353,12 @@
             this.pnlSkinRegions.Controls.Add(this.btnFindSkinRegions);
             this.pnlSkinRegions.Location = new System.Drawing.Point(859, 12);
             this.pnlSkinRegions.Name = "pnlSkinRegions";
-            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 273);
+            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 293);
             this.pnlSkinRegions.TabIndex = 7;
             // 
             // btnFilterByHoles
             // 
-            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 232);
+            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 259);
             this.btnFilterByHoles.Name = "btnFilterByHoles";
             this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
             this.btnFilterByHoles.TabIndex = 8;
@@ -445,6 +449,24 @@
             this.btnApplyKernel.UseVisualStyleBackColor = true;
             this.btnApplyKernel.Click += new System.EventHandler(this.btnApplyKernel_Click);
             // 
+            // lblSkinRegionCentroid
+            // 
+            this.lblSkinRegionCentroid.AutoSize = true;
+            this.lblSkinRegionCentroid.Location = new System.Drawing.Point(8, 230);
+            this.lblSkinRegionCentroid.Name = "lblSkinRegionCentroid";
+            this.lblSkinRegionCentroid.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionCentroid.TabIndex = 9;
+            this.lblSkinRegionCentroid.Text = "label1";
+            // 
+            // lblSkinRegionInclination
+            // 
+            this.lblSkinRegionInclination.AutoSize = true;
+            this.lblSkinRegionInclination.Location = new System.Drawing.Point(8, 243);
+            this.lblSkinRegionInclination.Name = "lblSkinRegionInclination";
+            this.lblSkinRegionInclination.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionInclination.TabIndex = 10;
+            this.lblSkinRegionInclination.Text = "label1";
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,6 +540,8 @@
         private System.Windows.Forms.Label lblSkinRegionHoles;
         private System.Windows.Forms.Button btnFilterByHoles;
         private System.Windows.Forms.Button btnApplyKernel;
+        private System.Windows.Forms.Label lblSkinRegionInclination;
+        private System.Windows.Forms.Label lblSkinRegionCentroid;
 
     }
 }
