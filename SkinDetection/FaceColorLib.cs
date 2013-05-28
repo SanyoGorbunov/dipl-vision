@@ -207,7 +207,10 @@ namespace SkinDetection
         private void btnFindSkinRegions_Click(object sender, EventArgs e)
         {
             skinRegions = model.GetSkinRegions(imgBinary);
-
+            FillSkinRegions();
+        }
+        private void FillSkinRegions()
+        {
             lbSkinRegions.Items.Clear();
             for (int i = 0; i < skinRegions.Count; i++)
             {
@@ -229,6 +232,12 @@ namespace SkinDetection
                 lblSkinRegionHeight.Text = string.Format("Skin Region Height is {0}.", skinRegions[selectedIndex].Height);
                 lblSkinRegionHoles.Text = string.Format("Skin Region has {0} holes.", skinRegions[selectedIndex].Holes);
             }
+        }
+
+        private void btnFilterByHoles_Click(object sender, EventArgs e)
+        {
+            skinRegions = model.FilterSkinRegionsByHoles(skinRegions);
+            FillSkinRegions();
         }
     }
 }

@@ -65,6 +65,7 @@
             this.lbSkinRegions = new System.Windows.Forms.ListBox();
             this.btnFindSkinRegions = new System.Windows.Forms.Button();
             this.lblSkinRegionHoles = new System.Windows.Forms.Label();
+            this.btnFilterByHoles = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -336,6 +337,7 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.btnFilterByHoles);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHoles);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionHeight);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionTop);
@@ -346,7 +348,7 @@
             this.pnlSkinRegions.Controls.Add(this.btnFindSkinRegions);
             this.pnlSkinRegions.Location = new System.Drawing.Point(859, 12);
             this.pnlSkinRegions.Name = "pnlSkinRegions";
-            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 243);
+            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 273);
             this.pnlSkinRegions.TabIndex = 7;
             // 
             // lblSkinRegionHeight
@@ -422,6 +424,16 @@
             this.lblSkinRegionHoles.TabIndex = 7;
             this.lblSkinRegionHoles.Text = "label1";
             // 
+            // btnFilterByHoles
+            // 
+            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 232);
+            this.btnFilterByHoles.Name = "btnFilterByHoles";
+            this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByHoles.TabIndex = 8;
+            this.btnFilterByHoles.Text = "Filter by Holes";
+            this.btnFilterByHoles.UseVisualStyleBackColor = true;
+            this.btnFilterByHoles.Click += new System.EventHandler(this.btnFilterByHoles_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,6 +504,7 @@
         private System.Windows.Forms.Label lblSkinRegionWidth;
         private System.Windows.Forms.Label lblSkinRegionLeft;
         private System.Windows.Forms.Label lblSkinRegionHoles;
+        private System.Windows.Forms.Button btnFilterByHoles;
 
     }
 }

@@ -373,6 +373,10 @@ namespace SkinDetection
 
             return regions;
         }
+        public List<SkinRegion> FilterSkinRegionsByHoles(List<SkinRegion> skinRegions, int minHoles = 1)
+        {
+            return skinRegions.Where(skinRegion => skinRegion.Holes > 1).ToList();
+        }
     }
 
     static class Utils
