@@ -20,6 +20,7 @@ namespace SkinDetection
         private Image<Bgr, Byte> imgTest;
         private Image<Gray, Byte> imgLikelihood;
         private Image<Gray, Byte> imgBinary;
+        private Image<Gray, Byte> imgFaceTemplate;
 
         public FaceColorLib()
         {
@@ -327,6 +328,15 @@ namespace SkinDetection
         }
 
         #endregion
+
+        private void btnLoadFaceTemplate_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadFaceTemplate.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                imgFaceTemplate = new Image<Gray, byte>(dlgLoadFaceTemplate.FileName);
+                pbFaceTemplate.Image = imgFaceTemplate.ToBitmap();
+            }
+        }
 
     }
 }

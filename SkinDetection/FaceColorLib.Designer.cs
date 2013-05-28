@@ -32,11 +32,6 @@
             this.btnLibAdd = new System.Windows.Forms.Button();
             this.lbLib = new System.Windows.Forms.ListBox();
             this.dlgLibOpen = new System.Windows.Forms.OpenFileDialog();
-            this.pnlLibType = new System.Windows.Forms.Panel();
-            this.gbLibType = new System.Windows.Forms.GroupBox();
-            this.rbLibTypeFromFile = new System.Windows.Forms.RadioButton();
-            this.rbLibTypeAuto = new System.Windows.Forms.RadioButton();
-            this.rbLibTypeManual = new System.Windows.Forms.RadioButton();
             this.pnlSelectRegion = new System.Windows.Forms.Panel();
             this.pbFace = new System.Windows.Forms.PictureBox();
             this.btnCalculate = new System.Windows.Forms.Button();
@@ -74,14 +69,18 @@
             this.dlgSaveLib = new System.Windows.Forms.SaveFileDialog();
             this.btnLoadLib = new System.Windows.Forms.Button();
             this.btnSaveLib = new System.Windows.Forms.Button();
+            this.pnlFaceTemplate = new System.Windows.Forms.Panel();
+            this.pbFaceTemplate = new System.Windows.Forms.PictureBox();
+            this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
+            this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
-            this.pnlLibType.SuspendLayout();
-            this.gbLibType.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
             this.pnlResults.SuspendLayout();
             this.pnlThresholdingDemo.SuspendLayout();
             this.pnlSkinRegions.SuspendLayout();
+            this.pnlFaceTemplate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFaceTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLib
@@ -90,9 +89,9 @@
             this.pnlLib.Controls.Add(this.btnLoadLib);
             this.pnlLib.Controls.Add(this.btnLibAdd);
             this.pnlLib.Controls.Add(this.lbLib);
-            this.pnlLib.Location = new System.Drawing.Point(12, 109);
+            this.pnlLib.Location = new System.Drawing.Point(12, 12);
             this.pnlLib.Name = "pnlLib";
-            this.pnlLib.Size = new System.Drawing.Size(312, 265);
+            this.pnlLib.Size = new System.Drawing.Size(312, 362);
             this.pnlLib.TabIndex = 0;
             // 
             // btnLibAdd
@@ -110,7 +109,7 @@
             this.lbLib.FormattingEnabled = true;
             this.lbLib.Location = new System.Drawing.Point(13, 16);
             this.lbLib.Name = "lbLib";
-            this.lbLib.Size = new System.Drawing.Size(191, 238);
+            this.lbLib.Size = new System.Drawing.Size(191, 342);
             this.lbLib.TabIndex = 0;
             this.lbLib.SelectedIndexChanged += new System.EventHandler(this.lbLib_SelectedIndexChanged);
             // 
@@ -120,65 +119,14 @@
             this.dlgLibOpen.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
                 "ces94\\";
             // 
-            // pnlLibType
-            // 
-            this.pnlLibType.Controls.Add(this.gbLibType);
-            this.pnlLibType.Location = new System.Drawing.Point(12, 12);
-            this.pnlLibType.Name = "pnlLibType";
-            this.pnlLibType.Size = new System.Drawing.Size(312, 60);
-            this.pnlLibType.TabIndex = 1;
-            // 
-            // gbLibType
-            // 
-            this.gbLibType.Controls.Add(this.rbLibTypeFromFile);
-            this.gbLibType.Controls.Add(this.rbLibTypeAuto);
-            this.gbLibType.Controls.Add(this.rbLibTypeManual);
-            this.gbLibType.Location = new System.Drawing.Point(4, 7);
-            this.gbLibType.Name = "gbLibType";
-            this.gbLibType.Size = new System.Drawing.Size(305, 50);
-            this.gbLibType.TabIndex = 0;
-            this.gbLibType.TabStop = false;
-            this.gbLibType.Text = "Lib Type";
-            // 
-            // rbLibTypeFromFile
-            // 
-            this.rbLibTypeFromFile.AutoSize = true;
-            this.rbLibTypeFromFile.Location = new System.Drawing.Point(128, 19);
-            this.rbLibTypeFromFile.Name = "rbLibTypeFromFile";
-            this.rbLibTypeFromFile.Size = new System.Drawing.Size(67, 17);
-            this.rbLibTypeFromFile.TabIndex = 3;
-            this.rbLibTypeFromFile.TabStop = true;
-            this.rbLibTypeFromFile.Text = "From File";
-            this.rbLibTypeFromFile.UseVisualStyleBackColor = true;
-            // 
-            // rbLibTypeAuto
-            // 
-            this.rbLibTypeAuto.AutoSize = true;
-            this.rbLibTypeAuto.Location = new System.Drawing.Point(75, 19);
-            this.rbLibTypeAuto.Name = "rbLibTypeAuto";
-            this.rbLibTypeAuto.Size = new System.Drawing.Size(47, 17);
-            this.rbLibTypeAuto.TabIndex = 2;
-            this.rbLibTypeAuto.TabStop = true;
-            this.rbLibTypeAuto.Text = "Auto";
-            this.rbLibTypeAuto.UseVisualStyleBackColor = true;
-            // 
-            // rbLibTypeManual
-            // 
-            this.rbLibTypeManual.AutoSize = true;
-            this.rbLibTypeManual.Location = new System.Drawing.Point(9, 19);
-            this.rbLibTypeManual.Name = "rbLibTypeManual";
-            this.rbLibTypeManual.Size = new System.Drawing.Size(60, 17);
-            this.rbLibTypeManual.TabIndex = 0;
-            this.rbLibTypeManual.TabStop = true;
-            this.rbLibTypeManual.Text = "Manual";
-            this.rbLibTypeManual.UseVisualStyleBackColor = true;
-            // 
             // pnlSelectRegion
             // 
+            this.pnlSelectRegion.Controls.Add(this.btnApplyKernel);
             this.pnlSelectRegion.Controls.Add(this.pbFace);
-            this.pnlSelectRegion.Location = new System.Drawing.Point(330, 109);
+            this.pnlSelectRegion.Controls.Add(this.btnLoadTestImage);
+            this.pnlSelectRegion.Location = new System.Drawing.Point(330, 12);
             this.pnlSelectRegion.Name = "pnlSelectRegion";
-            this.pnlSelectRegion.Size = new System.Drawing.Size(299, 265);
+            this.pnlSelectRegion.Size = new System.Drawing.Size(289, 199);
             this.pnlSelectRegion.TabIndex = 2;
             // 
             // pbFace
@@ -285,7 +233,7 @@
             // 
             // btnLoadTestImage
             // 
-            this.btnLoadTestImage.Location = new System.Drawing.Point(394, 23);
+            this.btnLoadTestImage.Location = new System.Drawing.Point(176, 3);
             this.btnLoadTestImage.Name = "btnLoadTestImage";
             this.btnLoadTestImage.Size = new System.Drawing.Size(106, 23);
             this.btnLoadTestImage.TabIndex = 5;
@@ -449,7 +397,7 @@
             // 
             // btnApplyKernel
             // 
-            this.btnApplyKernel.Location = new System.Drawing.Point(394, 49);
+            this.btnApplyKernel.Location = new System.Drawing.Point(176, 32);
             this.btnApplyKernel.Name = "btnApplyKernel";
             this.btnApplyKernel.Size = new System.Drawing.Size(106, 23);
             this.btnApplyKernel.TabIndex = 8;
@@ -490,7 +438,7 @@
             // 
             // btnLoadLib
             // 
-            this.btnLoadLib.Location = new System.Drawing.Point(210, 202);
+            this.btnLoadLib.Location = new System.Drawing.Point(210, 299);
             this.btnLoadLib.Name = "btnLoadLib";
             this.btnLoadLib.Size = new System.Drawing.Size(75, 23);
             this.btnLoadLib.TabIndex = 2;
@@ -500,7 +448,7 @@
             // 
             // btnSaveLib
             // 
-            this.btnSaveLib.Location = new System.Drawing.Point(210, 231);
+            this.btnSaveLib.Location = new System.Drawing.Point(210, 328);
             this.btnSaveLib.Name = "btnSaveLib";
             this.btnSaveLib.Size = new System.Drawing.Size(75, 23);
             this.btnSaveLib.TabIndex = 3;
@@ -508,26 +456,52 @@
             this.btnSaveLib.UseVisualStyleBackColor = true;
             this.btnSaveLib.Click += new System.EventHandler(this.btnSaveLib_Click);
             // 
+            // pnlFaceTemplate
+            // 
+            this.pnlFaceTemplate.Controls.Add(this.btnLoadFaceTemplate);
+            this.pnlFaceTemplate.Controls.Add(this.pbFaceTemplate);
+            this.pnlFaceTemplate.Location = new System.Drawing.Point(330, 215);
+            this.pnlFaceTemplate.Name = "pnlFaceTemplate";
+            this.pnlFaceTemplate.Size = new System.Drawing.Size(289, 159);
+            this.pnlFaceTemplate.TabIndex = 8;
+            // 
+            // pbFaceTemplate
+            // 
+            this.pbFaceTemplate.Location = new System.Drawing.Point(3, 3);
+            this.pbFaceTemplate.Name = "pbFaceTemplate";
+            this.pbFaceTemplate.Size = new System.Drawing.Size(167, 145);
+            this.pbFaceTemplate.TabIndex = 0;
+            this.pbFaceTemplate.TabStop = false;
+            // 
+            // dlgLoadFaceTemplate
+            // 
+            this.dlgLoadFaceTemplate.FileName = "openFileDialog1";
+            // 
+            // btnLoadFaceTemplate
+            // 
+            this.btnLoadFaceTemplate.Location = new System.Drawing.Point(176, 3);
+            this.btnLoadFaceTemplate.Name = "btnLoadFaceTemplate";
+            this.btnLoadFaceTemplate.Size = new System.Drawing.Size(106, 37);
+            this.btnLoadFaceTemplate.TabIndex = 1;
+            this.btnLoadFaceTemplate.Text = "Load Face Template";
+            this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
+            this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 409);
-            this.Controls.Add(this.btnApplyKernel);
+            this.ClientSize = new System.Drawing.Size(1042, 386);
+            this.Controls.Add(this.pnlFaceTemplate);
             this.Controls.Add(this.pnlSkinRegions);
             this.Controls.Add(this.pnlThresholdingDemo);
-            this.Controls.Add(this.btnLoadTestImage);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.pnlSelectRegion);
-            this.Controls.Add(this.pnlLibType);
             this.Controls.Add(this.pnlLib);
             this.Name = "FaceColorLib";
             this.Text = "Face Color Library";
             this.pnlLib.ResumeLayout(false);
-            this.pnlLibType.ResumeLayout(false);
-            this.gbLibType.ResumeLayout(false);
-            this.gbLibType.PerformLayout();
             this.pnlSelectRegion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).EndInit();
             this.pnlResults.ResumeLayout(false);
@@ -536,6 +510,8 @@
             this.pnlThresholdingDemo.PerformLayout();
             this.pnlSkinRegions.ResumeLayout(false);
             this.pnlSkinRegions.PerformLayout();
+            this.pnlFaceTemplate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbFaceTemplate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -546,11 +522,6 @@
         private System.Windows.Forms.Button btnLibAdd;
         private System.Windows.Forms.ListBox lbLib;
         private System.Windows.Forms.OpenFileDialog dlgLibOpen;
-        private System.Windows.Forms.Panel pnlLibType;
-        private System.Windows.Forms.GroupBox gbLibType;
-        private System.Windows.Forms.RadioButton rbLibTypeFromFile;
-        private System.Windows.Forms.RadioButton rbLibTypeAuto;
-        private System.Windows.Forms.RadioButton rbLibTypeManual;
         private System.Windows.Forms.Panel pnlSelectRegion;
         private System.Windows.Forms.PictureBox pbFace;
         private System.Windows.Forms.Button btnCalculate;
@@ -588,6 +559,10 @@
         private System.Windows.Forms.Button btnLoadLib;
         private System.Windows.Forms.OpenFileDialog dlgLoadLib;
         private System.Windows.Forms.SaveFileDialog dlgSaveLib;
+        private System.Windows.Forms.Panel pnlFaceTemplate;
+        private System.Windows.Forms.Button btnLoadFaceTemplate;
+        private System.Windows.Forms.PictureBox pbFaceTemplate;
+        private System.Windows.Forms.OpenFileDialog dlgLoadFaceTemplate;
 
     }
 }
