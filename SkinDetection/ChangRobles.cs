@@ -417,5 +417,11 @@ namespace SkinDetection
                 }
             }
         }
+
+        public static Image<Bgr, byte> ApplyKernel(Image<Bgr, byte> img, float[,] k)
+        {
+            ConvolutionKernelF kernel = new ConvolutionKernelF(k);
+            return (img * kernel).Convert<Bgr, byte>();
+        }
     }
 }

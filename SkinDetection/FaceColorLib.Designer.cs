@@ -57,6 +57,8 @@
             this.txtTreshBound = new System.Windows.Forms.TextBox();
             this.lblTreshBound = new System.Windows.Forms.Label();
             this.pnlSkinRegions = new System.Windows.Forms.Panel();
+            this.btnFilterByHoles = new System.Windows.Forms.Button();
+            this.lblSkinRegionHoles = new System.Windows.Forms.Label();
             this.lblSkinRegionHeight = new System.Windows.Forms.Label();
             this.lblSkinRegionTop = new System.Windows.Forms.Label();
             this.lblSkinRegionWidth = new System.Windows.Forms.Label();
@@ -64,8 +66,7 @@
             this.lblSkinRegionPixels = new System.Windows.Forms.Label();
             this.lbSkinRegions = new System.Windows.Forms.ListBox();
             this.btnFindSkinRegions = new System.Windows.Forms.Button();
-            this.lblSkinRegionHoles = new System.Windows.Forms.Label();
-            this.btnFilterByHoles = new System.Windows.Forms.Button();
+            this.btnApplyKernel = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -351,6 +352,25 @@
             this.pnlSkinRegions.Size = new System.Drawing.Size(171, 273);
             this.pnlSkinRegions.TabIndex = 7;
             // 
+            // btnFilterByHoles
+            // 
+            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 232);
+            this.btnFilterByHoles.Name = "btnFilterByHoles";
+            this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByHoles.TabIndex = 8;
+            this.btnFilterByHoles.Text = "Filter by Holes";
+            this.btnFilterByHoles.UseVisualStyleBackColor = true;
+            this.btnFilterByHoles.Click += new System.EventHandler(this.btnFilterByHoles_Click);
+            // 
+            // lblSkinRegionHoles
+            // 
+            this.lblSkinRegionHoles.AutoSize = true;
+            this.lblSkinRegionHoles.Location = new System.Drawing.Point(8, 216);
+            this.lblSkinRegionHoles.Name = "lblSkinRegionHoles";
+            this.lblSkinRegionHoles.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHoles.TabIndex = 7;
+            this.lblSkinRegionHoles.Text = "label1";
+            // 
             // lblSkinRegionHeight
             // 
             this.lblSkinRegionHeight.AutoSize = true;
@@ -415,30 +435,22 @@
             this.btnFindSkinRegions.UseVisualStyleBackColor = true;
             this.btnFindSkinRegions.Click += new System.EventHandler(this.btnFindSkinRegions_Click);
             // 
-            // lblSkinRegionHoles
+            // btnApplyKernel
             // 
-            this.lblSkinRegionHoles.AutoSize = true;
-            this.lblSkinRegionHoles.Location = new System.Drawing.Point(8, 216);
-            this.lblSkinRegionHoles.Name = "lblSkinRegionHoles";
-            this.lblSkinRegionHoles.Size = new System.Drawing.Size(35, 13);
-            this.lblSkinRegionHoles.TabIndex = 7;
-            this.lblSkinRegionHoles.Text = "label1";
-            // 
-            // btnFilterByHoles
-            // 
-            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 232);
-            this.btnFilterByHoles.Name = "btnFilterByHoles";
-            this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
-            this.btnFilterByHoles.TabIndex = 8;
-            this.btnFilterByHoles.Text = "Filter by Holes";
-            this.btnFilterByHoles.UseVisualStyleBackColor = true;
-            this.btnFilterByHoles.Click += new System.EventHandler(this.btnFilterByHoles_Click);
+            this.btnApplyKernel.Location = new System.Drawing.Point(394, 49);
+            this.btnApplyKernel.Name = "btnApplyKernel";
+            this.btnApplyKernel.Size = new System.Drawing.Size(106, 23);
+            this.btnApplyKernel.TabIndex = 8;
+            this.btnApplyKernel.Text = "Apply Kernel";
+            this.btnApplyKernel.UseVisualStyleBackColor = true;
+            this.btnApplyKernel.Click += new System.EventHandler(this.btnApplyKernel_Click);
             // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 409);
+            this.Controls.Add(this.btnApplyKernel);
             this.Controls.Add(this.pnlSkinRegions);
             this.Controls.Add(this.pnlThresholdingDemo);
             this.Controls.Add(this.btnLoadTestImage);
@@ -505,6 +517,7 @@
         private System.Windows.Forms.Label lblSkinRegionLeft;
         private System.Windows.Forms.Label lblSkinRegionHoles;
         private System.Windows.Forms.Button btnFilterByHoles;
+        private System.Windows.Forms.Button btnApplyKernel;
 
     }
 }

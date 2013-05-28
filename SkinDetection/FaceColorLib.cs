@@ -239,5 +239,17 @@ namespace SkinDetection
             skinRegions = model.FilterSkinRegionsByHoles(skinRegions);
             FillSkinRegions();
         }
+
+        private void btnApplyKernel_Click(object sender, EventArgs e)
+        {
+            float[,] k = new float[,] {
+                {1f/9, 1f/9, 1f,9},
+                {1f/9, 1f/9, 1f,9},
+                {1f/9, 1f/9, 1f,9}
+            };
+
+            imgTest = Utils.ApplyKernel(imgTest, k);
+            pbFace.Image = imgTest.ToBitmap();
+        }
     }
 }
