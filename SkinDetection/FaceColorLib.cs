@@ -254,5 +254,57 @@ namespace SkinDetection
             imgTest = Utils.ApplyKernel(imgTest, k);
             pbFace.Image = imgTest.ToBitmap();
         }
+
+        private void btnSaveLib_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveLib.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using (var fileStream = File.OpenWrite(dlgSaveLib.FileName))
+                {
+                    using (var sw = new StreamWriter(fileStream))
+                    {
+                        sw.WriteLine(lbLib.Items.Count);
+                        for (int i = 0; i < lbLib.Items.Count; i++)
+                        {
+                            sw.WriteLine(lbLib.Items[i].ToString());
+                            sw.WriteLine(personRects[i].Count);
+                            for (int j = 0; j < personRects[i].Count; j++)
+                            {
+                                sw.WriteLine(string.Format("{0} {1} {2} {3}", personRects[i][j].Left,
+                                    personRects[i][j].Top, personRects[i][j].Width, personRects[i][j].Height));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnLoadLib_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadLib.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                lbLib.Items.Clear();
+                personRects.Clear();
+                using (var fileStream = File.OpenRead(dlgLoadLib.FileName))
+                {
+                    using (var sr = new StreamReader(fileStream))
+                    {
+                        int cnt = int.Parse(sr.ReadLine());
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            string fileName = sr.ReadLine();
+                            lbLib.Items.Add(fileName);
+                            personRects.Add(new List<Rectangle>());
+                            int rects = int.Parse(sr.ReadLine());
+                            for (int j = 0; j < rects; j++)
+                            {
+                                string[] points = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                personRects[i].Add(new Rectangle(int.Parse(points[0]), int.Parse(points[1]), int.Parse(points[2]), int.Parse(points[3])));
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

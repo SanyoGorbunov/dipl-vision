@@ -70,6 +70,10 @@
             this.lblSkinRegionCentroid = new System.Windows.Forms.Label();
             this.lblSkinRegionInclination = new System.Windows.Forms.Label();
             this.lblSkinRegionRatio = new System.Windows.Forms.Label();
+            this.dlgLoadLib = new System.Windows.Forms.OpenFileDialog();
+            this.dlgSaveLib = new System.Windows.Forms.SaveFileDialog();
+            this.btnLoadLib = new System.Windows.Forms.Button();
+            this.btnSaveLib = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlLibType.SuspendLayout();
             this.gbLibType.SuspendLayout();
@@ -82,6 +86,8 @@
             // 
             // pnlLib
             // 
+            this.pnlLib.Controls.Add(this.btnSaveLib);
+            this.pnlLib.Controls.Add(this.btnLoadLib);
             this.pnlLib.Controls.Add(this.btnLibAdd);
             this.pnlLib.Controls.Add(this.lbLib);
             this.pnlLib.Location = new System.Drawing.Point(12, 109);
@@ -478,6 +484,30 @@
             this.lblSkinRegionRatio.TabIndex = 11;
             this.lblSkinRegionRatio.Text = "label1";
             // 
+            // dlgLoadLib
+            // 
+            this.dlgLoadLib.FileName = "openFileDialog1";
+            // 
+            // btnLoadLib
+            // 
+            this.btnLoadLib.Location = new System.Drawing.Point(210, 202);
+            this.btnLoadLib.Name = "btnLoadLib";
+            this.btnLoadLib.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadLib.TabIndex = 2;
+            this.btnLoadLib.Text = "Load";
+            this.btnLoadLib.UseVisualStyleBackColor = true;
+            this.btnLoadLib.Click += new System.EventHandler(this.btnLoadLib_Click);
+            // 
+            // btnSaveLib
+            // 
+            this.btnSaveLib.Location = new System.Drawing.Point(210, 231);
+            this.btnSaveLib.Name = "btnSaveLib";
+            this.btnSaveLib.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLib.TabIndex = 3;
+            this.btnSaveLib.Text = "Save";
+            this.btnSaveLib.UseVisualStyleBackColor = true;
+            this.btnSaveLib.Click += new System.EventHandler(this.btnSaveLib_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,6 +584,10 @@
         private System.Windows.Forms.Label lblSkinRegionInclination;
         private System.Windows.Forms.Label lblSkinRegionCentroid;
         private System.Windows.Forms.Label lblSkinRegionRatio;
+        private System.Windows.Forms.Button btnSaveLib;
+        private System.Windows.Forms.Button btnLoadLib;
+        private System.Windows.Forms.OpenFileDialog dlgLoadLib;
+        private System.Windows.Forms.SaveFileDialog dlgSaveLib;
 
     }
 }
