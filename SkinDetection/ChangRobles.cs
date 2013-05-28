@@ -102,66 +102,16 @@ namespace SkinDetection
         public int Top { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
-
-        private int _holes = -1;
-        public int Holes {
+        public int Area
+        {
             get
             {
-                if (_holes == -1)
-                {
-                    FindHoles();
-                }
-                return _holes;
+                return Width * Height;
             }
         }
 
-        private void FindHoles()
-        {
-            Image<Gray, Byte> cpy = Region.Copy();
-            byte[, ,] cpyData = cpy.Data;
-
-            for (int i = Top; i <= Top + Height; i++)
-            {
-                if (cpyData[i, Left, 0] == 0)
-                {
-                    cpyData[i, Left, 0] = 1;
-                    Utils.FloodFill(cpyData, i, Left, Left, Left + Width, Top, Top + Height, 0, 1);
-                }
-                if (cpyData[i, Left + Width, 0] == 0)
-                {
-                    cpyData[i, Left, 0] = 1;
-                    Utils.FloodFill(cpyData, i, Left + Width, Left, Left + Width, Top, Top + Height, 0, 1);
-                }
-            }
-            for (int j = Left; j <= Left + Width; j++)
-            {
-                if (cpyData[Top, j, 0] == 0)
-                {
-                    cpyData[Top, j, 0] = 1;
-                    Utils.FloodFill(cpyData, Top, j, Left, Left + Width, Top, Top + Height, 0, 1);
-                }
-                if (cpyData[Top + Height, j, 0] == 0)
-                {
-                    cpyData[Top + Height, j, 0] = 1;
-                    Utils.FloodFill(cpyData, Top + Height, j, Left, Left + Width, Top, Top + Height, 0, 1);
-                }
-            }
-
-            _holes = 0;
-            for (int i = Top; i <= Top + Height; i++)
-            {
-                for (int j = Left; j <= Left + Width; j++)
-                {
-                    if (cpyData[i, j, 0] == 0)
-                    {
-                        _holes++;
-                        byte clrNew = (byte)(_holes + 1);
-                        cpyData[i, j, 0] = clrNew;
-                        Utils.FloodFill(cpyData, i, j, Left, Left + Width, Top, Top + Height, 0, clrNew);
-                    }
-                }
-            }
-        }
+        public int Holes { get; private set; }
+        public Point Centroid { get; private set; }
 
         public SkinRegion(Image<Gray, byte> img, int r, int c)
         {
@@ -215,8 +165,79 @@ namespace SkinDetection
                 }
             }
 
-            Width = right == 0 ? 0 : right - Left;
-            Height = bottom == 0 ? 0 : bottom - Top;
+            Width = (right == 0 ? 0 : right - Left) + 1;
+            Height = (bottom == 0 ? 0 : bottom - Top) + 1;
+
+            var hMap = GetHolesMap();
+            GetCentroid(hMap);
+        }
+
+        private byte[, ,] GetHolesMap()
+        {
+            Image<Gray, Byte> cpy = Region.Copy();
+            byte[, ,] cpyData = cpy.Data;
+
+            for (int i = Top; i < Top + Height; i++)
+            {
+                if (cpyData[i, Left, 0] == 0)
+                {
+                    cpyData[i, Left, 0] = 1;
+                    Utils.FloodFill(cpyData, i, Left, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+                if (cpyData[i, Left + Width - 1, 0] == 0)
+                {
+                    cpyData[i, Left + Width - 1, 0] = 1;
+                    Utils.FloodFill(cpyData, i, Left + Width, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+            }
+            for (int j = Left; j < Left + Width; j++)
+            {
+                if (cpyData[Top, j, 0] == 0)
+                {
+                    cpyData[Top, j, 0] = 1;
+                    Utils.FloodFill(cpyData, Top, j, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+                if (cpyData[Top + Height - 1, j, 0] == 0)
+                {
+                    cpyData[Top + Height - 1, j, 0] = 1;
+                    Utils.FloodFill(cpyData, Top + Height, j, Left, Left + Width, Top, Top + Height, 0, 1);
+                }
+            }
+
+            Holes = 0;
+            for (int i = Top; i < Top + Height; i++)
+            {
+                for (int j = Left; j < Left + Width; j++)
+                {
+                    if (cpyData[i, j, 0] == 0)
+                    {
+                        Holes++;
+                        byte clrNew = (byte)(Holes + 1);
+                        cpyData[i, j, 0] = clrNew;
+                        Utils.FloodFill(cpyData, i, j, Left, Left + Width, Top, Top + Height, 0, clrNew);
+                    }
+                }
+            }
+
+            return cpyData;
+        }
+        private void GetCentroid(byte[, ,] hMap)
+        {
+            double x = 0, y = 0;
+            for (int i = 0; i < Height; i++)
+            {
+                for (int j = 0; j < Width; j++)
+                {
+                    if (hMap[Top + i, Left + j, 0] > 1)
+                    {
+                        x += j;
+                        y += i;
+                    }
+                }
+            }
+            x /= Area;
+            y /= Area;
+            Centroid = new Point((int)x, (int)y);
         }
     }
 
@@ -407,7 +428,7 @@ namespace SkinDetection
                     for (int j = -1; j < 1; j++)
                     {
                         Point pNew = new Point(p.X + i, p.Y + j);
-                        if (pNew.X >= t && pNew.X <= b && pNew.Y >= l && pNew.Y <= r &&
+                        if (pNew.X >= t && pNew.X < b && pNew.Y >= l && pNew.Y < r &&
                             data[pNew.X, pNew.Y, 0] == clrOld)
                         {
                             data[pNew.X, pNew.Y, 0] = clrNew;
