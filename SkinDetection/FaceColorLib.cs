@@ -37,7 +37,7 @@ namespace SkinDetection
 
         private void pbFace_Paint(object sender, PaintEventArgs e)
         {
-            if (pbFace.Image != null)
+            if (pbFace.Image != null && showLib)
             {
                 if (!tmpRect.IsEmpty)
                 {
@@ -112,6 +112,7 @@ namespace SkinDetection
             string path = lbLib.SelectedItem.ToString();
             if (File.Exists(path))
             {
+                showLib = true;
                 pbFace.Image = new Bitmap(path);
             }
         }
@@ -120,6 +121,7 @@ namespace SkinDetection
 
         #region Lib manipulations
 
+        bool showLib;
         private void btnLibAdd_Click(object sender, EventArgs e)
         {
             if (dlgLibOpen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -243,6 +245,7 @@ namespace SkinDetection
         {
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                showLib = false;
                 imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName);
                 pbFace.Image = imgTest.ToBitmap();
             }
