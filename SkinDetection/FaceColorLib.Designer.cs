@@ -73,6 +73,15 @@
             this.pbFaceTemplate = new System.Windows.Forms.PictureBox();
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
             this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
+            this.txtAngle = new System.Windows.Forms.TextBox();
+            this.lblAngle = new System.Windows.Forms.Label();
+            this.btnRotate = new System.Windows.Forms.Button();
+            this.txtNewWidth = new System.Windows.Forms.TextBox();
+            this.lblNewWidth = new System.Windows.Forms.Label();
+            this.txtNewHeight = new System.Windows.Forms.TextBox();
+            this.lblNewHeight = new System.Windows.Forms.Label();
+            this.btnResize = new System.Windows.Forms.Button();
+            this.btnShowRegion = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
@@ -295,6 +304,7 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.btnShowRegion);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionRatio);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionInclination);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionCentroid);
@@ -458,11 +468,19 @@
             // 
             // pnlFaceTemplate
             // 
+            this.pnlFaceTemplate.Controls.Add(this.btnResize);
+            this.pnlFaceTemplate.Controls.Add(this.txtNewHeight);
+            this.pnlFaceTemplate.Controls.Add(this.lblNewHeight);
+            this.pnlFaceTemplate.Controls.Add(this.txtNewWidth);
+            this.pnlFaceTemplate.Controls.Add(this.lblNewWidth);
+            this.pnlFaceTemplate.Controls.Add(this.btnRotate);
+            this.pnlFaceTemplate.Controls.Add(this.txtAngle);
+            this.pnlFaceTemplate.Controls.Add(this.lblAngle);
             this.pnlFaceTemplate.Controls.Add(this.btnLoadFaceTemplate);
             this.pnlFaceTemplate.Controls.Add(this.pbFaceTemplate);
             this.pnlFaceTemplate.Location = new System.Drawing.Point(330, 215);
             this.pnlFaceTemplate.Name = "pnlFaceTemplate";
-            this.pnlFaceTemplate.Size = new System.Drawing.Size(289, 159);
+            this.pnlFaceTemplate.Size = new System.Drawing.Size(289, 178);
             this.pnlFaceTemplate.TabIndex = 8;
             // 
             // pbFaceTemplate
@@ -487,11 +505,89 @@
             this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
             this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
             // 
+            // txtAngle
+            // 
+            this.txtAngle.Location = new System.Drawing.Point(219, 46);
+            this.txtAngle.Name = "txtAngle";
+            this.txtAngle.Size = new System.Drawing.Size(63, 20);
+            this.txtAngle.TabIndex = 3;
+            // 
+            // lblAngle
+            // 
+            this.lblAngle.AutoSize = true;
+            this.lblAngle.Location = new System.Drawing.Point(176, 49);
+            this.lblAngle.Name = "lblAngle";
+            this.lblAngle.Size = new System.Drawing.Size(37, 13);
+            this.lblAngle.TabIndex = 2;
+            this.lblAngle.Text = "Angle:";
+            // 
+            // btnRotate
+            // 
+            this.btnRotate.Location = new System.Drawing.Point(176, 72);
+            this.btnRotate.Name = "btnRotate";
+            this.btnRotate.Size = new System.Drawing.Size(106, 23);
+            this.btnRotate.TabIndex = 4;
+            this.btnRotate.Text = "Rotate";
+            this.btnRotate.UseVisualStyleBackColor = true;
+            this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
+            // 
+            // txtNewWidth
+            // 
+            this.txtNewWidth.Location = new System.Drawing.Point(219, 101);
+            this.txtNewWidth.Name = "txtNewWidth";
+            this.txtNewWidth.Size = new System.Drawing.Size(63, 20);
+            this.txtNewWidth.TabIndex = 6;
+            // 
+            // lblNewWidth
+            // 
+            this.lblNewWidth.AutoSize = true;
+            this.lblNewWidth.Location = new System.Drawing.Point(176, 104);
+            this.lblNewWidth.Name = "lblNewWidth";
+            this.lblNewWidth.Size = new System.Drawing.Size(38, 13);
+            this.lblNewWidth.TabIndex = 5;
+            this.lblNewWidth.Text = "Width:";
+            // 
+            // txtNewHeight
+            // 
+            this.txtNewHeight.Location = new System.Drawing.Point(219, 125);
+            this.txtNewHeight.Name = "txtNewHeight";
+            this.txtNewHeight.Size = new System.Drawing.Size(63, 20);
+            this.txtNewHeight.TabIndex = 8;
+            // 
+            // lblNewHeight
+            // 
+            this.lblNewHeight.AutoSize = true;
+            this.lblNewHeight.Location = new System.Drawing.Point(176, 128);
+            this.lblNewHeight.Name = "lblNewHeight";
+            this.lblNewHeight.Size = new System.Drawing.Size(41, 13);
+            this.lblNewHeight.TabIndex = 7;
+            this.lblNewHeight.Text = "Height:";
+            // 
+            // btnResize
+            // 
+            this.btnResize.Location = new System.Drawing.Point(176, 151);
+            this.btnResize.Name = "btnResize";
+            this.btnResize.Size = new System.Drawing.Size(106, 23);
+            this.btnResize.TabIndex = 9;
+            this.btnResize.Text = "Resize";
+            this.btnResize.UseVisualStyleBackColor = true;
+            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
+            // 
+            // btnShowRegion
+            // 
+            this.btnShowRegion.Location = new System.Drawing.Point(84, 7);
+            this.btnShowRegion.Name = "btnShowRegion";
+            this.btnShowRegion.Size = new System.Drawing.Size(84, 23);
+            this.btnShowRegion.TabIndex = 12;
+            this.btnShowRegion.Text = "Show Region";
+            this.btnShowRegion.UseVisualStyleBackColor = true;
+            this.btnShowRegion.Click += new System.EventHandler(this.btnShowRegion_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 386);
+            this.ClientSize = new System.Drawing.Size(1042, 416);
             this.Controls.Add(this.pnlFaceTemplate);
             this.Controls.Add(this.pnlSkinRegions);
             this.Controls.Add(this.pnlThresholdingDemo);
@@ -511,6 +607,7 @@
             this.pnlSkinRegions.ResumeLayout(false);
             this.pnlSkinRegions.PerformLayout();
             this.pnlFaceTemplate.ResumeLayout(false);
+            this.pnlFaceTemplate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFaceTemplate)).EndInit();
             this.ResumeLayout(false);
 
@@ -563,6 +660,15 @@
         private System.Windows.Forms.Button btnLoadFaceTemplate;
         private System.Windows.Forms.PictureBox pbFaceTemplate;
         private System.Windows.Forms.OpenFileDialog dlgLoadFaceTemplate;
+        private System.Windows.Forms.Button btnRotate;
+        private System.Windows.Forms.TextBox txtAngle;
+        private System.Windows.Forms.Label lblAngle;
+        private System.Windows.Forms.TextBox txtNewWidth;
+        private System.Windows.Forms.Label lblNewWidth;
+        private System.Windows.Forms.Button btnResize;
+        private System.Windows.Forms.TextBox txtNewHeight;
+        private System.Windows.Forms.Label lblNewHeight;
+        private System.Windows.Forms.Button btnShowRegion;
 
     }
 }

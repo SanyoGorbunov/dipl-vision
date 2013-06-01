@@ -96,6 +96,7 @@ namespace SkinDetection
     class SkinRegion
     {
         public Image<Gray, byte> Region { get; private set; }
+        public Image<Gray, byte> HolesMap { get; private set; }
 
         public int Pixels { get; private set; }
         public int Left { get; private set; }
@@ -179,6 +180,7 @@ namespace SkinDetection
             var hMap = GetHolesMap();
             GetCentroid(hMap);
             GetInclination(hMap);
+            HolesMap = new Image<Gray, byte>(hMap);
         }
 
         private byte[, ,] GetHolesMap()
@@ -196,7 +198,7 @@ namespace SkinDetection
                 if (cpyData[i, Left + Width - 1, 0] == 0)
                 {
                     cpyData[i, Left + Width - 1, 0] = 1;
-                    Utils.FloodFill(cpyData, i, Left + Width, Left, Left + Width, Top, Top + Height, 0, 1);
+                    Utils.FloodFill(cpyData, i, Left + Width - 1, Left, Left + Width, Top, Top + Height, 0, 1);
                 }
             }
             for (int j = Left; j < Left + Width; j++)
@@ -209,11 +211,11 @@ namespace SkinDetection
                 if (cpyData[Top + Height - 1, j, 0] == 0)
                 {
                     cpyData[Top + Height - 1, j, 0] = 1;
-                    Utils.FloodFill(cpyData, Top + Height, j, Left, Left + Width, Top, Top + Height, 0, 1);
+                    Utils.FloodFill(cpyData, Top + Height - 1, j, Left, Left + Width, Top, Top + Height, 0, 1);
                 }
             }
 
-            Holes = 0;
+            Holes = 1;
             for (int i = Top; i < Top + Height; i++)
             {
                 for (int j = Left; j < Left + Width; j++)
@@ -222,6 +224,10 @@ namespace SkinDetection
                     {
                         Holes++;
                         byte clrNew = (byte)(Holes + 1);
+                        if (clrNew == 0)
+                        {
+                            clrNew = (byte) (Holes % 255 + 2);
+                        }
                         cpyData[i, j, 0] = clrNew;
                         Utils.FloodFill(cpyData, i, j, Left, Left + Width, Top, Top + Height, 0, clrNew);
                     }
@@ -454,14 +460,17 @@ namespace SkinDetection
                 Point p = q.Dequeue();
                 for (int i = -1; i <= 1; i++)
                 {
-                    for (int j = -1; j < 1; j++)
+                    for (int j = -1; j <= 1; j++)
                     {
-                        Point pNew = new Point(p.X + i, p.Y + j);
-                        if (pNew.X >= t && pNew.X < b && pNew.Y >= l && pNew.Y < r &&
-                            data[pNew.X, pNew.Y, 0] == clrOld)
+                        if (j != 0 && i != 0)
                         {
-                            data[pNew.X, pNew.Y, 0] = clrNew;
-                            q.Enqueue(pNew);
+                            Point pNew = new Point(p.X + i, p.Y + j);
+                            if (pNew.X >= t && pNew.X < b && pNew.Y >= l && pNew.Y < r &&
+                                data[pNew.X, pNew.Y, 0] == clrOld)
+                            {
+                                data[pNew.X, pNew.Y, 0] = clrNew;
+                                q.Enqueue(pNew);
+                            }
                         }
                     }
                 }

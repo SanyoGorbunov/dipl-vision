@@ -341,5 +341,26 @@ namespace SkinDetection
             }
         }
 
+        private void btnRotate_Click(object sender, EventArgs e)
+        {
+            double angle = double.Parse(txtAngle.Text);
+            pbFaceTemplate.Image = imgFaceTemplate.Rotate(angle, new Gray(0)).ToBitmap();
+        }
+
+        private void btnResize_Click(object sender, EventArgs e)
+        {
+            int newWidth = int.Parse(txtNewWidth.Text);
+            int newHeight = int.Parse(txtNewHeight.Text);
+            pbFaceTemplate.Image = imgFaceTemplate.Resize(newWidth, newHeight, Emgu.CV.CvEnum.INTER.CV_INTER_AREA).ToBitmap();
+            
+        }
+
+        private void btnShowRegion_Click(object sender, EventArgs e)
+        {
+            var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
+            var mask = skinRegion.HolesMap.ThresholdToZero(new Gray(1)).ThresholdBinary(new Gray(1), new Gray(255));
+            pbFace.Image = imgTest.Convert<Gray, byte>().And(mask).ToBitmap();
+        }
+
     }
 }
