@@ -39,6 +39,7 @@
             this.btnSetThreshold = new System.Windows.Forms.Button();
             this.pbImgMix = new System.Windows.Forms.PictureBox();
             this.chkFloodFill = new System.Windows.Forms.CheckBox();
+            this.cbColorSet = new System.Windows.Forms.ComboBox();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).BeginInit();
@@ -48,6 +49,7 @@
             // 
             // pnlMain
             // 
+            this.pnlMain.Controls.Add(this.cbColorSet);
             this.pnlMain.Controls.Add(this.chkFloodFill);
             this.pnlMain.Controls.Add(this.pbImgMix);
             this.pnlMain.Controls.Add(this.btnSetThreshold);
@@ -141,6 +143,17 @@
             this.chkFloodFill.Text = "Flood Fill";
             this.chkFloodFill.UseVisualStyleBackColor = true;
             // 
+            // cbColorSet
+            // 
+            this.cbColorSet.FormattingEnabled = true;
+            this.cbColorSet.Items.AddRange(new object[] {
+            "RGB",
+            "Chromatic"});
+            this.cbColorSet.Location = new System.Drawing.Point(398, 7);
+            this.cbColorSet.Name = "cbColorSet";
+            this.cbColorSet.Size = new System.Drawing.Size(121, 21);
+            this.cbColorSet.TabIndex = 8;
+            // 
             // ImageCutter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.TextBox txtThreshold;
         private System.Windows.Forms.PictureBox pbImgMix;
         private System.Windows.Forms.CheckBox chkFloodFill;
+        private System.Windows.Forms.ComboBox cbColorSet;
     }
 }

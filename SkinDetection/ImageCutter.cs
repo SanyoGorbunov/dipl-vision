@@ -42,11 +42,11 @@ namespace SkinDetection
                 {
                     for (int j = 0; j < img.Width; j++)
                     {
-                        int sum = data[i, j, 0] + data[i, j, 1] + data[i, j, 2];
-                        dataChrR[i, j, 0] = (byte) (255.0 * data[i,j,2] / sum);
-                        dataChrB[i, j, 0] = (byte)(255.0 * data[i, j, 0] / sum);
-                        int mix = dataChrB[i, j, 0] + dataChrR[i, j, 0];
-                        dataMixed[i, j, 0] = mix > 255 ? (byte)255 : (byte)mix;
+                        byte nr, nb, nm;
+                        ColorSet(cbColorSet.SelectedIndex, data[i, j, 0], data[i, j, 1], data[i, j, 2], out nb, out nr, out nm);
+                        dataChrR[i, j, 0] = nr;
+                        dataChrB[i, j, 0] = nb;
+                        dataMixed[i, j, 0] = nm;
                     }
                 }
                 pbImgChrB.Image = imgChrB.ToBitmap();
@@ -152,6 +152,30 @@ namespace SkinDetection
                     }
                 }
             }
+        }
+
+        public static void ColorSet(int type, byte b, byte g, byte r, out byte nb, out byte nr, out byte nm)
+        {
+            int mix;
+            switch (type)
+            {
+                case 0:
+                    nb = b;
+                    nr = r;
+                    mix = b + r;
+                    nm = mix > 255 ? (byte)255 : (byte)mix;
+                    break;
+                case 1:
+                    int sum = b + g + r;
+                    nr = (byte)(255.0 * r / sum);
+                    nb = (byte)(255.0 * b / sum);
+                    mix = nb + nr;
+                    nm = mix > 255 ? (byte)255 : (byte)mix;
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            
         }
     }
 }
