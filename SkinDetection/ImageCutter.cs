@@ -29,6 +29,23 @@ namespace SkinDetection
                 img = new Image<Bgr, byte>(dlgImgLoad.FileName);
                 img = img.Resize(0.5, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
                 pbImgStart.Image = img.ToBitmap();
+                var data = img.Data;
+
+                var imgChrR = new Image<Gray, byte>(img.Size);
+                var imgChrB = new Image<Gray, byte>(img.Size);
+                var dataChrR = imgChrR.Data;
+                var dataChrB = imgChrB.Data;
+                for (int i = 0; i < img.Height; i++)
+                {
+                    for (int j = 0; j < img.Width; j++)
+                    {
+                        int sum = data[i, j, 0] + data[i, j, 1] + data[i, j, 2];
+                        dataChrR[i, j, 0] = (byte) (255.0 * data[i,j,2] / sum);
+                        dataChrB[i, j, 0] = (byte)(255.0 * data[i, j, 0] / sum);
+                    }
+                }
+                pbImgChrB.Image = imgChrB.ToBitmap();
+                pbImgChrR.Image = imgChrR.ToBitmap();
             }
         }
     }
