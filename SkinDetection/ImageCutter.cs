@@ -16,7 +16,7 @@ namespace SkinDetection
     public partial class ImageCutter : Form
     {
         private Image<Bgr, byte> img;
-        private Image<Gray, byte> imgChrB, imgChrR;
+        private Image<Gray, byte> imgChrB, imgChrR, imgChrBCpy, imgChrRCpy;
 
         public ImageCutter()
         {
@@ -52,8 +52,8 @@ namespace SkinDetection
 
         private void pbImgStart_MouseClick(object sender, MouseEventArgs e)
         {
-            var imgChrBCpy = imgChrB.Copy();
-            var imgChrRCpy = imgChrR.Copy();
+            imgChrBCpy = imgChrB.Copy();
+            imgChrRCpy = imgChrR.Copy();
 
             var dataChrBCpy = imgChrBCpy.Data;
             var dataChrRCpy = imgChrRCpy.Data;
@@ -75,6 +75,17 @@ namespace SkinDetection
 
             pbImgChrB.Image = imgChrBCpy.ToBitmap();
             pbImgChrR.Image = imgChrRCpy.ToBitmap();
+        }
+
+        private void btnSetThreshold_Click(object sender, EventArgs e)
+        {
+            byte t = byte.Parse(txtThreshold.Text);
+
+            var imgChrBTh = imgChrBCpy.ThresholdBinary(new Gray(255 - t), new Gray(255));
+            var imgChrRTh = imgChrRCpy.ThresholdBinary(new Gray(255 - t), new Gray(255));
+
+            pbImgChrB.Image = imgChrBTh.ToBitmap();
+            pbImgChrR.Image = imgChrRTh.ToBitmap();
         }
     }
 }
