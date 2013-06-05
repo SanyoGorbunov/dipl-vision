@@ -57,30 +57,50 @@ namespace SkinDetection
 
         private void pbImgStart_MouseClick(object sender, MouseEventArgs e)
         {
-            imgChrBCpy = imgChrB.Copy();
-            imgChrRCpy = imgChrR.Copy();
-            imgMixedCpy = imgMixed.Copy();
+            if (chkFloodFill.Checked)
+            {
+                imgChrBCpy = new Image<Gray, byte>(img.Size);
+                imgChrRCpy = new Image<Gray, byte>(img.Size);
+                imgMixedCpy = new Image<Gray, byte>(img.Size);
+            }
+            else
+            {
+                imgChrBCpy = imgChrB.Copy();
+                imgChrRCpy = imgChrR.Copy();
+                imgMixedCpy = imgMixed.Copy();
+            }
 
             var dataChrBCpy = imgChrBCpy.Data;
             var dataChrRCpy = imgChrRCpy.Data;
             var dataMixedCpy = imgMixedCpy.Data;
 
             int x = e.X, y = e.Y;
-            for (int i = 0; i < img.Height; i++)
+
+            if (chkFloodFill.Checked)
             {
-                for (int j = 0; j < img.Width; j++)
+                byte th = byte.Parse(txtThreshold.Text);
+                FloodFill(imgChrB, y, x, th, dataChrBCpy);
+                FloodFill(imgChrR, y, x, th, dataChrRCpy);
+                FloodFill(imgMixed, y, x, th, dataMixedCpy);
+            }
+            else
+            {
+                for (int i = 0; i < img.Height; i++)
                 {
-                    if (i != y || j != x)
+                    for (int j = 0; j < img.Width; j++)
                     {
-                        dataChrBCpy[i, j, 0] = (byte)(255 - (dataChrBCpy[i, j, 0] > dataChrBCpy[y, x, 0] ? (byte)(dataChrBCpy[i, j, 0] - dataChrBCpy[y, x, 0]) : (byte)(dataChrBCpy[y, x, 0] - dataChrBCpy[i, j, 0])));
-                        dataChrRCpy[i, j, 0] = (byte)(255 - (dataChrRCpy[i, j, 0] > dataChrRCpy[y, x, 0] ? (byte)(dataChrRCpy[i, j, 0] - dataChrRCpy[y, x, 0]) : (byte)(dataChrRCpy[y, x, 0] - dataChrRCpy[i, j, 0])));
-                        dataMixedCpy[i, j, 0] = (byte)(255 - (dataMixedCpy[i, j, 0] > dataMixedCpy[y, x, 0] ? (byte)(dataMixedCpy[i, j, 0] - dataMixedCpy[y, x, 0]) : (byte)(dataMixedCpy[y, x, 0] - dataMixedCpy[i, j, 0])));
+                        if (i != y || j != x)
+                        {
+                            dataChrBCpy[i, j, 0] = (byte)(255 - (dataChrBCpy[i, j, 0] > dataChrBCpy[y, x, 0] ? (byte)(dataChrBCpy[i, j, 0] - dataChrBCpy[y, x, 0]) : (byte)(dataChrBCpy[y, x, 0] - dataChrBCpy[i, j, 0])));
+                            dataChrRCpy[i, j, 0] = (byte)(255 - (dataChrRCpy[i, j, 0] > dataChrRCpy[y, x, 0] ? (byte)(dataChrRCpy[i, j, 0] - dataChrRCpy[y, x, 0]) : (byte)(dataChrRCpy[y, x, 0] - dataChrRCpy[i, j, 0])));
+                            dataMixedCpy[i, j, 0] = (byte)(255 - (dataMixedCpy[i, j, 0] > dataMixedCpy[y, x, 0] ? (byte)(dataMixedCpy[i, j, 0] - dataMixedCpy[y, x, 0]) : (byte)(dataMixedCpy[y, x, 0] - dataMixedCpy[i, j, 0])));
+                        }
                     }
                 }
+                dataChrBCpy[y, x, 0] = 255;
+                dataChrRCpy[y, x, 0] = 255;
+                dataMixedCpy[y, x, 0] = 255;
             }
-            dataChrBCpy[y, x, 0] = 255;
-            dataChrRCpy[y, x, 0] = 255;
-            dataMixedCpy[y, x, 0] = 255;
 
             pbImgChrB.Image = imgChrBCpy.ToBitmap();
             pbImgChrR.Image = imgChrRCpy.ToBitmap();
@@ -98,6 +118,40 @@ namespace SkinDetection
             pbImgChrB.Image = imgChrBTh.ToBitmap();
             pbImgChrR.Image = imgChrRTh.ToBitmap();
             pbImgMix.Image = imgMixedTh.ToBitmap();
+        }
+
+        public static void FloodFill(Image<Gray, byte> img, int pr, int pc, byte th, byte[,,] outData)
+        {
+            var data = img.Data;
+            outData[pr, pc, 0] = 255;
+            int l = 0, t = 0, r = img.Width, b = img.Height;
+            Queue<Point> q = new Queue<Point>();
+            q.Enqueue(new Point(pr, pc));
+            while (q.Count > 0)
+            {
+                Point p = q.Dequeue();
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (j != 0 || i != 0)
+                        {
+                            Point pNew = new Point(p.X + i, p.Y + j);
+                            if (pNew.X >= t && pNew.X < b && pNew.Y >= l && pNew.Y < r &&
+                                outData[pNew.X, pNew.Y, 0] == 0)
+                            {
+                                int dif = data[p.X, p.Y, 0] - data[pNew.X, pNew.Y, 0];
+                                dif = dif < 0 ? -dif : dif;
+                                if (dif < th)
+                                {
+                                    outData[pNew.X, pNew.Y, 0] = 255;
+                                    q.Enqueue(pNew);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

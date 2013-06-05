@@ -38,6 +38,7 @@
             this.lblThreshold = new System.Windows.Forms.Label();
             this.btnSetThreshold = new System.Windows.Forms.Button();
             this.pbImgMix = new System.Windows.Forms.PictureBox();
+            this.chkFloodFill = new System.Windows.Forms.CheckBox();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).BeginInit();
@@ -47,6 +48,7 @@
             // 
             // pnlMain
             // 
+            this.pnlMain.Controls.Add(this.chkFloodFill);
             this.pnlMain.Controls.Add(this.pbImgMix);
             this.pnlMain.Controls.Add(this.btnSetThreshold);
             this.pnlMain.Controls.Add(this.lblThreshold);
@@ -129,6 +131,16 @@
             this.pbImgMix.TabIndex = 6;
             this.pbImgMix.TabStop = false;
             // 
+            // chkFloodFill
+            // 
+            this.chkFloodFill.AutoSize = true;
+            this.chkFloodFill.Location = new System.Drawing.Point(84, 9);
+            this.chkFloodFill.Name = "chkFloodFill";
+            this.chkFloodFill.Size = new System.Drawing.Size(67, 17);
+            this.chkFloodFill.TabIndex = 7;
+            this.chkFloodFill.Text = "Flood Fill";
+            this.chkFloodFill.UseVisualStyleBackColor = true;
+            // 
             // ImageCutter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.Label lblThreshold;
         private System.Windows.Forms.TextBox txtThreshold;
         private System.Windows.Forms.PictureBox pbImgMix;
+        private System.Windows.Forms.CheckBox chkFloodFill;
     }
 }
