@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.pbImgStart = new System.Windows.Forms.PictureBox();
-            this.btnImgLoad = new System.Windows.Forms.Button();
-            this.dlgImgLoad = new System.Windows.Forms.OpenFileDialog();
-            this.pbImgChrB = new System.Windows.Forms.PictureBox();
             this.pbImgChrR = new System.Windows.Forms.PictureBox();
+            this.pbImgChrB = new System.Windows.Forms.PictureBox();
+            this.btnImgLoad = new System.Windows.Forms.Button();
+            this.pbImgStart = new System.Windows.Forms.PictureBox();
+            this.dlgImgLoad = new System.Windows.Forms.OpenFileDialog();
             this.pnlMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -51,13 +51,21 @@
             this.pnlMain.Size = new System.Drawing.Size(533, 220);
             this.pnlMain.TabIndex = 0;
             // 
-            // pbImgStart
+            // pbImgChrR
             // 
-            this.pbImgStart.Location = new System.Drawing.Point(3, 32);
-            this.pbImgStart.Name = "pbImgStart";
-            this.pbImgStart.Size = new System.Drawing.Size(168, 159);
-            this.pbImgStart.TabIndex = 0;
-            this.pbImgStart.TabStop = false;
+            this.pbImgChrR.Location = new System.Drawing.Point(351, 32);
+            this.pbImgChrR.Name = "pbImgChrR";
+            this.pbImgChrR.Size = new System.Drawing.Size(168, 159);
+            this.pbImgChrR.TabIndex = 2;
+            this.pbImgChrR.TabStop = false;
+            // 
+            // pbImgChrB
+            // 
+            this.pbImgChrB.Location = new System.Drawing.Point(177, 32);
+            this.pbImgChrB.Name = "pbImgChrB";
+            this.pbImgChrB.Size = new System.Drawing.Size(168, 159);
+            this.pbImgChrB.TabIndex = 1;
+            this.pbImgChrB.TabStop = false;
             // 
             // btnImgLoad
             // 
@@ -69,21 +77,14 @@
             this.btnImgLoad.UseVisualStyleBackColor = true;
             this.btnImgLoad.Click += new System.EventHandler(this.btnImgLoad_Click);
             // 
-            // pbImgChrB
+            // pbImgStart
             // 
-            this.pbImgChrB.Location = new System.Drawing.Point(177, 32);
-            this.pbImgChrB.Name = "pbImgChrB";
-            this.pbImgChrB.Size = new System.Drawing.Size(168, 159);
-            this.pbImgChrB.TabIndex = 1;
-            this.pbImgChrB.TabStop = false;
-            // 
-            // pbImgChrR
-            // 
-            this.pbImgChrR.Location = new System.Drawing.Point(351, 32);
-            this.pbImgChrR.Name = "pbImgChrR";
-            this.pbImgChrR.Size = new System.Drawing.Size(168, 159);
-            this.pbImgChrR.TabIndex = 2;
-            this.pbImgChrR.TabStop = false;
+            this.pbImgStart.Location = new System.Drawing.Point(3, 32);
+            this.pbImgStart.Name = "pbImgStart";
+            this.pbImgStart.Size = new System.Drawing.Size(168, 159);
+            this.pbImgStart.TabIndex = 0;
+            this.pbImgStart.TabStop = false;
+            this.pbImgStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbImgStart_MouseClick);
             // 
             // ImageCutter
             // 
@@ -94,9 +95,9 @@
             this.Name = "ImageCutter";
             this.Text = "ImageCutter";
             this.pnlMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).EndInit();
             this.ResumeLayout(false);
 
         }

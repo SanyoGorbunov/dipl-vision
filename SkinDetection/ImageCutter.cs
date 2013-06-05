@@ -16,6 +16,7 @@ namespace SkinDetection
     public partial class ImageCutter : Form
     {
         private Image<Bgr, byte> img;
+        private Image<Gray, byte> imgChrB, imgChrR;
 
         public ImageCutter()
         {
@@ -31,8 +32,8 @@ namespace SkinDetection
                 pbImgStart.Image = img.ToBitmap();
                 var data = img.Data;
 
-                var imgChrR = new Image<Gray, byte>(img.Size);
-                var imgChrB = new Image<Gray, byte>(img.Size);
+                imgChrR = new Image<Gray, byte>(img.Size);
+                imgChrB = new Image<Gray, byte>(img.Size);
                 var dataChrR = imgChrR.Data;
                 var dataChrB = imgChrB.Data;
                 for (int i = 0; i < img.Height; i++)
@@ -47,6 +48,33 @@ namespace SkinDetection
                 pbImgChrB.Image = imgChrB.ToBitmap();
                 pbImgChrR.Image = imgChrR.ToBitmap();
             }
+        }
+
+        private void pbImgStart_MouseClick(object sender, MouseEventArgs e)
+        {
+            var imgChrBCpy = imgChrB.Copy();
+            var imgChrRCpy = imgChrR.Copy();
+
+            var dataChrBCpy = imgChrBCpy.Data;
+            var dataChrRCpy = imgChrRCpy.Data;
+
+            int x = e.X, y = e.Y;
+            for (int i = 0; i < img.Height; i++)
+            {
+                for (int j = 0; j < img.Width; j++)
+                {
+                    if (i != y || j != x)
+                    {
+                        dataChrBCpy[i, j, 0] = (byte)(255 - (dataChrBCpy[i, j, 0] > dataChrBCpy[y, x, 0] ? (byte)(dataChrBCpy[i, j, 0] - dataChrBCpy[y, x, 0]) : (byte)(dataChrBCpy[y, x, 0] - dataChrBCpy[i, j, 0])));
+                        dataChrRCpy[i, j, 0] = (byte)(255 - (dataChrRCpy[i, j, 0] > dataChrRCpy[y, x, 0] ? (byte)(dataChrRCpy[i, j, 0] - dataChrRCpy[y, x, 0]) : (byte)(dataChrRCpy[y, x, 0] - dataChrRCpy[i, j, 0])));
+                    }
+                }
+            }
+            dataChrBCpy[y, x, 0] = 255;
+            dataChrRCpy[y, x, 0] = 255;
+
+            pbImgChrB.Image = imgChrBCpy.ToBitmap();
+            pbImgChrR.Image = imgChrRCpy.ToBitmap();
         }
     }
 }
