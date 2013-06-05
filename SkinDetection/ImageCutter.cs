@@ -16,7 +16,7 @@ namespace SkinDetection
     public partial class ImageCutter : Form
     {
         private Image<Bgr, byte> img;
-        private Image<Gray, byte> imgChrB, imgChrR, imgChrBCpy, imgChrRCpy;
+        private Image<Gray, byte> imgChrB, imgChrR, imgMixed, imgChrBCpy, imgChrRCpy, imgMixedCpy;
 
         public ImageCutter()
         {
@@ -34,8 +34,10 @@ namespace SkinDetection
 
                 imgChrR = new Image<Gray, byte>(img.Size);
                 imgChrB = new Image<Gray, byte>(img.Size);
+                imgMixed = new Image<Gray, byte>(img.Size);
                 var dataChrR = imgChrR.Data;
                 var dataChrB = imgChrB.Data;
+                var dataMixed = imgMixed.Data;
                 for (int i = 0; i < img.Height; i++)
                 {
                     for (int j = 0; j < img.Width; j++)
@@ -43,10 +45,13 @@ namespace SkinDetection
                         int sum = data[i, j, 0] + data[i, j, 1] + data[i, j, 2];
                         dataChrR[i, j, 0] = (byte) (255.0 * data[i,j,2] / sum);
                         dataChrB[i, j, 0] = (byte)(255.0 * data[i, j, 0] / sum);
+                        int mix = dataChrB[i, j, 0] + dataChrR[i, j, 0];
+                        dataMixed[i, j, 0] = mix > 255 ? (byte)255 : (byte)mix;
                     }
                 }
                 pbImgChrB.Image = imgChrB.ToBitmap();
                 pbImgChrR.Image = imgChrR.ToBitmap();
+                pbImgMix.Image = imgMixed.ToBitmap();
             }
         }
 
@@ -54,9 +59,11 @@ namespace SkinDetection
         {
             imgChrBCpy = imgChrB.Copy();
             imgChrRCpy = imgChrR.Copy();
+            imgMixedCpy = imgMixed.Copy();
 
             var dataChrBCpy = imgChrBCpy.Data;
             var dataChrRCpy = imgChrRCpy.Data;
+            var dataMixedCpy = imgMixedCpy.Data;
 
             int x = e.X, y = e.Y;
             for (int i = 0; i < img.Height; i++)
@@ -67,14 +74,17 @@ namespace SkinDetection
                     {
                         dataChrBCpy[i, j, 0] = (byte)(255 - (dataChrBCpy[i, j, 0] > dataChrBCpy[y, x, 0] ? (byte)(dataChrBCpy[i, j, 0] - dataChrBCpy[y, x, 0]) : (byte)(dataChrBCpy[y, x, 0] - dataChrBCpy[i, j, 0])));
                         dataChrRCpy[i, j, 0] = (byte)(255 - (dataChrRCpy[i, j, 0] > dataChrRCpy[y, x, 0] ? (byte)(dataChrRCpy[i, j, 0] - dataChrRCpy[y, x, 0]) : (byte)(dataChrRCpy[y, x, 0] - dataChrRCpy[i, j, 0])));
+                        dataMixedCpy[i, j, 0] = (byte)(255 - (dataMixedCpy[i, j, 0] > dataMixedCpy[y, x, 0] ? (byte)(dataMixedCpy[i, j, 0] - dataMixedCpy[y, x, 0]) : (byte)(dataMixedCpy[y, x, 0] - dataMixedCpy[i, j, 0])));
                     }
                 }
             }
             dataChrBCpy[y, x, 0] = 255;
             dataChrRCpy[y, x, 0] = 255;
+            dataMixedCpy[y, x, 0] = 255;
 
             pbImgChrB.Image = imgChrBCpy.ToBitmap();
             pbImgChrR.Image = imgChrRCpy.ToBitmap();
+            pbImgMix.Image = imgMixedCpy.ToBitmap();
         }
 
         private void btnSetThreshold_Click(object sender, EventArgs e)
@@ -83,9 +93,11 @@ namespace SkinDetection
 
             var imgChrBTh = imgChrBCpy.ThresholdBinary(new Gray(255 - t), new Gray(255));
             var imgChrRTh = imgChrRCpy.ThresholdBinary(new Gray(255 - t), new Gray(255));
+            var imgMixedTh = imgMixedCpy.ThresholdBinary(new Gray(255 - t), new Gray(255));
 
             pbImgChrB.Image = imgChrBTh.ToBitmap();
             pbImgChrR.Image = imgChrRTh.ToBitmap();
+            pbImgMix.Image = imgMixedTh.ToBitmap();
         }
     }
 }
