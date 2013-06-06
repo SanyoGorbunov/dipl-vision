@@ -365,9 +365,18 @@ namespace SkinDetection
 
         private void btnApplyTemplate_Click(object sender, EventArgs e)
         {
-            double angle = 0;
+            var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
+
+            double angle = 180 * skinRegion.Inclination / Math.PI;
             double.TryParse(txtAngle.Text, out angle);
-            var imgRotatedTemplate = imgFaceTemplate.Rotate(angle, new Gray(0));
+
+            int newWidth = skinRegion.Width;
+            int.TryParse(txtNewWidth.Text, out newWidth);
+            int newHeight = skinRegion.Height;
+            int.TryParse(txtNewHeight.Text, out newHeight);
+            var imgCroppedTemplate = imgFaceTemplate.Resize(newWidth, newHeight, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+
+            var imgRotatedTemplate = imgCroppedTemplate.Rotate(-angle, new Gray(0));
             var data = imgRotatedTemplate.Data;
             int l = imgRotatedTemplate.Width, t = imgRotatedTemplate.Height, w = 0, h = 0;
             
@@ -399,14 +408,10 @@ namespace SkinDetection
             w -= l;
             h -= t;
 
-            var imgCroppedTemplate = imgRotatedTemplate.GetSubRect(new Rectangle(l, t, w, h));
-
-            int newWidth = int.Parse(txtNewWidth.Text);
-            int newHeight = int.Parse(txtNewHeight.Text);
-            imgCroppedTemplate = imgCroppedTemplate.Resize(newWidth, newHeight, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+            imgCroppedTemplate = imgRotatedTemplate.GetSubRect(new Rectangle(l, t, w, h));
 
             data = imgCroppedTemplate.Data;
-            int x = 0, y = 0, Area = imgCroppedTemplate.Height * imgCroppedTemplate.Width;
+            int x = 0, y = 0, area = 0;
             for (int i = 0; i < imgCroppedTemplate.Height; i++)
             {
                 for (int j = 0; j < imgCroppedTemplate.Width; j++)
@@ -415,23 +420,25 @@ namespace SkinDetection
                     {
                         x += j;
                         y += i;
+                        area++;
                     }
                 }
             }
-            x /= Area;
-            y /= Area;
+            x /= area;
+            y /= area;
 
-            var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
             int tx = skinRegion.Left + skinRegion.Centroid.X - x,
                 ty = skinRegion.Top + skinRegion.Centroid.Y - y;
             tx = tx >= 0 ? tx : 0;
             ty = ty >= 0 ? ty : 0;
-            tx = (tx + newWidth <= imgFinalTest.Width) ? tx : imgFinalTest.Width - tx;
-            ty = (tx + newHeight <= imgFinalTest.Height) ? tx : imgFinalTest.Height - tx;
+            tx = (tx + newWidth <= imgFinalTest.Width) ? tx : (imgFinalTest.Width - newWidth);
+            ty = (ty + newHeight <= imgFinalTest.Height) ? ty : (imgFinalTest.Height - newHeight);
 
             var imgFinalTemplate = new Image<Gray, byte>(imgTest.Size);
-            imgFinalTemplate.ROI = new Rectangle(tx, ty, newWidth, newHeight);
-            imgCroppedTemplate.CopyTo(imgFinalTemplate);
+            imgFinalTemplate.ROI = new Rectangle(tx, ty, imgCroppedTemplate.Width, imgCroppedTemplate.Height);
+            CvInvoke.cvCopy(imgCroppedTemplate, imgFinalTemplate, IntPtr.Zero);
+            CvInvoke.cvResetImageROI(imgFinalTemplate);
+            pbFace.Image = imgFinalTemplate.ToBitmap();
 
             var match = imgFinalTest.MatchTemplate(imgFinalTemplate, Emgu.CV.CvEnum.TM_TYPE.CV_TM_CCORR_NORMED);
             lblCrossCorellationValue.Text = match.Data[0, 0, 0].ToString();

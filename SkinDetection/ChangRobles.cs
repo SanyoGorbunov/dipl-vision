@@ -250,8 +250,8 @@ namespace SkinDetection
                     }
                 }
             }
-            x /= Area;
-            y /= Area;
+            x /= Pixels;
+            y /= Pixels;
             Centroid = new Point((int)x, (int)y);
         }
         private void GetInclination(byte[,,] hMap)
