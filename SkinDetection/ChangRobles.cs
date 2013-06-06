@@ -262,7 +262,7 @@ namespace SkinDetection
             {
                 for (int j = 0; j < w; j++)
                 {
-                    if (hMap[l + i, w + j, 0] > 1)
+                    if (hMap[t + i, l + j, 0] > 1)
                     {
                         a += (j - Centroid.X) * (j - Centroid.X);
                         b += (j - Centroid.X) * (i - Centroid.Y);
