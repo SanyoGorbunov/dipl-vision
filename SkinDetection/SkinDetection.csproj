@@ -75,6 +75,12 @@
     <Compile Include="ShapeInfoLib.Designer.cs">
       <DependentUpon>ShapeInfoLib.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestInclination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestInclination.Designer.cs">
+      <DependentUpon>TestInclination.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FaceColorLib.resx">
       <DependentUpon>FaceColorLib.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +98,9 @@
     </Compile>
     <EmbeddedResource Include="ShapeInfoLib.resx">
       <DependentUpon>ShapeInfoLib.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestInclination.resx">
+      <DependentUpon>TestInclination.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
