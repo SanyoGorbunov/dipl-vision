@@ -352,14 +352,29 @@ namespace SkinDetection
             int newWidth = int.Parse(txtNewWidth.Text);
             int newHeight = int.Parse(txtNewHeight.Text);
             pbFaceTemplate.Image = imgFaceTemplate.Resize(newWidth, newHeight, Emgu.CV.CvEnum.INTER.CV_INTER_AREA).ToBitmap();
-            
         }
 
+        private Image<Gray, byte> imgFinalTest;
         private void btnShowRegion_Click(object sender, EventArgs e)
         {
             var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
             var mask = skinRegion.HolesMap.ThresholdToZero(new Gray(1)).ThresholdBinary(new Gray(1), new Gray(255));
-            pbFace.Image = imgTest.Convert<Gray, byte>().And(mask).ToBitmap();
+            imgFinalTest = imgTest.Convert<Gray, byte>().And(mask);
+            pbFace.Image = imgFinalTest.ToBitmap();
+        }
+
+        private void btnApplyTemplate_Click(object sender, EventArgs e)
+        {
+            double angle = double.Parse(txtAngle.Text);
+            int newWidth = int.Parse(txtNewWidth.Text);
+            int newHeight = int.Parse(txtNewHeight.Text);
+            var imgFinalTemplate = imgFaceTemplate.Resize(newWidth, newHeight, Emgu.CV.CvEnum.INTER.CV_INTER_AREA).Rotate(angle, new Gray(0));
+
+            var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
+            var subRect = imgFinalTest.GetSubRect(new Rectangle(skinRegion.Left, skinRegion.Top, skinRegion.Width, skinRegion.Height));
+
+            var match = subRect.MatchTemplate(imgFinalTemplate, Emgu.CV.CvEnum.TM_TYPE.CV_TM_CCORR_NORMED);
+            lblCrossCorellationValue.Text = match.Data[0, 0, 0].ToString();
         }
 
     }

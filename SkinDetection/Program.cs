@@ -15,9 +15,9 @@ namespace SkinDetection
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FaceColorLib());
+            Application.Run(new FaceColorLib());
             //Application.Run(new ShapeInfoLib());
-            Application.Run(new ImageCutter());
+            //Application.Run(new ImageCutter());
         }
     }
 }
