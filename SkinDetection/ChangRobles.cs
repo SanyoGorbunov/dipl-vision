@@ -179,7 +179,7 @@ namespace SkinDetection
 
             var hMap = GetHolesMap();
             GetCentroid(hMap);
-            GetInclination(hMap);
+            GetInclination(hMap, Left, Top, Width, Height);
             HolesMap = new Image<Gray, byte>(hMap);
         }
 
@@ -254,15 +254,15 @@ namespace SkinDetection
             y /= Pixels;
             Centroid = new Point((int)x, (int)y);
         }
-        private void GetInclination(byte[,,] hMap)
+        private void GetInclination(byte[,,] hMap, int l, int t, int w, int h)
         {
             double a = 0, b = 0, c = 0;
 
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < h; i++)
             {
-                for (int j = 0; j < Width; j++)
+                for (int j = 0; j < w; j++)
                 {
-                    if (hMap[i, j, 0] > 1)
+                    if (hMap[l + i, w + j, 0] > 1)
                     {
                         a += (j - Centroid.X) * (j - Centroid.X);
                         b += (j - Centroid.X) * (i - Centroid.Y);
@@ -462,7 +462,7 @@ namespace SkinDetection
                 {
                     for (int j = -1; j <= 1; j++)
                     {
-                        if (j != 0 && i != 0)
+                        if (j != 0 || i != 0)
                         {
                             Point pNew = new Point(p.X + i, p.Y + j);
                             if (pNew.X >= t && pNew.X < b && pNew.Y >= l && pNew.Y < r &&
