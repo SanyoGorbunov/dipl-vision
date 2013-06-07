@@ -390,25 +390,26 @@ namespace SkinDetection
         {
             return img.ThresholdBinary(new Gray(bound), new Gray(255));
         }
-        public Image<Gray, Byte> GetAdaptiveBinaryThreshold(Image<Gray, byte> img, byte initialBound = 180, byte step = 5)
+        public Image<Gray, Byte> GetAdaptiveBinaryThreshold(Image<Gray, byte> img, byte initialBound = 180,
+            byte endBound = 30, byte step = 2)
         {
             Image<Gray, byte> imgAdaptive = GetBinaryThreshold(img, initialBound);
-            int whPxls0 = GetWhitePixels(imgAdaptive), dif0 = 0, whPxls1, dif1;
+            int whPxls0 = GetWhitePixels(imgAdaptive), whPxls1, dif, min = int.MaxValue, bound = initialBound;
             initialBound -= step;
-            while (initialBound > 0)
+            while (initialBound >= endBound)
             {
                 imgAdaptive = GetBinaryThreshold(img, initialBound);
                 whPxls1 = GetWhitePixels(imgAdaptive);
-                dif1 = whPxls1 - whPxls0;
-                if (dif0 > 0 && dif1 > dif0)
-                {
-                    break;
+                dif = whPxls1 - whPxls0;
+                Console.WriteLine(string.Format("{0} {1}", initialBound, dif));
+                if (dif < min) {
+                    min = dif;
+                    bound = initialBound;
                 }
                 initialBound -= step;
                 whPxls0 = whPxls1;
-                dif0 = dif1;
             }
-            return GetBinaryThreshold(img, (byte) (initialBound + step / 2));
+            return GetBinaryThreshold(img, (byte) (bound + step / 2));
         }
 
         public List<SkinRegion> GetSkinRegions(Image<Gray, byte> img)
