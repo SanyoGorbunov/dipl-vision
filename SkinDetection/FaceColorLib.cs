@@ -455,5 +455,15 @@ namespace SkinDetection
             FillSkinRegions();
         }
 
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            var imgResult = imgTest.Clone();
+            foreach (var rect in model.Execute(imgTest, imgFaceTemplate))
+            {
+                imgResult.Draw(rect, new Bgr(Color.Red), 2);
+            }
+            pbFace.Image = imgResult.ToBitmap();
+        }
+
     }
 }

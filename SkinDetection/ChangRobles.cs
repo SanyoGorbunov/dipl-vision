@@ -280,6 +280,14 @@ namespace SkinDetection
             b *= 2;
             Inclination = 0.5 * Math.Atan(b / (a - c));
         }
+
+        public Rectangle Rect
+        {
+            get
+            {
+                return new Rectangle(Left, Top, Width, Height);
+            }
+        }
     }
 
     class ChangRobles
@@ -465,6 +473,22 @@ namespace SkinDetection
 
             var match = skinRegion.FindMask(img).MatchTemplate(imgFinalTemplate, Emgu.CV.CvEnum.TM_TYPE.CV_TM_CCORR_NORMED);
             return match.Data[0, 0, 0];
+        }
+
+        public List<Rectangle> Execute(Image<Bgr, byte> imgToTest, Image<Gray, byte> imgFaceTemplate,
+            byte atUpper = 180, byte atLow = 30, byte atStep = 2,
+            int fMinHoles = 1, double fMinRatio = 0.8, double fMaxRatio = 1.6, double fMinCrsCrltn = 0.6)
+        {
+            imgToTest = Utils.ApplyKernel(imgToTest, new float[,] {
+                { 1/9f, 1/9f, 1/9f }, { 1/9f, 1/9f, 1/9f }, { 1/9f, 1/9f, 1/9f }
+            });
+            var imgLkhood = GetLikelihoodImage(imgToTest);
+            var imgThresh = GetAdaptiveBinaryThreshold(imgLkhood, atUpper, atLow, atStep);
+            var skinRegions = GetSkinRegions(imgThresh);
+
+            return skinRegions.Where(sr => sr.Holes > fMinHoles &&
+                sr.Ratio >= fMinRatio && sr.Ratio <= fMaxRatio &&
+                MatchTemplate(imgToTest, sr, imgFaceTemplate) >= fMinCrsCrltn).Select(sr => sr.Rect).ToList();
         }
     }
 

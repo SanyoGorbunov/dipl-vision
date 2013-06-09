@@ -86,6 +86,7 @@
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
             this.btnFilterByRatio = new System.Windows.Forms.Button();
             this.btnFilterByTemplate = new System.Windows.Forms.Button();
+            this.btnTest = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
@@ -630,11 +631,22 @@
             this.btnFilterByTemplate.UseVisualStyleBackColor = true;
             this.btnFilterByTemplate.Click += new System.EventHandler(this.btnFilterByTemplate_Click);
             // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(141, 381);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 9;
+            this.btnTest.Text = "Test";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 416);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.pnlFaceTemplate);
             this.Controls.Add(this.pnlSkinRegions);
             this.Controls.Add(this.pnlThresholdingDemo);
@@ -720,6 +732,7 @@
         private System.Windows.Forms.Label lblCrossCorellationValue;
         private System.Windows.Forms.Button btnFilterByTemplate;
         private System.Windows.Forms.Button btnFilterByRatio;
+        private System.Windows.Forms.Button btnTest;
 
     }
 }
