@@ -358,8 +358,7 @@ namespace SkinDetection
         private void btnShowRegion_Click(object sender, EventArgs e)
         {
             var skinRegion = skinRegions[lbSkinRegions.SelectedIndex];
-            var mask = skinRegion.HolesMap.ThresholdToZero(new Gray(1)).ThresholdBinary(new Gray(1), new Gray(255));
-            imgFinalTest = imgTest.Convert<Gray, byte>().And(mask);
+            imgFinalTest = skinRegion.FindMask(imgTest);
             pbFace.Image = imgFinalTest.ToBitmap();
         }
 
@@ -442,6 +441,18 @@ namespace SkinDetection
 
             var match = imgFinalTest.MatchTemplate(imgFinalTemplate, Emgu.CV.CvEnum.TM_TYPE.CV_TM_CCORR_NORMED);
             lblCrossCorellationValue.Text = match.Data[0, 0, 0].ToString();
+        }
+
+        private void btnFilterByRatio_Click(object sender, EventArgs e)
+        {
+            skinRegions = skinRegions.Where(sr => sr.Ratio >= 0.8 && sr.Ratio <= 1.6).ToList();
+            FillSkinRegions();
+        }
+
+        private void btnFilterByTemplate_Click(object sender, EventArgs e)
+        {
+            skinRegions = skinRegions.Where(sr => model.MatchTemplate(imgTest, sr, imgFaceTemplate) >= 0.6).ToList();
+            FillSkinRegions();
         }
 
     }

@@ -71,6 +71,8 @@
             this.dlgLoadLib = new System.Windows.Forms.OpenFileDialog();
             this.dlgSaveLib = new System.Windows.Forms.SaveFileDialog();
             this.pnlFaceTemplate = new System.Windows.Forms.Panel();
+            this.lblCrossCorellationValue = new System.Windows.Forms.Label();
+            this.btnApplyTemplate = new System.Windows.Forms.Button();
             this.btnResize = new System.Windows.Forms.Button();
             this.txtNewHeight = new System.Windows.Forms.TextBox();
             this.lblNewHeight = new System.Windows.Forms.Label();
@@ -82,8 +84,8 @@
             this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
             this.pbFaceTemplate = new System.Windows.Forms.PictureBox();
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
-            this.btnApplyTemplate = new System.Windows.Forms.Button();
-            this.lblCrossCorellationValue = new System.Windows.Forms.Label();
+            this.btnFilterByRatio = new System.Windows.Forms.Button();
+            this.btnFilterByTemplate = new System.Windows.Forms.Button();
             this.pnlLib.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
@@ -336,6 +338,8 @@
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.btnFilterByTemplate);
+            this.pnlSkinRegions.Controls.Add(this.btnFilterByRatio);
             this.pnlSkinRegions.Controls.Add(this.btnShowRegion);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionRatio);
             this.pnlSkinRegions.Controls.Add(this.lblSkinRegionInclination);
@@ -351,7 +355,7 @@
             this.pnlSkinRegions.Controls.Add(this.btnFindSkinRegions);
             this.pnlSkinRegions.Location = new System.Drawing.Point(859, 12);
             this.pnlSkinRegions.Name = "pnlSkinRegions";
-            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 322);
+            this.pnlSkinRegions.Size = new System.Drawing.Size(171, 381);
             this.pnlSkinRegions.TabIndex = 7;
             // 
             // btnShowRegion
@@ -497,6 +501,25 @@
             this.pnlFaceTemplate.Size = new System.Drawing.Size(289, 178);
             this.pnlFaceTemplate.TabIndex = 8;
             // 
+            // lblCrossCorellationValue
+            // 
+            this.lblCrossCorellationValue.AutoSize = true;
+            this.lblCrossCorellationValue.Location = new System.Drawing.Point(131, 156);
+            this.lblCrossCorellationValue.Name = "lblCrossCorellationValue";
+            this.lblCrossCorellationValue.Size = new System.Drawing.Size(35, 13);
+            this.lblCrossCorellationValue.TabIndex = 11;
+            this.lblCrossCorellationValue.Text = "label1";
+            // 
+            // btnApplyTemplate
+            // 
+            this.btnApplyTemplate.Location = new System.Drawing.Point(3, 151);
+            this.btnApplyTemplate.Name = "btnApplyTemplate";
+            this.btnApplyTemplate.Size = new System.Drawing.Size(122, 23);
+            this.btnApplyTemplate.TabIndex = 10;
+            this.btnApplyTemplate.Text = "Apply Template";
+            this.btnApplyTemplate.UseVisualStyleBackColor = true;
+            this.btnApplyTemplate.Click += new System.EventHandler(this.btnApplyTemplate_Click);
+            // 
             // btnResize
             // 
             this.btnResize.Location = new System.Drawing.Point(176, 151);
@@ -587,24 +610,25 @@
             // 
             this.dlgLoadFaceTemplate.FileName = "openFileDialog1";
             // 
-            // btnApplyTemplate
+            // btnFilterByRatio
             // 
-            this.btnApplyTemplate.Location = new System.Drawing.Point(3, 151);
-            this.btnApplyTemplate.Name = "btnApplyTemplate";
-            this.btnApplyTemplate.Size = new System.Drawing.Size(122, 23);
-            this.btnApplyTemplate.TabIndex = 10;
-            this.btnApplyTemplate.Text = "Apply Template";
-            this.btnApplyTemplate.UseVisualStyleBackColor = true;
-            this.btnApplyTemplate.Click += new System.EventHandler(this.btnApplyTemplate_Click);
+            this.btnFilterByRatio.Location = new System.Drawing.Point(11, 315);
+            this.btnFilterByRatio.Name = "btnFilterByRatio";
+            this.btnFilterByRatio.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByRatio.TabIndex = 13;
+            this.btnFilterByRatio.Text = "Filter by Ratio";
+            this.btnFilterByRatio.UseVisualStyleBackColor = true;
+            this.btnFilterByRatio.Click += new System.EventHandler(this.btnFilterByRatio_Click);
             // 
-            // lblCrossCorellationValue
+            // btnFilterByTemplate
             // 
-            this.lblCrossCorellationValue.AutoSize = true;
-            this.lblCrossCorellationValue.Location = new System.Drawing.Point(131, 156);
-            this.lblCrossCorellationValue.Name = "lblCrossCorellationValue";
-            this.lblCrossCorellationValue.Size = new System.Drawing.Size(35, 13);
-            this.lblCrossCorellationValue.TabIndex = 11;
-            this.lblCrossCorellationValue.Text = "label1";
+            this.btnFilterByTemplate.Location = new System.Drawing.Point(11, 344);
+            this.btnFilterByTemplate.Name = "btnFilterByTemplate";
+            this.btnFilterByTemplate.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByTemplate.TabIndex = 14;
+            this.btnFilterByTemplate.Text = "Filter by Template";
+            this.btnFilterByTemplate.UseVisualStyleBackColor = true;
+            this.btnFilterByTemplate.Click += new System.EventHandler(this.btnFilterByTemplate_Click);
             // 
             // FaceColorLib
             // 
@@ -694,6 +718,8 @@
         private System.Windows.Forms.Button btnShowRegion;
         private System.Windows.Forms.Button btnApplyTemplate;
         private System.Windows.Forms.Label lblCrossCorellationValue;
+        private System.Windows.Forms.Button btnFilterByTemplate;
+        private System.Windows.Forms.Button btnFilterByRatio;
 
     }
 }

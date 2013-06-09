@@ -95,6 +95,12 @@ namespace SkinDetection
 
     class SkinRegion
     {
+        public Image<Gray, byte> FindMask(Image<Bgr, byte> img)
+        {
+            var mask = HolesMap.ThresholdToZero(new Gray(1)).ThresholdBinary(new Gray(1), new Gray(255));
+            return img.Convert<Gray, byte>().And(mask);
+        }
+
         public Image<Gray, byte> Region { get; private set; }
         public Image<Gray, byte> HolesMap { get; private set; }
 
@@ -434,6 +440,32 @@ namespace SkinDetection
         {
             return skinRegions.Where(skinRegion => skinRegion.Holes > 1).ToList();
         }
+        public double MatchTemplate(Image<Bgr, byte> img, SkinRegion skinRegion, Image<Gray, byte> template)
+        {
+            var imgCroppedTemplate = template.Resize(skinRegion.Width, skinRegion.Height, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+
+            var imgRotatedTemplate = imgCroppedTemplate.Rotate(-skinRegion.Inclination * 180 / Math.PI , new Gray(0));
+            var data = imgRotatedTemplate.Data;
+            int l = imgRotatedTemplate.Width, t = imgRotatedTemplate.Height, w = 0, h = 0;
+            imgCroppedTemplate = Utils.Crop(imgCroppedTemplate);
+
+            var centroid = Utils.GetCentroid(imgCroppedTemplate);
+
+            int tx = skinRegion.Left + skinRegion.Centroid.X - centroid.X,
+                ty = skinRegion.Top + skinRegion.Centroid.Y - centroid.Y;
+            tx = tx >= 0 ? tx : 0;
+            ty = ty >= 0 ? ty : 0;
+            tx = (tx + skinRegion.Width <= img.Width) ? tx : (img.Width - skinRegion.Width);
+            ty = (ty + skinRegion.Height <= img.Height) ? ty : (img.Height - skinRegion.Height);
+
+            var imgFinalTemplate = new Image<Gray, byte>(img.Size);
+            imgFinalTemplate.ROI = new Rectangle(tx, ty, imgCroppedTemplate.Width, imgCroppedTemplate.Height);
+            CvInvoke.cvCopy(imgCroppedTemplate, imgFinalTemplate, IntPtr.Zero);
+            CvInvoke.cvResetImageROI(imgFinalTemplate);
+
+            var match = skinRegion.FindMask(img).MatchTemplate(imgFinalTemplate, Emgu.CV.CvEnum.TM_TYPE.CV_TM_CCORR_NORMED);
+            return match.Data[0, 0, 0];
+        }
     }
 
     static class Utils
@@ -482,6 +514,61 @@ namespace SkinDetection
         {
             ConvolutionKernelF kernel = new ConvolutionKernelF(k);
             return (img * kernel).Convert<Bgr, byte>();
+        }
+        public static Image<Gray, byte> Crop(Image<Gray, byte> imgToCrop)
+        {
+            int l = imgToCrop.Width, w = 0, h = 0, t = imgToCrop.Height;
+            var data = imgToCrop.Data;
+            for (int i = 0; i < imgToCrop.Height; i++)
+            {
+                for (int j = 0; j < imgToCrop.Width; j++)
+                {
+                    if (data[i, j, 0] > 0)
+                    {
+                        if (j < l)
+                        {
+                            l = j;
+                        }
+                        if (j > w)
+                        {
+                            w = j;
+                        }
+                        if (i < t)
+                        {
+                            t = i;
+                        }
+                        if (i > h)
+                        {
+                            h = i;
+                        }
+                    }
+                }
+            }
+            w -= l;
+            h -= t;
+
+            return imgToCrop.GetSubRect(new Rectangle(l, t, w, h));
+        }
+        public static Point GetCentroid(Image<Gray, byte> img)
+        {
+            var data = img.Data;
+            int x = 0, y = 0, area = 0;
+            for (int i = 0; i < img.Height; i++)
+            {
+                for (int j = 0; j < img.Width; j++)
+                {
+                    if (data[i, j, 0] > 0)
+                    {
+                        x += j;
+                        y += i;
+                        area++;
+                    }
+                }
+            }
+            x /= area;
+            y /= area;
+
+            return new Point(x, y);
         }
     }
 }
