@@ -95,6 +95,7 @@
     <Compile Include="TestInclination.Designer.cs">
       <DependentUpon>TestInclination.cs</DependentUpon>
     </Compile>
+    <Compile Include="WangTan.cs" />
     <EmbeddedResource Include="FaceColorLib.resx">
       <DependentUpon>FaceColorLib.cs</DependentUpon>
     </EmbeddedResource>

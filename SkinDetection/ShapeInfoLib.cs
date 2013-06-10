@@ -295,23 +295,6 @@ namespace SkinDetection
             }
         }
 
-        private class TemplateEntry
-        {
-            public int X0 { get; set; }
-            public int Y0 { get; set; }
-            public int A { get; set; }
-            public int B { get; set; }
-
-            public double R { get; set; }
-            public double N { get; set; }
-            public double G { get; set; }
-
-            public override string ToString()
-            {
-                return string.Format("N: {0}, R: {1}", N, R);
-            }
-        }
-
         private List<TemplateEntry> templates;
         private void btnTestTemplateToForm_Click(object sender, EventArgs e)
         {

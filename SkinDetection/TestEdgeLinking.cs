@@ -199,7 +199,7 @@ namespace SkinDetection
         }
     }
 
-    public static class Helpers
+    public static partial class Helpers
     {
         public static int Left(this Seq<Point> seq)
         {
