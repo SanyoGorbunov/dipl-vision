@@ -290,7 +290,7 @@ namespace SkinDetection
         }
     }
 
-    class ChangRobles
+    class ChangRobles: IAlgorithm
     {
         public TwoDimVector Mean { get; private set; }
         public TwoDimMatrix Covariance { get; private set; }
@@ -490,6 +490,32 @@ namespace SkinDetection
                 sr.Ratio >= fMinRatio && sr.Ratio <= fMaxRatio &&
                 MatchTemplate(imgToTest, sr, imgFaceTemplate) >= fMinCrsCrltn).Select(sr => sr.Rect).ToList();
         }
+
+        public List<Rectangle> Execute(Image<Bgr, byte> img, object options)
+        {
+            ChangRoblesOptions opts = options as ChangRoblesOptions;
+            return Execute(img,
+                opts.FaceTemplate,
+                opts.AdaptiveThresholdUpper,
+                opts.AdaptiveThresholdLower,
+                opts.AdaptiveThresholdStep,
+                opts.SkinRegionMinHoles,
+                opts.SkinRegionMinRatio,
+                opts.SkinRegionMaxRatio,
+                opts.SkinRegionMinCrossCorellation);
+        }
+    }
+
+    class ChangRoblesOptions
+    {
+        public byte AdaptiveThresholdUpper { get; set; }
+        public byte AdaptiveThresholdLower { get; set; }
+        public byte AdaptiveThresholdStep { get; set; }
+        public int SkinRegionMinHoles { get; set; }
+        public double SkinRegionMinRatio { get; set; }
+        public double SkinRegionMaxRatio { get; set; }
+        public double SkinRegionMinCrossCorellation { get; set; }
+        public Image<Gray, byte> FaceTemplate { get; set; }
     }
 
     static class Utils
