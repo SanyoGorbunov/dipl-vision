@@ -154,7 +154,12 @@ namespace SkinDetection
             return double.IsNaN(n) || n == 0 ? double.Epsilon : n;
         }
 
-        static const int Boundary = 20;
+        const int Boundary = 20;
+
+        public TemplateEntry()
+        {
+
+        }
 
         public TemplateEntry(int x0, int y0, int a, int b)
         {

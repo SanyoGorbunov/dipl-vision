@@ -15,6 +15,7 @@ namespace SkinDetection
 {
     public partial class TestForm : Form
     {
+        private Image<Gray, byte> imgFaceTemplate;
         private IAlgorithm alg;
 
         private string dir;
@@ -39,13 +40,34 @@ namespace SkinDetection
             }
         }
 
-        private object GetOptions()
+        private object opts;
+        private void SetOptions()
         {
-            throw new NotImplementedException();
+            ChangRobles cr = alg as ChangRobles;
+            WangTan wt = alg as WangTan;
+            if (cr != null)
+            {
+                ChangRoblesOptions crOpts = new ChangRoblesOptions();
+                crOpts.FaceTemplate = imgFaceTemplate;
+                crOpts.AdaptiveThresholdLower = byte.Parse(txtAdaptiveThresholdLower.Text);
+                crOpts.AdaptiveThresholdUpper = byte.Parse(txtAdaptiveThresholdUpper.Text);
+                crOpts.AdaptiveThresholdStep = byte.Parse(txtAdaptiveThresholdStep.Text);
+                crOpts.SkinRegionMinHoles = int.Parse(txtSkinRegionMinHoles.Text);
+                crOpts.SkinRegionMinRatio = double.Parse(txtSkinRegionMinRatio.Text);
+                crOpts.SkinRegionMaxRatio = double.Parse(txtSkinRegionMaxRatio.Text);
+                crOpts.SkinRegionMinCrossCorellation = double.Parse(txtSkinRegionCrsCrltn.Text);
+                opts = crOpts;
+            }
+            if (wt != null)
+            {
+                WangTanOptions wtOpts = new WangTanOptions();
+                opts = wtOpts;
+            }
         }
 
         private void Run()
         {
+            SetOptions();
             files = Directory.GetFiles(dir);
             fileIndex = 0;
             cTrue = 0;
@@ -56,21 +78,36 @@ namespace SkinDetection
 
         private void Display()
         {
-            var img = new Image<Bgr, byte>(files[fileIndex]);
-            var rects = alg.Execute(img, GetOptions());
-
-            foreach (var rect in rects)
+            if (fileIndex == files.Length)
             {
-                img.Draw(rect, new Bgr(Color.Red), 2);
+                Finish();
             }
+            else
+            {
 
-            double xscale = 1.0 * pbImgTest.Width / img.Width;
-            double yscale = 1.0 * pbImgTest.Height / img.Height;
-            scale = xscale < yscale ? xscale : yscale;
+                var img = new Image<Bgr, byte>(files[fileIndex]);
+                var rects = alg.Execute(img, opts);
 
-            pbImgTest.Image = img.Resize(scale, Emgu.CV.CvEnum.INTER.CV_INTER_AREA).ToBitmap();
+                foreach (var rect in rects)
+                {
+                    img.Draw(rect, new Bgr(Color.Red), 2);
+                }
 
-            lblStats.Text = string.Format("{0} from {1}", fileIndex + 1, files.Length);
+                double xscale = 1.0 * pbImgTest.Width / img.Width;
+                double yscale = 1.0 * pbImgTest.Height / img.Height;
+                scale = xscale < yscale ? xscale : yscale;
+
+                pbImgTest.Image = img.Resize(scale, Emgu.CV.CvEnum.INTER.CV_INTER_AREA).ToBitmap();
+
+                lblStats.Text = string.Format("{0} from {1}", fileIndex + 1, files.Length);
+            }
+        }
+
+        private void Finish()
+        {
+            chartResults.Series["SeriesTrue"].Points.AddY(1.0 * cTrue / files.Length);
+            chartResults.Series["SeriesNotExact"].Points.AddY(1.0 * cNotExact / files.Length);
+            chartResults.Series["SeriesFalse"].Points.AddY(1.0 * cFalse / files.Length);
         }
 
         private void btnTrue_Click(object sender, EventArgs e)
@@ -96,9 +133,39 @@ namespace SkinDetection
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            chartResults.Series["SeriesTrue"].Points.AddY(1.0 * cTrue / files.Length);
-            chartResults.Series["SeriesNotExact"].Points.AddY(1.0 * cNotExact / files.Length);
-            chartResults.Series["SeriesFalse"].Points.AddY(1.0 * cFalse / files.Length);
+            Finish();
+        }
+
+        private void btnLoadFaceTemplate_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadFaceTemplate.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                imgFaceTemplate = new Image<Gray, byte>(dlgLoadFaceTemplate.FileName);
+            }
+        }
+
+        private void btnLoadModel_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (alg is ChangRobles)
+                {
+                    alg = ChangRobles.Load(dlgLoadModel.FileName);
+                }
+            }
+        }
+
+        private void cbAlg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbAlg.SelectedIndex)
+            {
+                case 0:
+                    alg = new ChangRobles();
+                    break;
+                case 1:
+                    alg = new WangTan();
+                    break;
+            }
         }
 
 
