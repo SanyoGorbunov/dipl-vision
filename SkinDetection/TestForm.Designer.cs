@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlChooseAlg = new System.Windows.Forms.Panel();
             this.cbAlg = new System.Windows.Forms.ComboBox();
             this.lblAlg = new System.Windows.Forms.Label();
@@ -66,8 +66,35 @@
             this.txtSkinRegionMaxRatio = new System.Windows.Forms.TextBox();
             this.btnLoadModel = new System.Windows.Forms.Button();
             this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
+            this.txtTestTemplateBStep = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateBEnd = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateBStart = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAStep = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAEnd = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAStart = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0Step = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0End = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0Start = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0Step = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0End = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0Start = new System.Windows.Forms.TextBox();
+            this.lblTestTemplateB = new System.Windows.Forms.Label();
+            this.lblTestTemplateA = new System.Windows.Forms.Label();
+            this.lblTestTemplateY0 = new System.Windows.Forms.Label();
+            this.lblTestTemplateX0 = new System.Windows.Forms.Label();
+            this.txtTemplateThresholdRate = new System.Windows.Forms.TextBox();
+            this.txtTemplateThresholdPoints = new System.Windows.Forms.TextBox();
+            this.lblTemplateThresholds = new System.Windows.Forms.Label();
+            this.txtMedianSmoothSize = new System.Windows.Forms.TextBox();
+            this.lblMedianSmoothSize = new System.Windows.Forms.Label();
+            this.txtEraseChainsA = new System.Windows.Forms.TextBox();
+            this.lblEraseChainsA = new System.Windows.Forms.Label();
+            this.txtCannyLinkThreshold = new System.Windows.Forms.TextBox();
+            this.txtCannyThreshold = new System.Windows.Forms.TextBox();
+            this.lblCannyThresholds = new System.Windows.Forms.Label();
             this.pnlChooseAlg.SuspendLayout();
             this.pnlSkinOptions.SuspendLayout();
+            this.pnlGeoOptions.SuspendLayout();
             this.pnlImg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgTest)).BeginInit();
             this.pnlResults.SuspendLayout();
@@ -128,9 +155,35 @@
             // 
             // pnlGeoOptions
             // 
+            this.pnlGeoOptions.Controls.Add(this.txtCannyLinkThreshold);
+            this.pnlGeoOptions.Controls.Add(this.txtCannyThreshold);
+            this.pnlGeoOptions.Controls.Add(this.lblCannyThresholds);
+            this.pnlGeoOptions.Controls.Add(this.txtEraseChainsA);
+            this.pnlGeoOptions.Controls.Add(this.lblEraseChainsA);
+            this.pnlGeoOptions.Controls.Add(this.txtMedianSmoothSize);
+            this.pnlGeoOptions.Controls.Add(this.lblMedianSmoothSize);
+            this.pnlGeoOptions.Controls.Add(this.txtTemplateThresholdRate);
+            this.pnlGeoOptions.Controls.Add(this.txtTemplateThresholdPoints);
+            this.pnlGeoOptions.Controls.Add(this.lblTemplateThresholds);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateBStep);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateBEnd);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateBStart);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateAStep);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateAEnd);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateAStart);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateY0Step);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateY0End);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateY0Start);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateX0Step);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateX0End);
+            this.pnlGeoOptions.Controls.Add(this.txtTestTemplateX0Start);
+            this.pnlGeoOptions.Controls.Add(this.lblTestTemplateB);
+            this.pnlGeoOptions.Controls.Add(this.lblTestTemplateA);
+            this.pnlGeoOptions.Controls.Add(this.lblTestTemplateY0);
+            this.pnlGeoOptions.Controls.Add(this.lblTestTemplateX0);
             this.pnlGeoOptions.Location = new System.Drawing.Point(12, 266);
             this.pnlGeoOptions.Name = "pnlGeoOptions";
-            this.pnlGeoOptions.Size = new System.Drawing.Size(200, 146);
+            this.pnlGeoOptions.Size = new System.Drawing.Size(200, 218);
             this.pnlGeoOptions.TabIndex = 2;
             // 
             // pnlImg
@@ -219,30 +272,30 @@
             this.pnlResults.Controls.Add(this.chartResults);
             this.pnlResults.Location = new System.Drawing.Point(218, 266);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(328, 146);
+            this.pnlResults.Size = new System.Drawing.Size(328, 218);
             this.pnlResults.TabIndex = 4;
             // 
             // chartResults
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartResults.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartResults.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartResults.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResults.Legends.Add(legend1);
             this.chartResults.Location = new System.Drawing.Point(3, 3);
             this.chartResults.Name = "chartResults";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "SeriesTrue";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "SeriesNotExact";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "SeriesFalse";
-            this.chartResults.Series.Add(series4);
-            this.chartResults.Series.Add(series5);
-            this.chartResults.Series.Add(series6);
-            this.chartResults.Size = new System.Drawing.Size(319, 140);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "SeriesTrue";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "SeriesNotExact";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "SeriesFalse";
+            this.chartResults.Series.Add(series1);
+            this.chartResults.Series.Add(series2);
+            this.chartResults.Series.Add(series3);
+            this.chartResults.Size = new System.Drawing.Size(319, 212);
             this.chartResults.TabIndex = 0;
             // 
             // btnLoadFaceTemplate
@@ -368,11 +421,221 @@
             this.btnLoadModel.UseVisualStyleBackColor = true;
             this.btnLoadModel.Click += new System.EventHandler(this.btnLoadModel_Click);
             // 
+            // txtTestTemplateBStep
+            // 
+            this.txtTestTemplateBStep.Location = new System.Drawing.Point(142, 193);
+            this.txtTestTemplateBStep.Name = "txtTestTemplateBStep";
+            this.txtTestTemplateBStep.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBStep.TabIndex = 52;
+            this.txtTestTemplateBStep.Text = "3";
+            // 
+            // txtTestTemplateBEnd
+            // 
+            this.txtTestTemplateBEnd.Location = new System.Drawing.Point(94, 193);
+            this.txtTestTemplateBEnd.Name = "txtTestTemplateBEnd";
+            this.txtTestTemplateBEnd.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBEnd.TabIndex = 51;
+            this.txtTestTemplateBEnd.Text = "60";
+            // 
+            // txtTestTemplateBStart
+            // 
+            this.txtTestTemplateBStart.Location = new System.Drawing.Point(46, 193);
+            this.txtTestTemplateBStart.Name = "txtTestTemplateBStart";
+            this.txtTestTemplateBStart.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBStart.TabIndex = 50;
+            this.txtTestTemplateBStart.Text = "30";
+            // 
+            // txtTestTemplateAStep
+            // 
+            this.txtTestTemplateAStep.Location = new System.Drawing.Point(142, 167);
+            this.txtTestTemplateAStep.Name = "txtTestTemplateAStep";
+            this.txtTestTemplateAStep.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAStep.TabIndex = 49;
+            this.txtTestTemplateAStep.Text = "3";
+            // 
+            // txtTestTemplateAEnd
+            // 
+            this.txtTestTemplateAEnd.Location = new System.Drawing.Point(94, 167);
+            this.txtTestTemplateAEnd.Name = "txtTestTemplateAEnd";
+            this.txtTestTemplateAEnd.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAEnd.TabIndex = 48;
+            this.txtTestTemplateAEnd.Text = "65";
+            // 
+            // txtTestTemplateAStart
+            // 
+            this.txtTestTemplateAStart.Location = new System.Drawing.Point(46, 167);
+            this.txtTestTemplateAStart.Name = "txtTestTemplateAStart";
+            this.txtTestTemplateAStart.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAStart.TabIndex = 47;
+            this.txtTestTemplateAStart.Text = "50";
+            // 
+            // txtTestTemplateY0Step
+            // 
+            this.txtTestTemplateY0Step.Location = new System.Drawing.Point(142, 141);
+            this.txtTestTemplateY0Step.Name = "txtTestTemplateY0Step";
+            this.txtTestTemplateY0Step.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0Step.TabIndex = 46;
+            this.txtTestTemplateY0Step.Text = "5";
+            // 
+            // txtTestTemplateY0End
+            // 
+            this.txtTestTemplateY0End.Location = new System.Drawing.Point(94, 141);
+            this.txtTestTemplateY0End.Name = "txtTestTemplateY0End";
+            this.txtTestTemplateY0End.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0End.TabIndex = 45;
+            this.txtTestTemplateY0End.Text = "90";
+            // 
+            // txtTestTemplateY0Start
+            // 
+            this.txtTestTemplateY0Start.Location = new System.Drawing.Point(46, 141);
+            this.txtTestTemplateY0Start.Name = "txtTestTemplateY0Start";
+            this.txtTestTemplateY0Start.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0Start.TabIndex = 44;
+            this.txtTestTemplateY0Start.Text = "40";
+            // 
+            // txtTestTemplateX0Step
+            // 
+            this.txtTestTemplateX0Step.Location = new System.Drawing.Point(142, 118);
+            this.txtTestTemplateX0Step.Name = "txtTestTemplateX0Step";
+            this.txtTestTemplateX0Step.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0Step.TabIndex = 43;
+            this.txtTestTemplateX0Step.Text = "5";
+            // 
+            // txtTestTemplateX0End
+            // 
+            this.txtTestTemplateX0End.Location = new System.Drawing.Point(94, 118);
+            this.txtTestTemplateX0End.Name = "txtTestTemplateX0End";
+            this.txtTestTemplateX0End.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0End.TabIndex = 42;
+            this.txtTestTemplateX0End.Text = "80";
+            // 
+            // txtTestTemplateX0Start
+            // 
+            this.txtTestTemplateX0Start.Location = new System.Drawing.Point(46, 118);
+            this.txtTestTemplateX0Start.Name = "txtTestTemplateX0Start";
+            this.txtTestTemplateX0Start.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0Start.TabIndex = 41;
+            this.txtTestTemplateX0Start.Text = "40";
+            // 
+            // lblTestTemplateB
+            // 
+            this.lblTestTemplateB.AutoSize = true;
+            this.lblTestTemplateB.Location = new System.Drawing.Point(17, 196);
+            this.lblTestTemplateB.Name = "lblTestTemplateB";
+            this.lblTestTemplateB.Size = new System.Drawing.Size(16, 13);
+            this.lblTestTemplateB.TabIndex = 40;
+            this.lblTestTemplateB.Text = "b:";
+            // 
+            // lblTestTemplateA
+            // 
+            this.lblTestTemplateA.AutoSize = true;
+            this.lblTestTemplateA.Location = new System.Drawing.Point(17, 170);
+            this.lblTestTemplateA.Name = "lblTestTemplateA";
+            this.lblTestTemplateA.Size = new System.Drawing.Size(16, 13);
+            this.lblTestTemplateA.TabIndex = 39;
+            this.lblTestTemplateA.Text = "a:";
+            // 
+            // lblTestTemplateY0
+            // 
+            this.lblTestTemplateY0.AutoSize = true;
+            this.lblTestTemplateY0.Location = new System.Drawing.Point(17, 144);
+            this.lblTestTemplateY0.Name = "lblTestTemplateY0";
+            this.lblTestTemplateY0.Size = new System.Drawing.Size(23, 13);
+            this.lblTestTemplateY0.TabIndex = 38;
+            this.lblTestTemplateY0.Text = "Y0:";
+            // 
+            // lblTestTemplateX0
+            // 
+            this.lblTestTemplateX0.AutoSize = true;
+            this.lblTestTemplateX0.Location = new System.Drawing.Point(17, 121);
+            this.lblTestTemplateX0.Name = "lblTestTemplateX0";
+            this.lblTestTemplateX0.Size = new System.Drawing.Size(23, 13);
+            this.lblTestTemplateX0.TabIndex = 37;
+            this.lblTestTemplateX0.Text = "X0:";
+            // 
+            // txtTemplateThresholdRate
+            // 
+            this.txtTemplateThresholdRate.Location = new System.Drawing.Point(156, 90);
+            this.txtTemplateThresholdRate.Name = "txtTemplateThresholdRate";
+            this.txtTemplateThresholdRate.Size = new System.Drawing.Size(32, 20);
+            this.txtTemplateThresholdRate.TabIndex = 55;
+            // 
+            // txtTemplateThresholdPoints
+            // 
+            this.txtTemplateThresholdPoints.Location = new System.Drawing.Point(118, 90);
+            this.txtTemplateThresholdPoints.Name = "txtTemplateThresholdPoints";
+            this.txtTemplateThresholdPoints.Size = new System.Drawing.Size(32, 20);
+            this.txtTemplateThresholdPoints.TabIndex = 54;
+            // 
+            // lblTemplateThresholds
+            // 
+            this.lblTemplateThresholds.AutoSize = true;
+            this.lblTemplateThresholds.Location = new System.Drawing.Point(3, 93);
+            this.lblTemplateThresholds.Name = "lblTemplateThresholds";
+            this.lblTemplateThresholds.Size = new System.Drawing.Size(109, 13);
+            this.lblTemplateThresholds.TabIndex = 53;
+            this.lblTemplateThresholds.Text = "Template Thresholds:";
+            // 
+            // txtMedianSmoothSize
+            // 
+            this.txtMedianSmoothSize.Location = new System.Drawing.Point(118, 9);
+            this.txtMedianSmoothSize.Name = "txtMedianSmoothSize";
+            this.txtMedianSmoothSize.Size = new System.Drawing.Size(70, 20);
+            this.txtMedianSmoothSize.TabIndex = 57;
+            // 
+            // lblMedianSmoothSize
+            // 
+            this.lblMedianSmoothSize.AutoSize = true;
+            this.lblMedianSmoothSize.Location = new System.Drawing.Point(3, 12);
+            this.lblMedianSmoothSize.Name = "lblMedianSmoothSize";
+            this.lblMedianSmoothSize.Size = new System.Drawing.Size(107, 13);
+            this.lblMedianSmoothSize.TabIndex = 56;
+            this.lblMedianSmoothSize.Text = "Median Smooth Size:";
+            // 
+            // txtEraseChainsA
+            // 
+            this.txtEraseChainsA.Location = new System.Drawing.Point(118, 64);
+            this.txtEraseChainsA.Name = "txtEraseChainsA";
+            this.txtEraseChainsA.Size = new System.Drawing.Size(70, 20);
+            this.txtEraseChainsA.TabIndex = 59;
+            // 
+            // lblEraseChainsA
+            // 
+            this.lblEraseChainsA.AutoSize = true;
+            this.lblEraseChainsA.Location = new System.Drawing.Point(3, 67);
+            this.lblEraseChainsA.Name = "lblEraseChainsA";
+            this.lblEraseChainsA.Size = new System.Drawing.Size(93, 13);
+            this.lblEraseChainsA.TabIndex = 58;
+            this.lblEraseChainsA.Text = "Chain Min Length:";
+            // 
+            // txtCannyLinkThreshold
+            // 
+            this.txtCannyLinkThreshold.Location = new System.Drawing.Point(156, 35);
+            this.txtCannyLinkThreshold.Name = "txtCannyLinkThreshold";
+            this.txtCannyLinkThreshold.Size = new System.Drawing.Size(32, 20);
+            this.txtCannyLinkThreshold.TabIndex = 62;
+            // 
+            // txtCannyThreshold
+            // 
+            this.txtCannyThreshold.Location = new System.Drawing.Point(118, 35);
+            this.txtCannyThreshold.Name = "txtCannyThreshold";
+            this.txtCannyThreshold.Size = new System.Drawing.Size(32, 20);
+            this.txtCannyThreshold.TabIndex = 61;
+            // 
+            // lblCannyThresholds
+            // 
+            this.lblCannyThresholds.AutoSize = true;
+            this.lblCannyThresholds.Location = new System.Drawing.Point(3, 38);
+            this.lblCannyThresholds.Name = "lblCannyThresholds";
+            this.lblCannyThresholds.Size = new System.Drawing.Size(95, 13);
+            this.lblCannyThresholds.TabIndex = 60;
+            this.lblCannyThresholds.Text = "Canny Thresholds:";
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 424);
+            this.ClientSize = new System.Drawing.Size(555, 496);
             this.Controls.Add(this.pnlResults);
             this.Controls.Add(this.pnlImg);
             this.Controls.Add(this.pnlGeoOptions);
@@ -384,6 +647,8 @@
             this.pnlChooseAlg.PerformLayout();
             this.pnlSkinOptions.ResumeLayout(false);
             this.pnlSkinOptions.PerformLayout();
+            this.pnlGeoOptions.ResumeLayout(false);
+            this.pnlGeoOptions.PerformLayout();
             this.pnlImg.ResumeLayout(false);
             this.pnlImg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgTest)).EndInit();
@@ -428,5 +693,31 @@
         private System.Windows.Forms.TextBox txtSkinRegionMaxRatio;
         private System.Windows.Forms.Button btnLoadModel;
         private System.Windows.Forms.OpenFileDialog dlgLoadModel;
+        private System.Windows.Forms.TextBox txtTestTemplateBStep;
+        private System.Windows.Forms.TextBox txtTestTemplateBEnd;
+        private System.Windows.Forms.TextBox txtTestTemplateBStart;
+        private System.Windows.Forms.TextBox txtTestTemplateAStep;
+        private System.Windows.Forms.TextBox txtTestTemplateAEnd;
+        private System.Windows.Forms.TextBox txtTestTemplateAStart;
+        private System.Windows.Forms.TextBox txtTestTemplateY0Step;
+        private System.Windows.Forms.TextBox txtTestTemplateY0End;
+        private System.Windows.Forms.TextBox txtTestTemplateY0Start;
+        private System.Windows.Forms.TextBox txtTestTemplateX0Step;
+        private System.Windows.Forms.TextBox txtTestTemplateX0End;
+        private System.Windows.Forms.TextBox txtTestTemplateX0Start;
+        private System.Windows.Forms.Label lblTestTemplateB;
+        private System.Windows.Forms.Label lblTestTemplateA;
+        private System.Windows.Forms.Label lblTestTemplateY0;
+        private System.Windows.Forms.Label lblTestTemplateX0;
+        private System.Windows.Forms.TextBox txtEraseChainsA;
+        private System.Windows.Forms.Label lblEraseChainsA;
+        private System.Windows.Forms.TextBox txtMedianSmoothSize;
+        private System.Windows.Forms.Label lblMedianSmoothSize;
+        private System.Windows.Forms.TextBox txtTemplateThresholdRate;
+        private System.Windows.Forms.TextBox txtTemplateThresholdPoints;
+        private System.Windows.Forms.Label lblTemplateThresholds;
+        private System.Windows.Forms.TextBox txtCannyLinkThreshold;
+        private System.Windows.Forms.TextBox txtCannyThreshold;
+        private System.Windows.Forms.Label lblCannyThresholds;
     }
 }

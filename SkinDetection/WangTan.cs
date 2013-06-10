@@ -40,7 +40,7 @@ namespace SkinDetection
             var contours = DetectEdges(imgTest, opts.CannyThreshold, opts.CannyLinkThreshold);
             contours = LinkEdges(contours, opts.EdgeErasingA);
             var templates = TestTemplates(img.Size, contours, opts.TemplateOpts, opts.ThresholdPoints, opts.ThresholdRate);
-            return templates.OrderBy(t => t.R).Take(1).Select(t => t.Rect).ToList();
+            return templates.OrderBy(t => 1 / t.R).Take(1).Select(t => t.Rect).ToList();
         }
 
         public Image<Gray, byte> Equalize(Image<Bgr, byte> img)
@@ -71,7 +71,7 @@ namespace SkinDetection
 
         public List<Contour<Point>> LinkEdges(List<Contour<Point>> contours, double a)
         {
-            return contours.Where(c => c.GetArcLength() < a).ToList();
+            return contours.Where(c => c.GetArcLength() > a).ToList();
         }
 
         public List<TemplateEntry> TestTemplates(Size s, List<Contour<Point>> contours,
@@ -100,11 +100,15 @@ namespace SkinDetection
                     {
                         for (int b = opts.B.Start; b < opts.B.End; b += opts.B.Step)
                         {
-                            TemplateEntry entry = new TemplateEntry(j, i, a, b);
-                            if (entry.FindPoints(points, tN) &&
-                                entry.FindRate(points, xSobel, ySobel, tR))
+                            if (j - a >= 0 && j + a < s.Width &&
+                                i - b >= 0 && i + b < s.Height)
                             {
-                                templates.Add(entry);
+                                TemplateEntry entry = new TemplateEntry(j, i, a, b);
+                                if (entry.FindPoints(points, tN) &&
+                                    entry.FindRate(points, xSobel, ySobel, tR))
+                                {
+                                    templates.Add(entry);
+                                }
                             }
                         }
                     }

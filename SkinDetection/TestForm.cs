@@ -61,6 +61,39 @@ namespace SkinDetection
             if (wt != null)
             {
                 WangTanOptions wtOpts = new WangTanOptions();
+                wtOpts.CannyLinkThreshold = byte.Parse(txtCannyLinkThreshold.Text);
+                wtOpts.CannyThreshold = byte.Parse(txtCannyThreshold.Text);
+                wtOpts.EdgeErasingA = int.Parse(txtEraseChainsA.Text);
+                wtOpts.SmoothMedianSize = int.Parse(txtMedianSmoothSize.Text);
+                wtOpts.ThresholdPoints = int.Parse(txtTemplateThresholdPoints.Text);
+                wtOpts.ThresholdRate = double.Parse(txtTemplateThresholdRate.Text);
+                wtOpts.TemplateOpts = new TemplateOptions
+                {
+                    A = new TemplateOptions.Param
+                    {
+                        Start = int.Parse(txtTestTemplateAStart.Text),
+                        End = int.Parse(txtTestTemplateAEnd.Text),
+                        Step = int.Parse(txtTestTemplateAStep.Text)
+                    },
+                    B = new TemplateOptions.Param
+                    {
+                        Start = int.Parse(txtTestTemplateBStart.Text),
+                        End = int.Parse(txtTestTemplateBEnd.Text),
+                        Step = int.Parse(txtTestTemplateBStep.Text)
+                    },
+                    X0 = new TemplateOptions.Param
+                    {
+                        Start = int.Parse(txtTestTemplateX0Start.Text),
+                        End = int.Parse(txtTestTemplateX0End.Text),
+                        Step = int.Parse(txtTestTemplateX0Step.Text)
+                    },
+                    Y0 = new TemplateOptions.Param
+                    {
+                        Start = int.Parse(txtTestTemplateY0Start.Text),
+                        End = int.Parse(txtTestTemplateY0End.Text),
+                        Step = int.Parse(txtTestTemplateY0Step.Text)
+                    },
+                };
                 opts = wtOpts;
             }
         }
