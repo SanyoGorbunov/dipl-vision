@@ -200,7 +200,7 @@ namespace SkinDetection
             {
                 foreach (var point in contour)
                 {
-                    if (!InEllipse(point, X0, Y0, a - 10, b - 10) && InEllipse(point, X0, Y0, a + 10, b + 10))
+                    if (!InEllipse(point, X0, Y0, a - 20, b - 20) && InEllipse(point, X0, Y0, a + 20, b + 20))
                     {
                         N++;
                     }
@@ -398,6 +398,31 @@ namespace SkinDetection
             templates = templates.Where(t => t.X0 - t.B >= 0 && t.Y0 - t.A >= 0 &&
                 t.X0 + t.B < imgFinalContours.Width && t.Y0 + t.A < imgFinalContours.Height).ToList();
             FillListBoxByTemplates();
+        }
+
+        private void btnSelectTemplate_Click(object sender, EventArgs e)
+        {
+            double maxCount = templates.Max(t => t.N);
+            var largeTemplates = templates.Where(t => t.N > (maxCount * 2 / 3));
+            var topRateTemplates = largeTemplates.OrderBy(t => 1 / t.R);
+
+            int A = 0, B = 0, X0 = 0, Y0 = 0;
+            foreach (var template in topRateTemplates.Take(10))
+            {
+                A += template.A;
+                B += template.B;
+                X0 += template.X0;
+                Y0 += template.Y0;
+            }
+            A /= 10; B /= 10; X0 /= 10; Y0 /= 10;
+            var topTemplate = new TemplateEntry
+            {
+                A = A, B= B, X0 = X0, Y0 = Y0
+            };
+
+            var img = imgFinalContours.Clone();
+            img.Draw(new Ellipse(new PointF(topTemplate.X0, topTemplate.Y0), new SizeF(2 * topTemplate.A, 2 * topTemplate.B), 0), new Gray(255), 2);
+            pbTestImage.Image = img.ToBitmap();
         }
     }
 }

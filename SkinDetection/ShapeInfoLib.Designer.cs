@@ -29,67 +29,68 @@
         private void InitializeComponent()
         {
             this.pnlTest = new System.Windows.Forms.Panel();
+            this.txtCannyEdgeThresh = new System.Windows.Forms.TextBox();
+            this.lblCannyEdgeThreshold = new System.Windows.Forms.Label();
+            this.txtCannyInitialThresh = new System.Windows.Forms.TextBox();
+            this.lblCannyInitialThresh = new System.Windows.Forms.Label();
+            this.btnDetectEdges = new System.Windows.Forms.Button();
+            this.txtSmoothMedianSize = new System.Windows.Forms.TextBox();
+            this.lblSmoothMedianSize = new System.Windows.Forms.Label();
             this.btnSmoothMedian = new System.Windows.Forms.Button();
             this.btnEqualizeTestImage = new System.Windows.Forms.Button();
             this.pbTestImage = new System.Windows.Forms.PictureBox();
             this.btnLoadTestImage = new System.Windows.Forms.Button();
             this.dlgLoadTestImage = new System.Windows.Forms.OpenFileDialog();
-            this.lblSmoothMedianSize = new System.Windows.Forms.Label();
-            this.txtSmoothMedianSize = new System.Windows.Forms.TextBox();
-            this.btnDetectEdges = new System.Windows.Forms.Button();
-            this.txtCannyInitialThresh = new System.Windows.Forms.TextBox();
-            this.lblCannyInitialThresh = new System.Windows.Forms.Label();
-            this.txtCannyEdgeThresh = new System.Windows.Forms.TextBox();
-            this.lblCannyEdgeThreshold = new System.Windows.Forms.Label();
             this.pnlContours = new System.Windows.Forms.Panel();
-            this.lbContours = new System.Windows.Forms.ListBox();
-            this.lblContourPoints = new System.Windows.Forms.Label();
-            this.lblContourDistance = new System.Windows.Forms.Label();
+            this.btnDivideContours = new System.Windows.Forms.Button();
+            this.btnRemoveContoursByMinArc = new System.Windows.Forms.Button();
+            this.btnShowContours = new System.Windows.Forms.Button();
+            this.lblContourCount = new System.Windows.Forms.Label();
             this.txtContourMinArc = new System.Windows.Forms.TextBox();
             this.lblContourMinArc = new System.Windows.Forms.Label();
-            this.lblContourCount = new System.Windows.Forms.Label();
-            this.btnShowContours = new System.Windows.Forms.Button();
-            this.btnRemoveContoursByMinArc = new System.Windows.Forms.Button();
-            this.btnDivideContours = new System.Windows.Forms.Button();
+            this.lblContourDistance = new System.Windows.Forms.Label();
+            this.lblContourPoints = new System.Windows.Forms.Label();
+            this.lbContours = new System.Windows.Forms.ListBox();
             this.pnlEllipticalTemplate = new System.Windows.Forms.Panel();
-            this.txtTemplateX0 = new System.Windows.Forms.TextBox();
-            this.lblTemplateX0 = new System.Windows.Forms.Label();
-            this.txtTemplateY0 = new System.Windows.Forms.TextBox();
-            this.lblTemplateY0 = new System.Windows.Forms.Label();
-            this.txtTemplateA = new System.Windows.Forms.TextBox();
-            this.lblTemplateA = new System.Windows.Forms.Label();
-            this.txtTemplateB = new System.Windows.Forms.TextBox();
-            this.lblTemplateB = new System.Windows.Forms.Label();
-            this.lblTemplateG = new System.Windows.Forms.Label();
-            this.lblTemplateN = new System.Windows.Forms.Label();
-            this.lblTemplateRate = new System.Windows.Forms.Label();
-            this.btnTemplateFind = new System.Windows.Forms.Button();
-            this.btnTestTemplate = new System.Windows.Forms.Button();
-            this.lblTestTemplateX0 = new System.Windows.Forms.Label();
-            this.lblTestTemplateB = new System.Windows.Forms.Label();
-            this.lblTestTemplateA = new System.Windows.Forms.Label();
-            this.lblTestTemplateY0 = new System.Windows.Forms.Label();
-            this.txtTestTemplateX0Start = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateX0End = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateX0Step = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateY0Step = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateY0End = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateY0Start = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateAStep = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateAEnd = new System.Windows.Forms.TextBox();
-            this.txtTestTemplateAStart = new System.Windows.Forms.TextBox();
+            this.btnTemplateRemoveOutborders = new System.Windows.Forms.Button();
+            this.btnTemplateRemoveByMinCount = new System.Windows.Forms.Button();
+            this.txtTemplateMinCount = new System.Windows.Forms.TextBox();
+            this.lblTemplateMinCount = new System.Windows.Forms.Label();
+            this.btnTemplateOrderByCount = new System.Windows.Forms.Button();
+            this.btnTemplateOrderByRate = new System.Windows.Forms.Button();
+            this.lbTemplates = new System.Windows.Forms.ListBox();
+            this.btnTestTemplateToForm = new System.Windows.Forms.Button();
             this.txtTestTemplateBStep = new System.Windows.Forms.TextBox();
             this.txtTestTemplateBEnd = new System.Windows.Forms.TextBox();
             this.txtTestTemplateBStart = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAStep = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAEnd = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateAStart = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0Step = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0End = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateY0Start = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0Step = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0End = new System.Windows.Forms.TextBox();
+            this.txtTestTemplateX0Start = new System.Windows.Forms.TextBox();
+            this.lblTestTemplateB = new System.Windows.Forms.Label();
+            this.lblTestTemplateA = new System.Windows.Forms.Label();
+            this.lblTestTemplateY0 = new System.Windows.Forms.Label();
+            this.lblTestTemplateX0 = new System.Windows.Forms.Label();
+            this.btnTestTemplate = new System.Windows.Forms.Button();
+            this.btnTemplateFind = new System.Windows.Forms.Button();
+            this.lblTemplateRate = new System.Windows.Forms.Label();
+            this.lblTemplateN = new System.Windows.Forms.Label();
+            this.lblTemplateG = new System.Windows.Forms.Label();
+            this.txtTemplateB = new System.Windows.Forms.TextBox();
+            this.lblTemplateB = new System.Windows.Forms.Label();
+            this.txtTemplateA = new System.Windows.Forms.TextBox();
+            this.lblTemplateA = new System.Windows.Forms.Label();
+            this.txtTemplateY0 = new System.Windows.Forms.TextBox();
+            this.lblTemplateY0 = new System.Windows.Forms.Label();
+            this.txtTemplateX0 = new System.Windows.Forms.TextBox();
+            this.lblTemplateX0 = new System.Windows.Forms.Label();
             this.dlgSaveTestTemplate = new System.Windows.Forms.SaveFileDialog();
-            this.btnTestTemplateToForm = new System.Windows.Forms.Button();
-            this.lbTemplates = new System.Windows.Forms.ListBox();
-            this.btnTemplateOrderByRate = new System.Windows.Forms.Button();
-            this.btnTemplateOrderByCount = new System.Windows.Forms.Button();
-            this.lblTemplateMinCount = new System.Windows.Forms.Label();
-            this.txtTemplateMinCount = new System.Windows.Forms.TextBox();
-            this.btnTemplateRemoveByMinCount = new System.Windows.Forms.Button();
-            this.btnTemplateRemoveOutborders = new System.Windows.Forms.Button();
+            this.btnSelectTemplate = new System.Windows.Forms.Button();
             this.pnlTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
             this.pnlContours.SuspendLayout();
@@ -113,6 +114,67 @@
             this.pnlTest.Name = "pnlTest";
             this.pnlTest.Size = new System.Drawing.Size(268, 325);
             this.pnlTest.TabIndex = 0;
+            // 
+            // txtCannyEdgeThresh
+            // 
+            this.txtCannyEdgeThresh.Location = new System.Drawing.Point(117, 290);
+            this.txtCannyEdgeThresh.Name = "txtCannyEdgeThresh";
+            this.txtCannyEdgeThresh.Size = new System.Drawing.Size(37, 20);
+            this.txtCannyEdgeThresh.TabIndex = 10;
+            this.txtCannyEdgeThresh.Text = "200";
+            // 
+            // lblCannyEdgeThreshold
+            // 
+            this.lblCannyEdgeThreshold.AutoSize = true;
+            this.lblCannyEdgeThreshold.Location = new System.Drawing.Point(81, 293);
+            this.lblCannyEdgeThreshold.Name = "lblCannyEdgeThreshold";
+            this.lblCannyEdgeThreshold.Size = new System.Drawing.Size(33, 13);
+            this.lblCannyEdgeThreshold.TabIndex = 9;
+            this.lblCannyEdgeThreshold.Text = "E.Th:";
+            // 
+            // txtCannyInitialThresh
+            // 
+            this.txtCannyInitialThresh.Location = new System.Drawing.Point(41, 290);
+            this.txtCannyInitialThresh.Name = "txtCannyInitialThresh";
+            this.txtCannyInitialThresh.Size = new System.Drawing.Size(37, 20);
+            this.txtCannyInitialThresh.TabIndex = 8;
+            this.txtCannyInitialThresh.Text = "50";
+            // 
+            // lblCannyInitialThresh
+            // 
+            this.lblCannyInitialThresh.AutoSize = true;
+            this.lblCannyInitialThresh.Location = new System.Drawing.Point(5, 293);
+            this.lblCannyInitialThresh.Name = "lblCannyInitialThresh";
+            this.lblCannyInitialThresh.Size = new System.Drawing.Size(29, 13);
+            this.lblCannyInitialThresh.TabIndex = 7;
+            this.lblCannyInitialThresh.Text = "Th0:";
+            // 
+            // btnDetectEdges
+            // 
+            this.btnDetectEdges.Location = new System.Drawing.Point(160, 288);
+            this.btnDetectEdges.Name = "btnDetectEdges";
+            this.btnDetectEdges.Size = new System.Drawing.Size(105, 23);
+            this.btnDetectEdges.TabIndex = 6;
+            this.btnDetectEdges.Text = "Detect Edges";
+            this.btnDetectEdges.UseVisualStyleBackColor = true;
+            this.btnDetectEdges.Click += new System.EventHandler(this.btnDetectEdges_Click);
+            // 
+            // txtSmoothMedianSize
+            // 
+            this.txtSmoothMedianSize.Location = new System.Drawing.Point(79, 261);
+            this.txtSmoothMedianSize.Name = "txtSmoothMedianSize";
+            this.txtSmoothMedianSize.Size = new System.Drawing.Size(37, 20);
+            this.txtSmoothMedianSize.TabIndex = 5;
+            this.txtSmoothMedianSize.Text = "5";
+            // 
+            // lblSmoothMedianSize
+            // 
+            this.lblSmoothMedianSize.AutoSize = true;
+            this.lblSmoothMedianSize.Location = new System.Drawing.Point(43, 264);
+            this.lblSmoothMedianSize.Name = "lblSmoothMedianSize";
+            this.lblSmoothMedianSize.Size = new System.Drawing.Size(30, 13);
+            this.lblSmoothMedianSize.TabIndex = 4;
+            this.lblSmoothMedianSize.Text = "Size:";
             // 
             // btnSmoothMedian
             // 
@@ -156,67 +218,6 @@
             // 
             this.dlgLoadTestImage.FileName = "openFileDialog1";
             // 
-            // lblSmoothMedianSize
-            // 
-            this.lblSmoothMedianSize.AutoSize = true;
-            this.lblSmoothMedianSize.Location = new System.Drawing.Point(43, 264);
-            this.lblSmoothMedianSize.Name = "lblSmoothMedianSize";
-            this.lblSmoothMedianSize.Size = new System.Drawing.Size(30, 13);
-            this.lblSmoothMedianSize.TabIndex = 4;
-            this.lblSmoothMedianSize.Text = "Size:";
-            // 
-            // txtSmoothMedianSize
-            // 
-            this.txtSmoothMedianSize.Location = new System.Drawing.Point(79, 261);
-            this.txtSmoothMedianSize.Name = "txtSmoothMedianSize";
-            this.txtSmoothMedianSize.Size = new System.Drawing.Size(37, 20);
-            this.txtSmoothMedianSize.TabIndex = 5;
-            this.txtSmoothMedianSize.Text = "5";
-            // 
-            // btnDetectEdges
-            // 
-            this.btnDetectEdges.Location = new System.Drawing.Point(160, 288);
-            this.btnDetectEdges.Name = "btnDetectEdges";
-            this.btnDetectEdges.Size = new System.Drawing.Size(105, 23);
-            this.btnDetectEdges.TabIndex = 6;
-            this.btnDetectEdges.Text = "Detect Edges";
-            this.btnDetectEdges.UseVisualStyleBackColor = true;
-            this.btnDetectEdges.Click += new System.EventHandler(this.btnDetectEdges_Click);
-            // 
-            // txtCannyInitialThresh
-            // 
-            this.txtCannyInitialThresh.Location = new System.Drawing.Point(41, 290);
-            this.txtCannyInitialThresh.Name = "txtCannyInitialThresh";
-            this.txtCannyInitialThresh.Size = new System.Drawing.Size(37, 20);
-            this.txtCannyInitialThresh.TabIndex = 8;
-            this.txtCannyInitialThresh.Text = "50";
-            // 
-            // lblCannyInitialThresh
-            // 
-            this.lblCannyInitialThresh.AutoSize = true;
-            this.lblCannyInitialThresh.Location = new System.Drawing.Point(5, 293);
-            this.lblCannyInitialThresh.Name = "lblCannyInitialThresh";
-            this.lblCannyInitialThresh.Size = new System.Drawing.Size(29, 13);
-            this.lblCannyInitialThresh.TabIndex = 7;
-            this.lblCannyInitialThresh.Text = "Th0:";
-            // 
-            // txtCannyEdgeThresh
-            // 
-            this.txtCannyEdgeThresh.Location = new System.Drawing.Point(117, 290);
-            this.txtCannyEdgeThresh.Name = "txtCannyEdgeThresh";
-            this.txtCannyEdgeThresh.Size = new System.Drawing.Size(37, 20);
-            this.txtCannyEdgeThresh.TabIndex = 10;
-            this.txtCannyEdgeThresh.Text = "200";
-            // 
-            // lblCannyEdgeThreshold
-            // 
-            this.lblCannyEdgeThreshold.AutoSize = true;
-            this.lblCannyEdgeThreshold.Location = new System.Drawing.Point(81, 293);
-            this.lblCannyEdgeThreshold.Name = "lblCannyEdgeThreshold";
-            this.lblCannyEdgeThreshold.Size = new System.Drawing.Size(33, 13);
-            this.lblCannyEdgeThreshold.TabIndex = 9;
-            this.lblCannyEdgeThreshold.Text = "E.Th:";
-            // 
             // pnlContours
             // 
             this.pnlContours.Controls.Add(this.btnDivideContours);
@@ -233,32 +234,44 @@
             this.pnlContours.Size = new System.Drawing.Size(214, 325);
             this.pnlContours.TabIndex = 1;
             // 
-            // lbContours
+            // btnDivideContours
             // 
-            this.lbContours.FormattingEnabled = true;
-            this.lbContours.Location = new System.Drawing.Point(3, 29);
-            this.lbContours.Name = "lbContours";
-            this.lbContours.Size = new System.Drawing.Size(208, 160);
-            this.lbContours.TabIndex = 0;
-            this.lbContours.SelectedIndexChanged += new System.EventHandler(this.lbContours_SelectedIndexChanged);
+            this.btnDivideContours.Location = new System.Drawing.Point(100, 254);
+            this.btnDivideContours.Name = "btnDivideContours";
+            this.btnDivideContours.Size = new System.Drawing.Size(111, 23);
+            this.btnDivideContours.TabIndex = 11;
+            this.btnDivideContours.Text = "Divide Contours";
+            this.btnDivideContours.UseVisualStyleBackColor = true;
+            this.btnDivideContours.Click += new System.EventHandler(this.btnDivideContours_Click);
             // 
-            // lblContourPoints
+            // btnRemoveContoursByMinArc
             // 
-            this.lblContourPoints.AutoSize = true;
-            this.lblContourPoints.Location = new System.Drawing.Point(3, 192);
-            this.lblContourPoints.Name = "lblContourPoints";
-            this.lblContourPoints.Size = new System.Drawing.Size(35, 13);
-            this.lblContourPoints.TabIndex = 1;
-            this.lblContourPoints.Text = "label1";
+            this.btnRemoveContoursByMinArc.Location = new System.Drawing.Point(100, 227);
+            this.btnRemoveContoursByMinArc.Name = "btnRemoveContoursByMinArc";
+            this.btnRemoveContoursByMinArc.Size = new System.Drawing.Size(111, 23);
+            this.btnRemoveContoursByMinArc.TabIndex = 10;
+            this.btnRemoveContoursByMinArc.Text = "Remove Contours";
+            this.btnRemoveContoursByMinArc.UseVisualStyleBackColor = true;
+            this.btnRemoveContoursByMinArc.Click += new System.EventHandler(this.btnRemoveContoursByMinArc_Click);
             // 
-            // lblContourDistance
+            // btnShowContours
             // 
-            this.lblContourDistance.AutoSize = true;
-            this.lblContourDistance.Location = new System.Drawing.Point(3, 214);
-            this.lblContourDistance.Name = "lblContourDistance";
-            this.lblContourDistance.Size = new System.Drawing.Size(35, 13);
-            this.lblContourDistance.TabIndex = 2;
-            this.lblContourDistance.Text = "label1";
+            this.btnShowContours.Location = new System.Drawing.Point(121, 3);
+            this.btnShowContours.Name = "btnShowContours";
+            this.btnShowContours.Size = new System.Drawing.Size(90, 23);
+            this.btnShowContours.TabIndex = 9;
+            this.btnShowContours.Text = "Show Contours";
+            this.btnShowContours.UseVisualStyleBackColor = true;
+            this.btnShowContours.Click += new System.EventHandler(this.btnShowContours_Click);
+            // 
+            // lblContourCount
+            // 
+            this.lblContourCount.AutoSize = true;
+            this.lblContourCount.Location = new System.Drawing.Point(3, 13);
+            this.lblContourCount.Name = "lblContourCount";
+            this.lblContourCount.Size = new System.Drawing.Size(35, 13);
+            this.lblContourCount.TabIndex = 8;
+            this.lblContourCount.Text = "label1";
             // 
             // txtContourMinArc
             // 
@@ -277,47 +290,36 @@
             this.lblContourMinArc.TabIndex = 6;
             this.lblContourMinArc.Text = "Min Arc:";
             // 
-            // lblContourCount
+            // lblContourDistance
             // 
-            this.lblContourCount.AutoSize = true;
-            this.lblContourCount.Location = new System.Drawing.Point(3, 13);
-            this.lblContourCount.Name = "lblContourCount";
-            this.lblContourCount.Size = new System.Drawing.Size(35, 13);
-            this.lblContourCount.TabIndex = 8;
-            this.lblContourCount.Text = "label1";
+            this.lblContourDistance.AutoSize = true;
+            this.lblContourDistance.Location = new System.Drawing.Point(3, 214);
+            this.lblContourDistance.Name = "lblContourDistance";
+            this.lblContourDistance.Size = new System.Drawing.Size(35, 13);
+            this.lblContourDistance.TabIndex = 2;
+            this.lblContourDistance.Text = "label1";
             // 
-            // btnShowContours
+            // lblContourPoints
             // 
-            this.btnShowContours.Location = new System.Drawing.Point(121, 3);
-            this.btnShowContours.Name = "btnShowContours";
-            this.btnShowContours.Size = new System.Drawing.Size(90, 23);
-            this.btnShowContours.TabIndex = 9;
-            this.btnShowContours.Text = "Show Contours";
-            this.btnShowContours.UseVisualStyleBackColor = true;
-            this.btnShowContours.Click += new System.EventHandler(this.btnShowContours_Click);
+            this.lblContourPoints.AutoSize = true;
+            this.lblContourPoints.Location = new System.Drawing.Point(3, 192);
+            this.lblContourPoints.Name = "lblContourPoints";
+            this.lblContourPoints.Size = new System.Drawing.Size(35, 13);
+            this.lblContourPoints.TabIndex = 1;
+            this.lblContourPoints.Text = "label1";
             // 
-            // btnRemoveContoursByMinArc
+            // lbContours
             // 
-            this.btnRemoveContoursByMinArc.Location = new System.Drawing.Point(100, 227);
-            this.btnRemoveContoursByMinArc.Name = "btnRemoveContoursByMinArc";
-            this.btnRemoveContoursByMinArc.Size = new System.Drawing.Size(111, 23);
-            this.btnRemoveContoursByMinArc.TabIndex = 10;
-            this.btnRemoveContoursByMinArc.Text = "Remove Contours";
-            this.btnRemoveContoursByMinArc.UseVisualStyleBackColor = true;
-            this.btnRemoveContoursByMinArc.Click += new System.EventHandler(this.btnRemoveContoursByMinArc_Click);
-            // 
-            // btnDivideContours
-            // 
-            this.btnDivideContours.Location = new System.Drawing.Point(100, 254);
-            this.btnDivideContours.Name = "btnDivideContours";
-            this.btnDivideContours.Size = new System.Drawing.Size(111, 23);
-            this.btnDivideContours.TabIndex = 11;
-            this.btnDivideContours.Text = "Divide Contours";
-            this.btnDivideContours.UseVisualStyleBackColor = true;
-            this.btnDivideContours.Click += new System.EventHandler(this.btnDivideContours_Click);
+            this.lbContours.FormattingEnabled = true;
+            this.lbContours.Location = new System.Drawing.Point(3, 29);
+            this.lbContours.Name = "lbContours";
+            this.lbContours.Size = new System.Drawing.Size(208, 160);
+            this.lbContours.TabIndex = 0;
+            this.lbContours.SelectedIndexChanged += new System.EventHandler(this.lbContours_SelectedIndexChanged);
             // 
             // pnlEllipticalTemplate
             // 
+            this.pnlEllipticalTemplate.Controls.Add(this.btnSelectTemplate);
             this.pnlEllipticalTemplate.Controls.Add(this.btnTemplateRemoveOutborders);
             this.pnlEllipticalTemplate.Controls.Add(this.btnTemplateRemoveByMinCount);
             this.pnlEllipticalTemplate.Controls.Add(this.txtTemplateMinCount);
@@ -357,132 +359,180 @@
             this.pnlEllipticalTemplate.Controls.Add(this.lblTemplateX0);
             this.pnlEllipticalTemplate.Location = new System.Drawing.Point(500, 12);
             this.pnlEllipticalTemplate.Name = "pnlEllipticalTemplate";
-            this.pnlEllipticalTemplate.Size = new System.Drawing.Size(200, 353);
+            this.pnlEllipticalTemplate.Size = new System.Drawing.Size(200, 374);
             this.pnlEllipticalTemplate.TabIndex = 2;
             // 
-            // txtTemplateX0
+            // btnTemplateRemoveOutborders
             // 
-            this.txtTemplateX0.Location = new System.Drawing.Point(65, 6);
-            this.txtTemplateX0.Name = "txtTemplateX0";
-            this.txtTemplateX0.Size = new System.Drawing.Size(37, 20);
-            this.txtTemplateX0.TabIndex = 9;
-            this.txtTemplateX0.Text = "5";
+            this.btnTemplateRemoveOutborders.Location = new System.Drawing.Point(136, 306);
+            this.btnTemplateRemoveOutborders.Name = "btnTemplateRemoveOutborders";
+            this.btnTemplateRemoveOutborders.Size = new System.Drawing.Size(47, 23);
+            this.btnTemplateRemoveOutborders.TabIndex = 44;
+            this.btnTemplateRemoveOutborders.Text = "Out";
+            this.btnTemplateRemoveOutborders.UseVisualStyleBackColor = true;
+            this.btnTemplateRemoveOutborders.Click += new System.EventHandler(this.btnTemplateRemoveOutborders_Click);
             // 
-            // lblTemplateX0
+            // btnTemplateRemoveByMinCount
             // 
-            this.lblTemplateX0.AutoSize = true;
-            this.lblTemplateX0.Location = new System.Drawing.Point(13, 9);
-            this.lblTemplateX0.Name = "lblTemplateX0";
-            this.lblTemplateX0.Size = new System.Drawing.Size(23, 13);
-            this.lblTemplateX0.TabIndex = 8;
-            this.lblTemplateX0.Text = "X0:";
+            this.btnTemplateRemoveByMinCount.Location = new System.Drawing.Point(136, 327);
+            this.btnTemplateRemoveByMinCount.Name = "btnTemplateRemoveByMinCount";
+            this.btnTemplateRemoveByMinCount.Size = new System.Drawing.Size(47, 23);
+            this.btnTemplateRemoveByMinCount.TabIndex = 43;
+            this.btnTemplateRemoveByMinCount.Text = "Cut";
+            this.btnTemplateRemoveByMinCount.UseVisualStyleBackColor = true;
+            this.btnTemplateRemoveByMinCount.Click += new System.EventHandler(this.btnTemplateRemoveByMinCount_Click);
             // 
-            // txtTemplateY0
+            // txtTemplateMinCount
             // 
-            this.txtTemplateY0.Location = new System.Drawing.Point(65, 29);
-            this.txtTemplateY0.Name = "txtTemplateY0";
-            this.txtTemplateY0.Size = new System.Drawing.Size(37, 20);
-            this.txtTemplateY0.TabIndex = 11;
-            this.txtTemplateY0.Text = "5";
+            this.txtTemplateMinCount.Location = new System.Drawing.Point(68, 330);
+            this.txtTemplateMinCount.Name = "txtTemplateMinCount";
+            this.txtTemplateMinCount.Size = new System.Drawing.Size(62, 20);
+            this.txtTemplateMinCount.TabIndex = 42;
+            this.txtTemplateMinCount.Text = "300";
             // 
-            // lblTemplateY0
+            // lblTemplateMinCount
             // 
-            this.lblTemplateY0.AutoSize = true;
-            this.lblTemplateY0.Location = new System.Drawing.Point(13, 32);
-            this.lblTemplateY0.Name = "lblTemplateY0";
-            this.lblTemplateY0.Size = new System.Drawing.Size(23, 13);
-            this.lblTemplateY0.TabIndex = 10;
-            this.lblTemplateY0.Text = "Y0:";
+            this.lblTemplateMinCount.AutoSize = true;
+            this.lblTemplateMinCount.Location = new System.Drawing.Point(12, 333);
+            this.lblTemplateMinCount.Name = "lblTemplateMinCount";
+            this.lblTemplateMinCount.Size = new System.Drawing.Size(58, 13);
+            this.lblTemplateMinCount.TabIndex = 41;
+            this.lblTemplateMinCount.Text = "Min Count:";
             // 
-            // txtTemplateA
+            // btnTemplateOrderByCount
             // 
-            this.txtTemplateA.Location = new System.Drawing.Point(65, 55);
-            this.txtTemplateA.Name = "txtTemplateA";
-            this.txtTemplateA.Size = new System.Drawing.Size(37, 20);
-            this.txtTemplateA.TabIndex = 13;
-            this.txtTemplateA.Text = "5";
+            this.btnTemplateOrderByCount.Location = new System.Drawing.Point(65, 306);
+            this.btnTemplateOrderByCount.Name = "btnTemplateOrderByCount";
+            this.btnTemplateOrderByCount.Size = new System.Drawing.Size(65, 23);
+            this.btnTemplateOrderByCount.TabIndex = 40;
+            this.btnTemplateOrderByCount.Text = "By Count";
+            this.btnTemplateOrderByCount.UseVisualStyleBackColor = true;
+            this.btnTemplateOrderByCount.Click += new System.EventHandler(this.btnTemplateOrderByCount_Click);
             // 
-            // lblTemplateA
+            // btnTemplateOrderByRate
             // 
-            this.lblTemplateA.AutoSize = true;
-            this.lblTemplateA.Location = new System.Drawing.Point(13, 58);
-            this.lblTemplateA.Name = "lblTemplateA";
-            this.lblTemplateA.Size = new System.Drawing.Size(16, 13);
-            this.lblTemplateA.TabIndex = 12;
-            this.lblTemplateA.Text = "a:";
+            this.btnTemplateOrderByRate.Location = new System.Drawing.Point(7, 306);
+            this.btnTemplateOrderByRate.Name = "btnTemplateOrderByRate";
+            this.btnTemplateOrderByRate.Size = new System.Drawing.Size(55, 23);
+            this.btnTemplateOrderByRate.TabIndex = 39;
+            this.btnTemplateOrderByRate.Text = "By Rate";
+            this.btnTemplateOrderByRate.UseVisualStyleBackColor = true;
+            this.btnTemplateOrderByRate.Click += new System.EventHandler(this.btnTemplateOrderByRate_Click);
             // 
-            // txtTemplateB
+            // lbTemplates
             // 
-            this.txtTemplateB.Location = new System.Drawing.Point(65, 81);
-            this.txtTemplateB.Name = "txtTemplateB";
-            this.txtTemplateB.Size = new System.Drawing.Size(37, 20);
-            this.txtTemplateB.TabIndex = 15;
-            this.txtTemplateB.Text = "5";
+            this.lbTemplates.FormattingEnabled = true;
+            this.lbTemplates.Location = new System.Drawing.Point(7, 233);
+            this.lbTemplates.Name = "lbTemplates";
+            this.lbTemplates.Size = new System.Drawing.Size(176, 69);
+            this.lbTemplates.TabIndex = 38;
+            this.lbTemplates.SelectedIndexChanged += new System.EventHandler(this.lbTemplates_SelectedIndexChanged);
             // 
-            // lblTemplateB
+            // btnTestTemplateToForm
             // 
-            this.lblTemplateB.AutoSize = true;
-            this.lblTemplateB.Location = new System.Drawing.Point(13, 84);
-            this.lblTemplateB.Name = "lblTemplateB";
-            this.lblTemplateB.Size = new System.Drawing.Size(16, 13);
-            this.lblTemplateB.TabIndex = 14;
-            this.lblTemplateB.Text = "b:";
+            this.btnTestTemplateToForm.Location = new System.Drawing.Point(7, 209);
+            this.btnTestTemplateToForm.Name = "btnTestTemplateToForm";
+            this.btnTestTemplateToForm.Size = new System.Drawing.Size(75, 23);
+            this.btnTestTemplateToForm.TabIndex = 37;
+            this.btnTestTemplateToForm.Text = "Test";
+            this.btnTestTemplateToForm.UseVisualStyleBackColor = true;
+            this.btnTestTemplateToForm.Click += new System.EventHandler(this.btnTestTemplateToForm_Click);
             // 
-            // lblTemplateG
+            // txtTestTemplateBStep
             // 
-            this.lblTemplateG.AutoSize = true;
-            this.lblTemplateG.Location = new System.Drawing.Point(117, 9);
-            this.lblTemplateG.Name = "lblTemplateG";
-            this.lblTemplateG.Size = new System.Drawing.Size(35, 13);
-            this.lblTemplateG.TabIndex = 16;
-            this.lblTemplateG.Text = "label1";
+            this.txtTestTemplateBStep.Location = new System.Drawing.Point(136, 182);
+            this.txtTestTemplateBStep.Name = "txtTestTemplateBStep";
+            this.txtTestTemplateBStep.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBStep.TabIndex = 36;
+            this.txtTestTemplateBStep.Text = "3";
             // 
-            // lblTemplateN
+            // txtTestTemplateBEnd
             // 
-            this.lblTemplateN.AutoSize = true;
-            this.lblTemplateN.Location = new System.Drawing.Point(117, 32);
-            this.lblTemplateN.Name = "lblTemplateN";
-            this.lblTemplateN.Size = new System.Drawing.Size(35, 13);
-            this.lblTemplateN.TabIndex = 17;
-            this.lblTemplateN.Text = "label1";
+            this.txtTestTemplateBEnd.Location = new System.Drawing.Point(88, 182);
+            this.txtTestTemplateBEnd.Name = "txtTestTemplateBEnd";
+            this.txtTestTemplateBEnd.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBEnd.TabIndex = 35;
+            this.txtTestTemplateBEnd.Text = "60";
             // 
-            // lblTemplateRate
+            // txtTestTemplateBStart
             // 
-            this.lblTemplateRate.AutoSize = true;
-            this.lblTemplateRate.Location = new System.Drawing.Point(117, 58);
-            this.lblTemplateRate.Name = "lblTemplateRate";
-            this.lblTemplateRate.Size = new System.Drawing.Size(35, 13);
-            this.lblTemplateRate.TabIndex = 18;
-            this.lblTemplateRate.Text = "label1";
+            this.txtTestTemplateBStart.Location = new System.Drawing.Point(40, 182);
+            this.txtTestTemplateBStart.Name = "txtTestTemplateBStart";
+            this.txtTestTemplateBStart.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateBStart.TabIndex = 34;
+            this.txtTestTemplateBStart.Text = "30";
             // 
-            // btnTemplateFind
+            // txtTestTemplateAStep
             // 
-            this.btnTemplateFind.Location = new System.Drawing.Point(108, 79);
-            this.btnTemplateFind.Name = "btnTemplateFind";
-            this.btnTemplateFind.Size = new System.Drawing.Size(75, 23);
-            this.btnTemplateFind.TabIndex = 19;
-            this.btnTemplateFind.Text = "Find";
-            this.btnTemplateFind.UseVisualStyleBackColor = true;
-            this.btnTemplateFind.Click += new System.EventHandler(this.btnTemplateFind_Click);
+            this.txtTestTemplateAStep.Location = new System.Drawing.Point(136, 156);
+            this.txtTestTemplateAStep.Name = "txtTestTemplateAStep";
+            this.txtTestTemplateAStep.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAStep.TabIndex = 33;
+            this.txtTestTemplateAStep.Text = "3";
             // 
-            // btnTestTemplate
+            // txtTestTemplateAEnd
             // 
-            this.btnTestTemplate.Location = new System.Drawing.Point(88, 209);
-            this.btnTestTemplate.Name = "btnTestTemplate";
-            this.btnTestTemplate.Size = new System.Drawing.Size(95, 23);
-            this.btnTestTemplate.TabIndex = 20;
-            this.btnTestTemplate.Text = "Save Test to File";
-            this.btnTestTemplate.UseVisualStyleBackColor = true;
-            this.btnTestTemplate.Click += new System.EventHandler(this.btnTestTemplate_Click);
+            this.txtTestTemplateAEnd.Location = new System.Drawing.Point(88, 156);
+            this.txtTestTemplateAEnd.Name = "txtTestTemplateAEnd";
+            this.txtTestTemplateAEnd.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAEnd.TabIndex = 32;
+            this.txtTestTemplateAEnd.Text = "65";
             // 
-            // lblTestTemplateX0
+            // txtTestTemplateAStart
             // 
-            this.lblTestTemplateX0.AutoSize = true;
-            this.lblTestTemplateX0.Location = new System.Drawing.Point(11, 110);
-            this.lblTestTemplateX0.Name = "lblTestTemplateX0";
-            this.lblTestTemplateX0.Size = new System.Drawing.Size(23, 13);
-            this.lblTestTemplateX0.TabIndex = 21;
-            this.lblTestTemplateX0.Text = "X0:";
+            this.txtTestTemplateAStart.Location = new System.Drawing.Point(40, 156);
+            this.txtTestTemplateAStart.Name = "txtTestTemplateAStart";
+            this.txtTestTemplateAStart.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateAStart.TabIndex = 31;
+            this.txtTestTemplateAStart.Text = "50";
+            // 
+            // txtTestTemplateY0Step
+            // 
+            this.txtTestTemplateY0Step.Location = new System.Drawing.Point(136, 130);
+            this.txtTestTemplateY0Step.Name = "txtTestTemplateY0Step";
+            this.txtTestTemplateY0Step.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0Step.TabIndex = 30;
+            this.txtTestTemplateY0Step.Text = "5";
+            // 
+            // txtTestTemplateY0End
+            // 
+            this.txtTestTemplateY0End.Location = new System.Drawing.Point(88, 130);
+            this.txtTestTemplateY0End.Name = "txtTestTemplateY0End";
+            this.txtTestTemplateY0End.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0End.TabIndex = 29;
+            this.txtTestTemplateY0End.Text = "90";
+            // 
+            // txtTestTemplateY0Start
+            // 
+            this.txtTestTemplateY0Start.Location = new System.Drawing.Point(40, 130);
+            this.txtTestTemplateY0Start.Name = "txtTestTemplateY0Start";
+            this.txtTestTemplateY0Start.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateY0Start.TabIndex = 28;
+            this.txtTestTemplateY0Start.Text = "40";
+            // 
+            // txtTestTemplateX0Step
+            // 
+            this.txtTestTemplateX0Step.Location = new System.Drawing.Point(136, 107);
+            this.txtTestTemplateX0Step.Name = "txtTestTemplateX0Step";
+            this.txtTestTemplateX0Step.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0Step.TabIndex = 27;
+            this.txtTestTemplateX0Step.Text = "5";
+            // 
+            // txtTestTemplateX0End
+            // 
+            this.txtTestTemplateX0End.Location = new System.Drawing.Point(88, 107);
+            this.txtTestTemplateX0End.Name = "txtTestTemplateX0End";
+            this.txtTestTemplateX0End.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0End.TabIndex = 26;
+            this.txtTestTemplateX0End.Text = "80";
+            // 
+            // txtTestTemplateX0Start
+            // 
+            this.txtTestTemplateX0Start.Location = new System.Drawing.Point(40, 107);
+            this.txtTestTemplateX0Start.Name = "txtTestTemplateX0Start";
+            this.txtTestTemplateX0Start.Size = new System.Drawing.Size(42, 20);
+            this.txtTestTemplateX0Start.TabIndex = 25;
+            this.txtTestTemplateX0Start.Text = "40";
             // 
             // lblTestTemplateB
             // 
@@ -511,183 +561,145 @@
             this.lblTestTemplateY0.TabIndex = 22;
             this.lblTestTemplateY0.Text = "Y0:";
             // 
-            // txtTestTemplateX0Start
+            // lblTestTemplateX0
             // 
-            this.txtTestTemplateX0Start.Location = new System.Drawing.Point(40, 107);
-            this.txtTestTemplateX0Start.Name = "txtTestTemplateX0Start";
-            this.txtTestTemplateX0Start.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateX0Start.TabIndex = 25;
-            this.txtTestTemplateX0Start.Text = "40";
+            this.lblTestTemplateX0.AutoSize = true;
+            this.lblTestTemplateX0.Location = new System.Drawing.Point(11, 110);
+            this.lblTestTemplateX0.Name = "lblTestTemplateX0";
+            this.lblTestTemplateX0.Size = new System.Drawing.Size(23, 13);
+            this.lblTestTemplateX0.TabIndex = 21;
+            this.lblTestTemplateX0.Text = "X0:";
             // 
-            // txtTestTemplateX0End
+            // btnTestTemplate
             // 
-            this.txtTestTemplateX0End.Location = new System.Drawing.Point(88, 107);
-            this.txtTestTemplateX0End.Name = "txtTestTemplateX0End";
-            this.txtTestTemplateX0End.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateX0End.TabIndex = 26;
-            this.txtTestTemplateX0End.Text = "80";
+            this.btnTestTemplate.Location = new System.Drawing.Point(88, 209);
+            this.btnTestTemplate.Name = "btnTestTemplate";
+            this.btnTestTemplate.Size = new System.Drawing.Size(95, 23);
+            this.btnTestTemplate.TabIndex = 20;
+            this.btnTestTemplate.Text = "Save Test to File";
+            this.btnTestTemplate.UseVisualStyleBackColor = true;
+            this.btnTestTemplate.Click += new System.EventHandler(this.btnTestTemplate_Click);
             // 
-            // txtTestTemplateX0Step
+            // btnTemplateFind
             // 
-            this.txtTestTemplateX0Step.Location = new System.Drawing.Point(136, 107);
-            this.txtTestTemplateX0Step.Name = "txtTestTemplateX0Step";
-            this.txtTestTemplateX0Step.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateX0Step.TabIndex = 27;
-            this.txtTestTemplateX0Step.Text = "5";
+            this.btnTemplateFind.Location = new System.Drawing.Point(108, 79);
+            this.btnTemplateFind.Name = "btnTemplateFind";
+            this.btnTemplateFind.Size = new System.Drawing.Size(75, 23);
+            this.btnTemplateFind.TabIndex = 19;
+            this.btnTemplateFind.Text = "Find";
+            this.btnTemplateFind.UseVisualStyleBackColor = true;
+            this.btnTemplateFind.Click += new System.EventHandler(this.btnTemplateFind_Click);
             // 
-            // txtTestTemplateY0Step
+            // lblTemplateRate
             // 
-            this.txtTestTemplateY0Step.Location = new System.Drawing.Point(136, 130);
-            this.txtTestTemplateY0Step.Name = "txtTestTemplateY0Step";
-            this.txtTestTemplateY0Step.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateY0Step.TabIndex = 30;
-            this.txtTestTemplateY0Step.Text = "5";
+            this.lblTemplateRate.AutoSize = true;
+            this.lblTemplateRate.Location = new System.Drawing.Point(117, 58);
+            this.lblTemplateRate.Name = "lblTemplateRate";
+            this.lblTemplateRate.Size = new System.Drawing.Size(35, 13);
+            this.lblTemplateRate.TabIndex = 18;
+            this.lblTemplateRate.Text = "label1";
             // 
-            // txtTestTemplateY0End
+            // lblTemplateN
             // 
-            this.txtTestTemplateY0End.Location = new System.Drawing.Point(88, 130);
-            this.txtTestTemplateY0End.Name = "txtTestTemplateY0End";
-            this.txtTestTemplateY0End.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateY0End.TabIndex = 29;
-            this.txtTestTemplateY0End.Text = "90";
+            this.lblTemplateN.AutoSize = true;
+            this.lblTemplateN.Location = new System.Drawing.Point(117, 32);
+            this.lblTemplateN.Name = "lblTemplateN";
+            this.lblTemplateN.Size = new System.Drawing.Size(35, 13);
+            this.lblTemplateN.TabIndex = 17;
+            this.lblTemplateN.Text = "label1";
             // 
-            // txtTestTemplateY0Start
+            // lblTemplateG
             // 
-            this.txtTestTemplateY0Start.Location = new System.Drawing.Point(40, 130);
-            this.txtTestTemplateY0Start.Name = "txtTestTemplateY0Start";
-            this.txtTestTemplateY0Start.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateY0Start.TabIndex = 28;
-            this.txtTestTemplateY0Start.Text = "40";
+            this.lblTemplateG.AutoSize = true;
+            this.lblTemplateG.Location = new System.Drawing.Point(117, 9);
+            this.lblTemplateG.Name = "lblTemplateG";
+            this.lblTemplateG.Size = new System.Drawing.Size(35, 13);
+            this.lblTemplateG.TabIndex = 16;
+            this.lblTemplateG.Text = "label1";
             // 
-            // txtTestTemplateAStep
+            // txtTemplateB
             // 
-            this.txtTestTemplateAStep.Location = new System.Drawing.Point(136, 156);
-            this.txtTestTemplateAStep.Name = "txtTestTemplateAStep";
-            this.txtTestTemplateAStep.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateAStep.TabIndex = 33;
-            this.txtTestTemplateAStep.Text = "3";
+            this.txtTemplateB.Location = new System.Drawing.Point(65, 81);
+            this.txtTemplateB.Name = "txtTemplateB";
+            this.txtTemplateB.Size = new System.Drawing.Size(37, 20);
+            this.txtTemplateB.TabIndex = 15;
+            this.txtTemplateB.Text = "5";
             // 
-            // txtTestTemplateAEnd
+            // lblTemplateB
             // 
-            this.txtTestTemplateAEnd.Location = new System.Drawing.Point(88, 156);
-            this.txtTestTemplateAEnd.Name = "txtTestTemplateAEnd";
-            this.txtTestTemplateAEnd.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateAEnd.TabIndex = 32;
-            this.txtTestTemplateAEnd.Text = "65";
+            this.lblTemplateB.AutoSize = true;
+            this.lblTemplateB.Location = new System.Drawing.Point(13, 84);
+            this.lblTemplateB.Name = "lblTemplateB";
+            this.lblTemplateB.Size = new System.Drawing.Size(16, 13);
+            this.lblTemplateB.TabIndex = 14;
+            this.lblTemplateB.Text = "b:";
             // 
-            // txtTestTemplateAStart
+            // txtTemplateA
             // 
-            this.txtTestTemplateAStart.Location = new System.Drawing.Point(40, 156);
-            this.txtTestTemplateAStart.Name = "txtTestTemplateAStart";
-            this.txtTestTemplateAStart.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateAStart.TabIndex = 31;
-            this.txtTestTemplateAStart.Text = "50";
+            this.txtTemplateA.Location = new System.Drawing.Point(65, 55);
+            this.txtTemplateA.Name = "txtTemplateA";
+            this.txtTemplateA.Size = new System.Drawing.Size(37, 20);
+            this.txtTemplateA.TabIndex = 13;
+            this.txtTemplateA.Text = "5";
             // 
-            // txtTestTemplateBStep
+            // lblTemplateA
             // 
-            this.txtTestTemplateBStep.Location = new System.Drawing.Point(136, 182);
-            this.txtTestTemplateBStep.Name = "txtTestTemplateBStep";
-            this.txtTestTemplateBStep.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateBStep.TabIndex = 36;
-            this.txtTestTemplateBStep.Text = "3";
+            this.lblTemplateA.AutoSize = true;
+            this.lblTemplateA.Location = new System.Drawing.Point(13, 58);
+            this.lblTemplateA.Name = "lblTemplateA";
+            this.lblTemplateA.Size = new System.Drawing.Size(16, 13);
+            this.lblTemplateA.TabIndex = 12;
+            this.lblTemplateA.Text = "a:";
             // 
-            // txtTestTemplateBEnd
+            // txtTemplateY0
             // 
-            this.txtTestTemplateBEnd.Location = new System.Drawing.Point(88, 182);
-            this.txtTestTemplateBEnd.Name = "txtTestTemplateBEnd";
-            this.txtTestTemplateBEnd.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateBEnd.TabIndex = 35;
-            this.txtTestTemplateBEnd.Text = "60";
+            this.txtTemplateY0.Location = new System.Drawing.Point(65, 29);
+            this.txtTemplateY0.Name = "txtTemplateY0";
+            this.txtTemplateY0.Size = new System.Drawing.Size(37, 20);
+            this.txtTemplateY0.TabIndex = 11;
+            this.txtTemplateY0.Text = "5";
             // 
-            // txtTestTemplateBStart
+            // lblTemplateY0
             // 
-            this.txtTestTemplateBStart.Location = new System.Drawing.Point(40, 182);
-            this.txtTestTemplateBStart.Name = "txtTestTemplateBStart";
-            this.txtTestTemplateBStart.Size = new System.Drawing.Size(42, 20);
-            this.txtTestTemplateBStart.TabIndex = 34;
-            this.txtTestTemplateBStart.Text = "30";
+            this.lblTemplateY0.AutoSize = true;
+            this.lblTemplateY0.Location = new System.Drawing.Point(13, 32);
+            this.lblTemplateY0.Name = "lblTemplateY0";
+            this.lblTemplateY0.Size = new System.Drawing.Size(23, 13);
+            this.lblTemplateY0.TabIndex = 10;
+            this.lblTemplateY0.Text = "Y0:";
             // 
-            // btnTestTemplateToForm
+            // txtTemplateX0
             // 
-            this.btnTestTemplateToForm.Location = new System.Drawing.Point(7, 209);
-            this.btnTestTemplateToForm.Name = "btnTestTemplateToForm";
-            this.btnTestTemplateToForm.Size = new System.Drawing.Size(75, 23);
-            this.btnTestTemplateToForm.TabIndex = 37;
-            this.btnTestTemplateToForm.Text = "Test";
-            this.btnTestTemplateToForm.UseVisualStyleBackColor = true;
-            this.btnTestTemplateToForm.Click += new System.EventHandler(this.btnTestTemplateToForm_Click);
+            this.txtTemplateX0.Location = new System.Drawing.Point(65, 6);
+            this.txtTemplateX0.Name = "txtTemplateX0";
+            this.txtTemplateX0.Size = new System.Drawing.Size(37, 20);
+            this.txtTemplateX0.TabIndex = 9;
+            this.txtTemplateX0.Text = "5";
             // 
-            // lbTemplates
+            // lblTemplateX0
             // 
-            this.lbTemplates.FormattingEnabled = true;
-            this.lbTemplates.Location = new System.Drawing.Point(7, 233);
-            this.lbTemplates.Name = "lbTemplates";
-            this.lbTemplates.Size = new System.Drawing.Size(176, 69);
-            this.lbTemplates.TabIndex = 38;
-            this.lbTemplates.SelectedIndexChanged += new System.EventHandler(this.lbTemplates_SelectedIndexChanged);
+            this.lblTemplateX0.AutoSize = true;
+            this.lblTemplateX0.Location = new System.Drawing.Point(13, 9);
+            this.lblTemplateX0.Name = "lblTemplateX0";
+            this.lblTemplateX0.Size = new System.Drawing.Size(23, 13);
+            this.lblTemplateX0.TabIndex = 8;
+            this.lblTemplateX0.Text = "X0:";
             // 
-            // btnTemplateOrderByRate
+            // btnSelectTemplate
             // 
-            this.btnTemplateOrderByRate.Location = new System.Drawing.Point(7, 306);
-            this.btnTemplateOrderByRate.Name = "btnTemplateOrderByRate";
-            this.btnTemplateOrderByRate.Size = new System.Drawing.Size(55, 23);
-            this.btnTemplateOrderByRate.TabIndex = 39;
-            this.btnTemplateOrderByRate.Text = "By Rate";
-            this.btnTemplateOrderByRate.UseVisualStyleBackColor = true;
-            this.btnTemplateOrderByRate.Click += new System.EventHandler(this.btnTemplateOrderByRate_Click);
-            // 
-            // btnTemplateOrderByCount
-            // 
-            this.btnTemplateOrderByCount.Location = new System.Drawing.Point(65, 306);
-            this.btnTemplateOrderByCount.Name = "btnTemplateOrderByCount";
-            this.btnTemplateOrderByCount.Size = new System.Drawing.Size(65, 23);
-            this.btnTemplateOrderByCount.TabIndex = 40;
-            this.btnTemplateOrderByCount.Text = "By Count";
-            this.btnTemplateOrderByCount.UseVisualStyleBackColor = true;
-            this.btnTemplateOrderByCount.Click += new System.EventHandler(this.btnTemplateOrderByCount_Click);
-            // 
-            // lblTemplateMinCount
-            // 
-            this.lblTemplateMinCount.AutoSize = true;
-            this.lblTemplateMinCount.Location = new System.Drawing.Point(12, 333);
-            this.lblTemplateMinCount.Name = "lblTemplateMinCount";
-            this.lblTemplateMinCount.Size = new System.Drawing.Size(58, 13);
-            this.lblTemplateMinCount.TabIndex = 41;
-            this.lblTemplateMinCount.Text = "Min Count:";
-            // 
-            // txtTemplateMinCount
-            // 
-            this.txtTemplateMinCount.Location = new System.Drawing.Point(68, 330);
-            this.txtTemplateMinCount.Name = "txtTemplateMinCount";
-            this.txtTemplateMinCount.Size = new System.Drawing.Size(62, 20);
-            this.txtTemplateMinCount.TabIndex = 42;
-            this.txtTemplateMinCount.Text = "300";
-            // 
-            // btnTemplateRemoveByMinCount
-            // 
-            this.btnTemplateRemoveByMinCount.Location = new System.Drawing.Point(136, 327);
-            this.btnTemplateRemoveByMinCount.Name = "btnTemplateRemoveByMinCount";
-            this.btnTemplateRemoveByMinCount.Size = new System.Drawing.Size(47, 23);
-            this.btnTemplateRemoveByMinCount.TabIndex = 43;
-            this.btnTemplateRemoveByMinCount.Text = "Cut";
-            this.btnTemplateRemoveByMinCount.UseVisualStyleBackColor = true;
-            this.btnTemplateRemoveByMinCount.Click += new System.EventHandler(this.btnTemplateRemoveByMinCount_Click);
-            // 
-            // btnTemplateRemoveOutborders
-            // 
-            this.btnTemplateRemoveOutborders.Location = new System.Drawing.Point(136, 306);
-            this.btnTemplateRemoveOutborders.Name = "btnTemplateRemoveOutborders";
-            this.btnTemplateRemoveOutborders.Size = new System.Drawing.Size(47, 23);
-            this.btnTemplateRemoveOutborders.TabIndex = 44;
-            this.btnTemplateRemoveOutborders.Text = "Out";
-            this.btnTemplateRemoveOutborders.UseVisualStyleBackColor = true;
-            this.btnTemplateRemoveOutborders.Click += new System.EventHandler(this.btnTemplateRemoveOutborders_Click);
+            this.btnSelectTemplate.Location = new System.Drawing.Point(7, 348);
+            this.btnSelectTemplate.Name = "btnSelectTemplate";
+            this.btnSelectTemplate.Size = new System.Drawing.Size(176, 23);
+            this.btnSelectTemplate.TabIndex = 45;
+            this.btnSelectTemplate.Text = "Select Average";
+            this.btnSelectTemplate.UseVisualStyleBackColor = true;
+            this.btnSelectTemplate.Click += new System.EventHandler(this.btnSelectTemplate_Click);
             // 
             // ShapeInfoLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 377);
+            this.ClientSize = new System.Drawing.Size(725, 398);
             this.Controls.Add(this.pnlEllipticalTemplate);
             this.Controls.Add(this.pnlContours);
             this.Controls.Add(this.pnlTest);
@@ -768,5 +780,6 @@
         private System.Windows.Forms.TextBox txtTemplateMinCount;
         private System.Windows.Forms.Label lblTemplateMinCount;
         private System.Windows.Forms.Button btnTemplateRemoveOutborders;
+        private System.Windows.Forms.Button btnSelectTemplate;
     }
 }
