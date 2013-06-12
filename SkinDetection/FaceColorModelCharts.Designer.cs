@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
             this.btnLoadModel = new System.Windows.Forms.Button();
             this.chartColored = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chkSwitchModel = new System.Windows.Forms.CheckBox();
+            this.dlgSaveModel = new System.Windows.Forms.SaveFileDialog();
+            this.btnSaveModel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartColored)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,26 +57,26 @@
             // 
             // chartColored
             // 
-            chartArea1.Area3DStyle.Enable3D = true;
-            chartArea1.Area3DStyle.IsRightAngleAxes = false;
-            chartArea1.Area3DStyle.WallWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            this.chartColored.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartColored.Legends.Add(legend1);
+            chartArea2.Area3DStyle.Enable3D = true;
+            chartArea2.Area3DStyle.IsRightAngleAxes = false;
+            chartArea2.Area3DStyle.WallWidth = 0;
+            chartArea2.Name = "ChartArea1";
+            this.chartColored.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartColored.Legends.Add(legend2);
             this.chartColored.Location = new System.Drawing.Point(12, 41);
             this.chartColored.Name = "chartColored";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 6;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chartColored.Series.Add(series1);
-            this.chartColored.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.YValuesPerPoint = 6;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series2";
+            this.chartColored.Series.Add(series3);
+            this.chartColored.Series.Add(series4);
             this.chartColored.Size = new System.Drawing.Size(810, 446);
             this.chartColored.TabIndex = 1;
             this.chartColored.Text = "chart1";
@@ -82,7 +84,7 @@
             // chkSwitchModel
             // 
             this.chkSwitchModel.AutoSize = true;
-            this.chkSwitchModel.Location = new System.Drawing.Point(752, 16);
+            this.chkSwitchModel.Location = new System.Drawing.Point(671, 16);
             this.chkSwitchModel.Name = "chkSwitchModel";
             this.chkSwitchModel.Size = new System.Drawing.Size(70, 17);
             this.chkSwitchModel.TabIndex = 2;
@@ -90,11 +92,23 @@
             this.chkSwitchModel.UseVisualStyleBackColor = true;
             this.chkSwitchModel.CheckedChanged += new System.EventHandler(this.chkSwitchModel_CheckedChanged);
             // 
+            // btnSaveModel
+            // 
+            this.btnSaveModel.Location = new System.Drawing.Point(747, 12);
+            this.btnSaveModel.Name = "btnSaveModel";
+            this.btnSaveModel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveModel.TabIndex = 3;
+            this.btnSaveModel.Text = "Save";
+            this.btnSaveModel.UseVisualStyleBackColor = true;
+            this.btnSaveModel.Visible = false;
+            this.btnSaveModel.Click += new System.EventHandler(this.btnSaveModel_Click);
+            // 
             // FaceColorModelCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 499);
+            this.Controls.Add(this.btnSaveModel);
             this.Controls.Add(this.chkSwitchModel);
             this.Controls.Add(this.chartColored);
             this.Controls.Add(this.btnLoadModel);
@@ -112,5 +126,7 @@
         private System.Windows.Forms.Button btnLoadModel;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartColored;
         private System.Windows.Forms.CheckBox chkSwitchModel;
+        private System.Windows.Forms.SaveFileDialog dlgSaveModel;
+        private System.Windows.Forms.Button btnSaveModel;
     }
 }

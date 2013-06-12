@@ -18,6 +18,8 @@ namespace SkinDetection
     {
         private int[,] colored = new int[256, 256];
 
+        private ChangRobles changRobles = null;
+
         private void CleanColored()
         {
             for (int i = 0; i < 256; i++)
@@ -72,9 +74,13 @@ namespace SkinDetection
                                 {
                                     for (int j1 = 0; j1 < nextRect.Width; j1++)
                                     {
-                                        if (colored[img.Data[i1, j1, 0], img.Data[i1, j1, 2]] < 500)
+                                        if (colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] > 500)
                                         {
-                                            colored[img.Data[i1, j1, 0], img.Data[i1, j1, 2]]++;
+                                            colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] += 2;
+                                        }
+                                        else
+                                        {
+                                            colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] ++;
                                         }
                                     }
                                 }
@@ -126,6 +132,8 @@ namespace SkinDetection
             {
                 DisplayColored();
             }
+
+            btnSaveModel.Visible = chkSwitchModel.Checked;
         }
 
         private void DisplayGaussian()
@@ -143,8 +151,8 @@ namespace SkinDetection
                 }
             }
 
-            ChangRobles cr = new ChangRobles();
-            cr.SetModel(reds, blues);
+            changRobles = new ChangRobles();
+            changRobles.SetModel(reds, blues);
 
             chartColored.Series.Clear();
             chartColored.ResetAutoValues();
@@ -158,9 +166,20 @@ namespace SkinDetection
                 };
                 for (int j = 0; j < 256; j++)
                 {
-                    s.Points.AddY(cr.GetLikelihood(1.0 * j / 255, 1.0 * i / 255));
+                    s.Points.AddY(changRobles.GetLikelihood(1.0 * j / 255, 1.0 * i / 255));
                 }
                 chartColored.Series.Add(s);
+            }
+        }
+
+        private void btnSaveModel_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (changRobles != null)
+                {
+                    changRobles.Save(dlgSaveModel.FileName);
+                }
             }
         }
     }
