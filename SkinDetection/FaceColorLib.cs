@@ -194,6 +194,11 @@ namespace SkinDetection
             for (int k = 0; k < lbLib.Items.Count; k++)
             {
                 Image<Bgr, Byte> img = new Image<Bgr, byte>(lbLib.Items[k].ToString());
+                img = Utils.ApplyKernel(img, new float[,] {
+                    {1f/9, 1f/9, 1f,9},
+                    {1f/9, 1f/9, 1f,9},
+                    {1f/9, 1f/9, 1f,9}
+                });
                 foreach (var Rect in personRects[k])
                 {
                     for (int i = Rect.Top; i < Rect.Top + Rect.Height; i++)
@@ -463,6 +468,18 @@ namespace SkinDetection
                 imgResult.Draw(rect, new Bgr(Color.Red), 2);
             }
             pbFace.Image = imgResult.ToBitmap();
+        }
+
+        private void btnLibAddDir_Click(object sender, EventArgs e)
+        {
+            if (dlgLibOpenDir.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                foreach (var file in Directory.GetFiles(dlgLibOpenDir.SelectedPath))
+                {
+                    lbLib.Items.Add(file);
+                    personRects.Add(new List<Rectangle>());
+                }
+            }
         }
 
     }

@@ -56,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangRobles.cs" />
+    <Compile Include="DatabaseUtil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseUtil.Designer.cs">
+      <DependentUpon>DatabaseUtil.cs</DependentUpon>
+    </Compile>
     <Compile Include="FaceColorLib.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,12 @@
     <Compile Include="ShapeInfoLib.Designer.cs">
       <DependentUpon>ShapeInfoLib.cs</DependentUpon>
     </Compile>
+    <Compile Include="Start.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Start.Designer.cs">
+      <DependentUpon>Start.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestEdgeLinking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +108,9 @@
       <DependentUpon>TestInclination.cs</DependentUpon>
     </Compile>
     <Compile Include="WangTan.cs" />
+    <EmbeddedResource Include="DatabaseUtil.resx">
+      <DependentUpon>DatabaseUtil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FaceColorLib.resx">
       <DependentUpon>FaceColorLib.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +128,9 @@
     </Compile>
     <EmbeddedResource Include="ShapeInfoLib.resx">
       <DependentUpon>ShapeInfoLib.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Start.resx">
+      <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestEdgeLinking.resx">
       <DependentUpon>TestEdgeLinking.cs</DependentUpon>

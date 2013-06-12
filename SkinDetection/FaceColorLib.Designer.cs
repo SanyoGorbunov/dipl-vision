@@ -55,6 +55,8 @@
             this.txtTreshBound = new System.Windows.Forms.TextBox();
             this.lblTreshBound = new System.Windows.Forms.Label();
             this.pnlSkinRegions = new System.Windows.Forms.Panel();
+            this.btnFilterByTemplate = new System.Windows.Forms.Button();
+            this.btnFilterByRatio = new System.Windows.Forms.Button();
             this.btnShowRegion = new System.Windows.Forms.Button();
             this.lblSkinRegionRatio = new System.Windows.Forms.Label();
             this.lblSkinRegionInclination = new System.Windows.Forms.Label();
@@ -84,9 +86,9 @@
             this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
             this.pbFaceTemplate = new System.Windows.Forms.PictureBox();
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
-            this.btnFilterByRatio = new System.Windows.Forms.Button();
-            this.btnFilterByTemplate = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnLibAddDir = new System.Windows.Forms.Button();
+            this.dlgLibOpenDir = new System.Windows.Forms.FolderBrowserDialog();
             this.pnlLib.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
@@ -99,6 +101,7 @@
             // 
             // pnlLib
             // 
+            this.pnlLib.Controls.Add(this.btnLibAddDir);
             this.pnlLib.Controls.Add(this.btnSaveLib);
             this.pnlLib.Controls.Add(this.btnLoadLib);
             this.pnlLib.Controls.Add(this.btnLibAdd);
@@ -359,6 +362,26 @@
             this.pnlSkinRegions.Size = new System.Drawing.Size(171, 381);
             this.pnlSkinRegions.TabIndex = 7;
             // 
+            // btnFilterByTemplate
+            // 
+            this.btnFilterByTemplate.Location = new System.Drawing.Point(11, 344);
+            this.btnFilterByTemplate.Name = "btnFilterByTemplate";
+            this.btnFilterByTemplate.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByTemplate.TabIndex = 14;
+            this.btnFilterByTemplate.Text = "Filter by Template";
+            this.btnFilterByTemplate.UseVisualStyleBackColor = true;
+            this.btnFilterByTemplate.Click += new System.EventHandler(this.btnFilterByTemplate_Click);
+            // 
+            // btnFilterByRatio
+            // 
+            this.btnFilterByRatio.Location = new System.Drawing.Point(11, 315);
+            this.btnFilterByRatio.Name = "btnFilterByRatio";
+            this.btnFilterByRatio.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByRatio.TabIndex = 13;
+            this.btnFilterByRatio.Text = "Filter by Ratio";
+            this.btnFilterByRatio.UseVisualStyleBackColor = true;
+            this.btnFilterByRatio.Click += new System.EventHandler(this.btnFilterByRatio_Click);
+            // 
             // btnShowRegion
             // 
             this.btnShowRegion.Location = new System.Drawing.Point(84, 7);
@@ -611,26 +634,6 @@
             // 
             this.dlgLoadFaceTemplate.FileName = "openFileDialog1";
             // 
-            // btnFilterByRatio
-            // 
-            this.btnFilterByRatio.Location = new System.Drawing.Point(11, 315);
-            this.btnFilterByRatio.Name = "btnFilterByRatio";
-            this.btnFilterByRatio.Size = new System.Drawing.Size(113, 23);
-            this.btnFilterByRatio.TabIndex = 13;
-            this.btnFilterByRatio.Text = "Filter by Ratio";
-            this.btnFilterByRatio.UseVisualStyleBackColor = true;
-            this.btnFilterByRatio.Click += new System.EventHandler(this.btnFilterByRatio_Click);
-            // 
-            // btnFilterByTemplate
-            // 
-            this.btnFilterByTemplate.Location = new System.Drawing.Point(11, 344);
-            this.btnFilterByTemplate.Name = "btnFilterByTemplate";
-            this.btnFilterByTemplate.Size = new System.Drawing.Size(113, 23);
-            this.btnFilterByTemplate.TabIndex = 14;
-            this.btnFilterByTemplate.Text = "Filter by Template";
-            this.btnFilterByTemplate.UseVisualStyleBackColor = true;
-            this.btnFilterByTemplate.Click += new System.EventHandler(this.btnFilterByTemplate_Click);
-            // 
             // btnTest
             // 
             this.btnTest.Location = new System.Drawing.Point(141, 381);
@@ -640,6 +643,16 @@
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
+            // btnLibAddDir
+            // 
+            this.btnLibAddDir.Location = new System.Drawing.Point(210, 45);
+            this.btnLibAddDir.Name = "btnLibAddDir";
+            this.btnLibAddDir.Size = new System.Drawing.Size(75, 23);
+            this.btnLibAddDir.TabIndex = 4;
+            this.btnLibAddDir.Text = "Add Dir";
+            this.btnLibAddDir.UseVisualStyleBackColor = true;
+            this.btnLibAddDir.Click += new System.EventHandler(this.btnLibAddDir_Click);
             // 
             // FaceColorLib
             // 
@@ -733,6 +746,8 @@
         private System.Windows.Forms.Button btnFilterByTemplate;
         private System.Windows.Forms.Button btnFilterByRatio;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnLibAddDir;
+        private System.Windows.Forms.FolderBrowserDialog dlgLibOpenDir;
 
     }
 }
