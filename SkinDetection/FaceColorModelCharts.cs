@@ -17,9 +17,13 @@ namespace SkinDetection
     public partial class FaceColorModelCharts : Form
     {
         private int[,] colored = new int[256, 256];
+        private List<double> blues = new List<double>(), reds = new List<double>();
 
         private void CleanColored()
         {
+            blues.Clear();
+            reds.Clear();
+
             for (int i = 0; i < 256; i++)
             {
                 for (int j = 0; j < 256; j++)
@@ -32,13 +36,14 @@ namespace SkinDetection
         public FaceColorModelCharts()
         {
             InitializeComponent();
-            
         }
 
         private void btnLoadModel_Click(object sender, EventArgs e)
         {
             if (dlgLoadModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                CleanColored();
+
                 using (var fileStream = File.OpenRead(dlgLoadModel.FileName))
                 {
                     using (var sr = new StreamReader(fileStream))
@@ -60,6 +65,8 @@ namespace SkinDetection
                                     double r = 1.0 * img.Data[i, j, 2] / sum;
                                     img.Data[i, j, 0] = (byte)(255 * b);
                                     img.Data[i, j, 2] = (byte)(255 * r);
+                                    blues.Add(b);
+                                    reds.Add(r);
                                 }
                             }
 
@@ -76,16 +83,17 @@ namespace SkinDetection
                                 }
                             }
                         }
-
-                        DisplayColored();
                     }
                 }
+
+                DisplayColored();
             }
         }
 
         private void DisplayColored()
         {
             chartColored.Series.Clear();
+            chartColored.ResetAutoValues();
             for (int i = 0; i < 256; i++)
             {
                 Series s = new Series
@@ -97,6 +105,41 @@ namespace SkinDetection
                 for (int j = 0; j < 256; j++)
                 {
                     s.Points.AddY(colored[i, j]);
+                }
+                chartColored.Series.Add(s);
+            }
+        }
+
+        private void chkSwitchModel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSwitchModel.Checked)
+            {
+                DisplayGaussian();
+            }
+            else
+            {
+                DisplayColored();
+            }
+        }
+
+        private void DisplayGaussian()
+        {
+            ChangRobles cr = new ChangRobles();
+            cr.SetModel(reds, blues);
+
+            chartColored.Series.Clear();
+            chartColored.ResetAutoValues();
+            for (int i = 0; i < 256; i++)
+            {
+                Series s = new Series
+                {
+                    ChartType = SeriesChartType.Spline,
+                    Color = Color.DodgerBlue,
+                    IsVisibleInLegend = false
+                };
+                for (int j = 0; j < 256; j++)
+                {
+                    s.Points.AddY(cr.GetLikelihood(1.0 * j / 255, 1.0 * i / 255));
                 }
                 chartColored.Series.Add(s);
             }

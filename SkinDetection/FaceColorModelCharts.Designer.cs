@@ -35,6 +35,7 @@
             this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
             this.btnLoadModel = new System.Windows.Forms.Button();
             this.chartColored = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chkSwitchModel = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartColored)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,17 +79,30 @@
             this.chartColored.TabIndex = 1;
             this.chartColored.Text = "chart1";
             // 
+            // chkSwitchModel
+            // 
+            this.chkSwitchModel.AutoSize = true;
+            this.chkSwitchModel.Location = new System.Drawing.Point(752, 16);
+            this.chkSwitchModel.Name = "chkSwitchModel";
+            this.chkSwitchModel.Size = new System.Drawing.Size(70, 17);
+            this.chkSwitchModel.TabIndex = 2;
+            this.chkSwitchModel.Text = "Gaussian";
+            this.chkSwitchModel.UseVisualStyleBackColor = true;
+            this.chkSwitchModel.CheckedChanged += new System.EventHandler(this.chkSwitchModel_CheckedChanged);
+            // 
             // FaceColorModelCharts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 499);
+            this.Controls.Add(this.chkSwitchModel);
             this.Controls.Add(this.chartColored);
             this.Controls.Add(this.btnLoadModel);
             this.Name = "FaceColorModelCharts";
             this.Text = "FaceColorModelCharts";
             ((System.ComponentModel.ISupportInitialize)(this.chartColored)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,5 +111,6 @@
         private System.Windows.Forms.OpenFileDialog dlgLoadModel;
         private System.Windows.Forms.Button btnLoadModel;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartColored;
+        private System.Windows.Forms.CheckBox chkSwitchModel;
     }
 }
