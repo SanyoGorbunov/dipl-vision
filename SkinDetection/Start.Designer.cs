@@ -33,6 +33,7 @@
             this.btnShapeInfo = new System.Windows.Forms.Button();
             this.lblUtils = new System.Windows.Forms.Label();
             this.btnDatabaseUtil = new System.Windows.Forms.Button();
+            this.btnFaceColorModels = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFaceColorLib
@@ -83,11 +84,22 @@
             this.btnDatabaseUtil.UseVisualStyleBackColor = true;
             this.btnDatabaseUtil.Click += new System.EventHandler(this.btnDatabaseUtil_Click);
             // 
+            // btnFaceColorModels
+            // 
+            this.btnFaceColorModels.Location = new System.Drawing.Point(105, 92);
+            this.btnFaceColorModels.Name = "btnFaceColorModels";
+            this.btnFaceColorModels.Size = new System.Drawing.Size(75, 35);
+            this.btnFaceColorModels.TabIndex = 5;
+            this.btnFaceColorModels.Text = "Face Color Models";
+            this.btnFaceColorModels.UseVisualStyleBackColor = true;
+            this.btnFaceColorModels.Click += new System.EventHandler(this.btnFaceColorModels_Click);
+            // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(192, 262);
+            this.Controls.Add(this.btnFaceColorModels);
             this.Controls.Add(this.btnDatabaseUtil);
             this.Controls.Add(this.lblUtils);
             this.Controls.Add(this.btnShapeInfo);
@@ -107,5 +119,6 @@
         private System.Windows.Forms.Button btnShapeInfo;
         private System.Windows.Forms.Label lblUtils;
         private System.Windows.Forms.Button btnDatabaseUtil;
+        private System.Windows.Forms.Button btnFaceColorModels;
     }
 }

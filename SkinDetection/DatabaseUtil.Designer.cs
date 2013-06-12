@@ -39,6 +39,11 @@
             this.lblNewDir = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // dlgSelectDir
+            // 
+            this.dlgSelectDir.SelectedPath = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
+                "ces94";
+            // 
             // btnSelectDir
             // 
             this.btnSelectDir.Location = new System.Drawing.Point(322, 10);

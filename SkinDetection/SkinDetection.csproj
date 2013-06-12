@@ -68,6 +68,12 @@
     <Compile Include="FaceColorLib.Designer.cs">
       <DependentUpon>FaceColorLib.cs</DependentUpon>
     </Compile>
+    <Compile Include="FaceColorModelCharts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FaceColorModelCharts.Designer.cs">
+      <DependentUpon>FaceColorModelCharts.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAlgorithm.cs" />
     <Compile Include="ImageCutter.cs">
       <SubType>Form</SubType>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FaceColorLib.resx">
       <DependentUpon>FaceColorLib.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FaceColorModelCharts.resx">
+      <DependentUpon>FaceColorModelCharts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageCutter.resx">
       <DependentUpon>ImageCutter.cs</DependentUpon>
