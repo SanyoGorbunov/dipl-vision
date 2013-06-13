@@ -34,6 +34,8 @@
             this.lblUtils = new System.Windows.Forms.Label();
             this.btnDatabaseUtil = new System.Windows.Forms.Button();
             this.btnFaceColorModels = new System.Windows.Forms.Button();
+            this.lblTest = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFaceColorLib
@@ -94,11 +96,32 @@
             this.btnFaceColorModels.UseVisualStyleBackColor = true;
             this.btnFaceColorModels.Click += new System.EventHandler(this.btnFaceColorModels_Click);
             // 
+            // lblTest
+            // 
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(9, 114);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(31, 13);
+            this.lblTest.TabIndex = 6;
+            this.lblTest.Text = "Test:";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(12, 140);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTest.TabIndex = 7;
+            this.btnTest.Text = "Test Alg";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(192, 262);
+            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.lblTest);
             this.Controls.Add(this.btnFaceColorModels);
             this.Controls.Add(this.btnDatabaseUtil);
             this.Controls.Add(this.lblUtils);
@@ -120,5 +143,7 @@
         private System.Windows.Forms.Label lblUtils;
         private System.Windows.Forms.Button btnDatabaseUtil;
         private System.Windows.Forms.Button btnFaceColorModels;
+        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Button btnTest;
     }
 }

@@ -39,5 +39,11 @@ namespace SkinDetection
             var frm = new FaceColorModelCharts();
             frm.Show();
         }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            var frm = new TestForm();
+            frm.Show();
+        }
     }
 }

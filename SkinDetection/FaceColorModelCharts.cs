@@ -138,6 +138,8 @@ namespace SkinDetection
 
         private void DisplayGaussian()
         {
+            changRobles = new ChangRobles();
+
             List<double> blues = new List<double>(), reds = new List<double>();
             for (int i = 0; i < 256; i++)
             {
@@ -151,9 +153,12 @@ namespace SkinDetection
                 }
             }
 
-            changRobles = new ChangRobles();
             changRobles.SetModel(reds, blues);
+            DisplayGaussian(changRobles);
+        }
 
+        private void DisplayGaussian(ChangRobles changRobles)
+        {
             chartColored.Series.Clear();
             chartColored.ResetAutoValues();
             for (int i = 0; i < 256; i++)
@@ -180,6 +185,15 @@ namespace SkinDetection
                 {
                     changRobles.Save(dlgSaveModel.FileName);
                 }
+            }
+        }
+
+        private void btnLoadCalc_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                changRobles = ChangRobles.Load(dlgLoadModel.FileName);
+                DisplayGaussian(changRobles);
             }
         }
     }
