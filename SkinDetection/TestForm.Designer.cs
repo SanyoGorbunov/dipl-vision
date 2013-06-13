@@ -37,35 +37,32 @@
             this.cbAlg = new System.Windows.Forms.ComboBox();
             this.lblAlg = new System.Windows.Forms.Label();
             this.pnlSkinOptions = new System.Windows.Forms.Panel();
-            this.pnlGeoOptions = new System.Windows.Forms.Panel();
-            this.pnlImg = new System.Windows.Forms.Panel();
-            this.lblStats = new System.Windows.Forms.Label();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.btnFalse = new System.Windows.Forms.Button();
-            this.btnInExact = new System.Windows.Forms.Button();
-            this.btnTrue = new System.Windows.Forms.Button();
-            this.pbImgTest = new System.Windows.Forms.PictureBox();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.dlgSelectDir = new System.Windows.Forms.FolderBrowserDialog();
-            this.pnlResults = new System.Windows.Forms.Panel();
-            this.chartResults = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
-            this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
-            this.lblAdaptiveThresholdUpper = new System.Windows.Forms.Label();
-            this.txtAdaptiveThresholdUpper = new System.Windows.Forms.TextBox();
-            this.txtAdaptiveThresholdLower = new System.Windows.Forms.TextBox();
-            this.lblAdaptiveThresholdLower = new System.Windows.Forms.Label();
-            this.txtAdaptiveThresholdStep = new System.Windows.Forms.TextBox();
-            this.lblAdaptiveThresholdStep = new System.Windows.Forms.Label();
-            this.txtSkinRegionMinHoles = new System.Windows.Forms.TextBox();
-            this.lblSkinRegionMinHoles = new System.Windows.Forms.Label();
-            this.txtSkinRegionMinRatio = new System.Windows.Forms.TextBox();
-            this.lblSkinRegionRation = new System.Windows.Forms.Label();
+            this.btnLoadModel = new System.Windows.Forms.Button();
+            this.txtSkinRegionMaxRatio = new System.Windows.Forms.TextBox();
             this.txtSkinRegionCrsCrltn = new System.Windows.Forms.TextBox();
             this.lblSkinRegionCrsCrltn = new System.Windows.Forms.Label();
-            this.txtSkinRegionMaxRatio = new System.Windows.Forms.TextBox();
-            this.btnLoadModel = new System.Windows.Forms.Button();
-            this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
+            this.txtSkinRegionMinRatio = new System.Windows.Forms.TextBox();
+            this.lblSkinRegionRation = new System.Windows.Forms.Label();
+            this.txtSkinRegionMinHoles = new System.Windows.Forms.TextBox();
+            this.lblSkinRegionMinHoles = new System.Windows.Forms.Label();
+            this.txtAdaptiveThresholdStep = new System.Windows.Forms.TextBox();
+            this.lblAdaptiveThresholdStep = new System.Windows.Forms.Label();
+            this.txtAdaptiveThresholdLower = new System.Windows.Forms.TextBox();
+            this.lblAdaptiveThresholdLower = new System.Windows.Forms.Label();
+            this.txtAdaptiveThresholdUpper = new System.Windows.Forms.TextBox();
+            this.lblAdaptiveThresholdUpper = new System.Windows.Forms.Label();
+            this.btnLoadFaceTemplate = new System.Windows.Forms.Button();
+            this.pnlGeoOptions = new System.Windows.Forms.Panel();
+            this.txtCannyLinkThreshold = new System.Windows.Forms.TextBox();
+            this.txtCannyThreshold = new System.Windows.Forms.TextBox();
+            this.lblCannyThresholds = new System.Windows.Forms.Label();
+            this.txtEraseChainsA = new System.Windows.Forms.TextBox();
+            this.lblEraseChainsA = new System.Windows.Forms.Label();
+            this.txtMedianSmoothSize = new System.Windows.Forms.TextBox();
+            this.lblMedianSmoothSize = new System.Windows.Forms.Label();
+            this.txtTemplateThresholdRate = new System.Windows.Forms.TextBox();
+            this.txtTemplateThresholdPoints = new System.Windows.Forms.TextBox();
+            this.lblTemplateThresholds = new System.Windows.Forms.Label();
             this.txtTestTemplateBStep = new System.Windows.Forms.TextBox();
             this.txtTestTemplateBEnd = new System.Windows.Forms.TextBox();
             this.txtTestTemplateBStart = new System.Windows.Forms.TextBox();
@@ -82,16 +79,19 @@
             this.lblTestTemplateA = new System.Windows.Forms.Label();
             this.lblTestTemplateY0 = new System.Windows.Forms.Label();
             this.lblTestTemplateX0 = new System.Windows.Forms.Label();
-            this.txtTemplateThresholdRate = new System.Windows.Forms.TextBox();
-            this.txtTemplateThresholdPoints = new System.Windows.Forms.TextBox();
-            this.lblTemplateThresholds = new System.Windows.Forms.Label();
-            this.txtMedianSmoothSize = new System.Windows.Forms.TextBox();
-            this.lblMedianSmoothSize = new System.Windows.Forms.Label();
-            this.txtEraseChainsA = new System.Windows.Forms.TextBox();
-            this.lblEraseChainsA = new System.Windows.Forms.Label();
-            this.txtCannyLinkThreshold = new System.Windows.Forms.TextBox();
-            this.txtCannyThreshold = new System.Windows.Forms.TextBox();
-            this.lblCannyThresholds = new System.Windows.Forms.Label();
+            this.pnlImg = new System.Windows.Forms.Panel();
+            this.lblStats = new System.Windows.Forms.Label();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnFalse = new System.Windows.Forms.Button();
+            this.btnInExact = new System.Windows.Forms.Button();
+            this.btnTrue = new System.Windows.Forms.Button();
+            this.pbImgTest = new System.Windows.Forms.PictureBox();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.dlgSelectDir = new System.Windows.Forms.FolderBrowserDialog();
+            this.pnlResults = new System.Windows.Forms.Panel();
+            this.chartResults = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
+            this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
             this.pnlChooseAlg.SuspendLayout();
             this.pnlSkinOptions.SuspendLayout();
             this.pnlGeoOptions.SuspendLayout();
@@ -153,6 +153,129 @@
             this.pnlSkinOptions.Size = new System.Drawing.Size(200, 202);
             this.pnlSkinOptions.TabIndex = 1;
             // 
+            // btnLoadModel
+            // 
+            this.btnLoadModel.Location = new System.Drawing.Point(6, 3);
+            this.btnLoadModel.Name = "btnLoadModel";
+            this.btnLoadModel.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadModel.TabIndex = 14;
+            this.btnLoadModel.Text = "Model";
+            this.btnLoadModel.UseVisualStyleBackColor = true;
+            this.btnLoadModel.Click += new System.EventHandler(this.btnLoadModel_Click);
+            // 
+            // txtSkinRegionMaxRatio
+            // 
+            this.txtSkinRegionMaxRatio.Location = new System.Drawing.Point(156, 132);
+            this.txtSkinRegionMaxRatio.Name = "txtSkinRegionMaxRatio";
+            this.txtSkinRegionMaxRatio.Size = new System.Drawing.Size(32, 20);
+            this.txtSkinRegionMaxRatio.TabIndex = 13;
+            // 
+            // txtSkinRegionCrsCrltn
+            // 
+            this.txtSkinRegionCrsCrltn.Location = new System.Drawing.Point(158, 158);
+            this.txtSkinRegionCrsCrltn.Name = "txtSkinRegionCrsCrltn";
+            this.txtSkinRegionCrsCrltn.Size = new System.Drawing.Size(30, 20);
+            this.txtSkinRegionCrsCrltn.TabIndex = 12;
+            // 
+            // lblSkinRegionCrsCrltn
+            // 
+            this.lblSkinRegionCrsCrltn.AutoSize = true;
+            this.lblSkinRegionCrsCrltn.Location = new System.Drawing.Point(3, 161);
+            this.lblSkinRegionCrsCrltn.Name = "lblSkinRegionCrsCrltn";
+            this.lblSkinRegionCrsCrltn.Size = new System.Drawing.Size(149, 13);
+            this.lblSkinRegionCrsCrltn.TabIndex = 11;
+            this.lblSkinRegionCrsCrltn.Text = "Skin Region Cross-Corellation:";
+            // 
+            // txtSkinRegionMinRatio
+            // 
+            this.txtSkinRegionMinRatio.Location = new System.Drawing.Point(118, 132);
+            this.txtSkinRegionMinRatio.Name = "txtSkinRegionMinRatio";
+            this.txtSkinRegionMinRatio.Size = new System.Drawing.Size(32, 20);
+            this.txtSkinRegionMinRatio.TabIndex = 10;
+            // 
+            // lblSkinRegionRation
+            // 
+            this.lblSkinRegionRation.AutoSize = true;
+            this.lblSkinRegionRation.Location = new System.Drawing.Point(3, 135);
+            this.lblSkinRegionRation.Name = "lblSkinRegionRation";
+            this.lblSkinRegionRation.Size = new System.Drawing.Size(96, 13);
+            this.lblSkinRegionRation.TabIndex = 9;
+            this.lblSkinRegionRation.Text = "Skin Region Ratio:";
+            // 
+            // txtSkinRegionMinHoles
+            // 
+            this.txtSkinRegionMinHoles.Location = new System.Drawing.Point(143, 106);
+            this.txtSkinRegionMinHoles.Name = "txtSkinRegionMinHoles";
+            this.txtSkinRegionMinHoles.Size = new System.Drawing.Size(45, 20);
+            this.txtSkinRegionMinHoles.TabIndex = 8;
+            // 
+            // lblSkinRegionMinHoles
+            // 
+            this.lblSkinRegionMinHoles.AutoSize = true;
+            this.lblSkinRegionMinHoles.Location = new System.Drawing.Point(3, 109);
+            this.lblSkinRegionMinHoles.Name = "lblSkinRegionMinHoles";
+            this.lblSkinRegionMinHoles.Size = new System.Drawing.Size(129, 13);
+            this.lblSkinRegionMinHoles.TabIndex = 7;
+            this.lblSkinRegionMinHoles.Text = "Min Holes in Skin Region:";
+            // 
+            // txtAdaptiveThresholdStep
+            // 
+            this.txtAdaptiveThresholdStep.Location = new System.Drawing.Point(143, 79);
+            this.txtAdaptiveThresholdStep.Name = "txtAdaptiveThresholdStep";
+            this.txtAdaptiveThresholdStep.Size = new System.Drawing.Size(45, 20);
+            this.txtAdaptiveThresholdStep.TabIndex = 6;
+            // 
+            // lblAdaptiveThresholdStep
+            // 
+            this.lblAdaptiveThresholdStep.AutoSize = true;
+            this.lblAdaptiveThresholdStep.Location = new System.Drawing.Point(3, 82);
+            this.lblAdaptiveThresholdStep.Name = "lblAdaptiveThresholdStep";
+            this.lblAdaptiveThresholdStep.Size = new System.Drawing.Size(127, 13);
+            this.lblAdaptiveThresholdStep.TabIndex = 5;
+            this.lblAdaptiveThresholdStep.Text = "Adaptive Threshold Step:";
+            // 
+            // txtAdaptiveThresholdLower
+            // 
+            this.txtAdaptiveThresholdLower.Location = new System.Drawing.Point(143, 53);
+            this.txtAdaptiveThresholdLower.Name = "txtAdaptiveThresholdLower";
+            this.txtAdaptiveThresholdLower.Size = new System.Drawing.Size(45, 20);
+            this.txtAdaptiveThresholdLower.TabIndex = 4;
+            // 
+            // lblAdaptiveThresholdLower
+            // 
+            this.lblAdaptiveThresholdLower.AutoSize = true;
+            this.lblAdaptiveThresholdLower.Location = new System.Drawing.Point(3, 56);
+            this.lblAdaptiveThresholdLower.Name = "lblAdaptiveThresholdLower";
+            this.lblAdaptiveThresholdLower.Size = new System.Drawing.Size(134, 13);
+            this.lblAdaptiveThresholdLower.TabIndex = 3;
+            this.lblAdaptiveThresholdLower.Text = "Lower Adaptive Threshold:";
+            // 
+            // txtAdaptiveThresholdUpper
+            // 
+            this.txtAdaptiveThresholdUpper.Location = new System.Drawing.Point(143, 26);
+            this.txtAdaptiveThresholdUpper.Name = "txtAdaptiveThresholdUpper";
+            this.txtAdaptiveThresholdUpper.Size = new System.Drawing.Size(45, 20);
+            this.txtAdaptiveThresholdUpper.TabIndex = 2;
+            // 
+            // lblAdaptiveThresholdUpper
+            // 
+            this.lblAdaptiveThresholdUpper.AutoSize = true;
+            this.lblAdaptiveThresholdUpper.Location = new System.Drawing.Point(3, 29);
+            this.lblAdaptiveThresholdUpper.Name = "lblAdaptiveThresholdUpper";
+            this.lblAdaptiveThresholdUpper.Size = new System.Drawing.Size(134, 13);
+            this.lblAdaptiveThresholdUpper.TabIndex = 1;
+            this.lblAdaptiveThresholdUpper.Text = "Upper Adaptive Threshold:";
+            // 
+            // btnLoadFaceTemplate
+            // 
+            this.btnLoadFaceTemplate.Location = new System.Drawing.Point(87, 3);
+            this.btnLoadFaceTemplate.Name = "btnLoadFaceTemplate";
+            this.btnLoadFaceTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnLoadFaceTemplate.TabIndex = 0;
+            this.btnLoadFaceTemplate.Text = "Face Template";
+            this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
+            this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
+            // 
             // pnlGeoOptions
             // 
             this.pnlGeoOptions.Controls.Add(this.txtCannyLinkThreshold);
@@ -186,240 +309,83 @@
             this.pnlGeoOptions.Size = new System.Drawing.Size(200, 218);
             this.pnlGeoOptions.TabIndex = 2;
             // 
-            // pnlImg
+            // txtCannyLinkThreshold
             // 
-            this.pnlImg.Controls.Add(this.lblStats);
-            this.pnlImg.Controls.Add(this.btnStop);
-            this.pnlImg.Controls.Add(this.btnFalse);
-            this.pnlImg.Controls.Add(this.btnInExact);
-            this.pnlImg.Controls.Add(this.btnTrue);
-            this.pnlImg.Controls.Add(this.pbImgTest);
-            this.pnlImg.Controls.Add(this.btnLoad);
-            this.pnlImg.Location = new System.Drawing.Point(218, 12);
-            this.pnlImg.Name = "pnlImg";
-            this.pnlImg.Size = new System.Drawing.Size(328, 248);
-            this.pnlImg.TabIndex = 3;
+            this.txtCannyLinkThreshold.Location = new System.Drawing.Point(156, 35);
+            this.txtCannyLinkThreshold.Name = "txtCannyLinkThreshold";
+            this.txtCannyLinkThreshold.Size = new System.Drawing.Size(32, 20);
+            this.txtCannyLinkThreshold.TabIndex = 62;
             // 
-            // lblStats
+            // txtCannyThreshold
             // 
-            this.lblStats.AutoSize = true;
-            this.lblStats.Location = new System.Drawing.Point(126, 10);
-            this.lblStats.Name = "lblStats";
-            this.lblStats.Size = new System.Drawing.Size(35, 13);
-            this.lblStats.TabIndex = 6;
-            this.lblStats.Text = "label1";
+            this.txtCannyThreshold.Location = new System.Drawing.Point(118, 35);
+            this.txtCannyThreshold.Name = "txtCannyThreshold";
+            this.txtCannyThreshold.Size = new System.Drawing.Size(32, 20);
+            this.txtCannyThreshold.TabIndex = 61;
             // 
-            // btnStop
+            // lblCannyThresholds
             // 
-            this.btnStop.Location = new System.Drawing.Point(247, 222);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStop.TabIndex = 5;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            this.lblCannyThresholds.AutoSize = true;
+            this.lblCannyThresholds.Location = new System.Drawing.Point(3, 38);
+            this.lblCannyThresholds.Name = "lblCannyThresholds";
+            this.lblCannyThresholds.Size = new System.Drawing.Size(95, 13);
+            this.lblCannyThresholds.TabIndex = 60;
+            this.lblCannyThresholds.Text = "Canny Thresholds:";
             // 
-            // btnFalse
+            // txtEraseChainsA
             // 
-            this.btnFalse.Location = new System.Drawing.Point(247, 92);
-            this.btnFalse.Name = "btnFalse";
-            this.btnFalse.Size = new System.Drawing.Size(75, 23);
-            this.btnFalse.TabIndex = 4;
-            this.btnFalse.Text = "False";
-            this.btnFalse.UseVisualStyleBackColor = true;
-            this.btnFalse.Click += new System.EventHandler(this.btnFalse_Click);
+            this.txtEraseChainsA.Location = new System.Drawing.Point(118, 64);
+            this.txtEraseChainsA.Name = "txtEraseChainsA";
+            this.txtEraseChainsA.Size = new System.Drawing.Size(70, 20);
+            this.txtEraseChainsA.TabIndex = 59;
             // 
-            // btnInExact
+            // lblEraseChainsA
             // 
-            this.btnInExact.Location = new System.Drawing.Point(247, 63);
-            this.btnInExact.Name = "btnInExact";
-            this.btnInExact.Size = new System.Drawing.Size(75, 23);
-            this.btnInExact.TabIndex = 3;
-            this.btnInExact.Text = "Not Exact";
-            this.btnInExact.UseVisualStyleBackColor = true;
-            this.btnInExact.Click += new System.EventHandler(this.btnInExact_Click);
+            this.lblEraseChainsA.AutoSize = true;
+            this.lblEraseChainsA.Location = new System.Drawing.Point(3, 67);
+            this.lblEraseChainsA.Name = "lblEraseChainsA";
+            this.lblEraseChainsA.Size = new System.Drawing.Size(93, 13);
+            this.lblEraseChainsA.TabIndex = 58;
+            this.lblEraseChainsA.Text = "Chain Min Length:";
             // 
-            // btnTrue
+            // txtMedianSmoothSize
             // 
-            this.btnTrue.Location = new System.Drawing.Point(247, 34);
-            this.btnTrue.Name = "btnTrue";
-            this.btnTrue.Size = new System.Drawing.Size(75, 23);
-            this.btnTrue.TabIndex = 2;
-            this.btnTrue.Text = "True";
-            this.btnTrue.UseVisualStyleBackColor = true;
-            this.btnTrue.Click += new System.EventHandler(this.btnTrue_Click);
+            this.txtMedianSmoothSize.Location = new System.Drawing.Point(118, 9);
+            this.txtMedianSmoothSize.Name = "txtMedianSmoothSize";
+            this.txtMedianSmoothSize.Size = new System.Drawing.Size(70, 20);
+            this.txtMedianSmoothSize.TabIndex = 57;
             // 
-            // pbImgTest
+            // lblMedianSmoothSize
             // 
-            this.pbImgTest.Location = new System.Drawing.Point(3, 34);
-            this.pbImgTest.Name = "pbImgTest";
-            this.pbImgTest.Size = new System.Drawing.Size(238, 211);
-            this.pbImgTest.TabIndex = 1;
-            this.pbImgTest.TabStop = false;
+            this.lblMedianSmoothSize.AutoSize = true;
+            this.lblMedianSmoothSize.Location = new System.Drawing.Point(3, 12);
+            this.lblMedianSmoothSize.Name = "lblMedianSmoothSize";
+            this.lblMedianSmoothSize.Size = new System.Drawing.Size(107, 13);
+            this.lblMedianSmoothSize.TabIndex = 56;
+            this.lblMedianSmoothSize.Text = "Median Smooth Size:";
             // 
-            // btnLoad
+            // txtTemplateThresholdRate
             // 
-            this.btnLoad.Location = new System.Drawing.Point(3, 5);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(117, 23);
-            this.btnLoad.TabIndex = 0;
-            this.btnLoad.Text = "Select Directory";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            this.txtTemplateThresholdRate.Location = new System.Drawing.Point(156, 90);
+            this.txtTemplateThresholdRate.Name = "txtTemplateThresholdRate";
+            this.txtTemplateThresholdRate.Size = new System.Drawing.Size(32, 20);
+            this.txtTemplateThresholdRate.TabIndex = 55;
             // 
-            // pnlResults
+            // txtTemplateThresholdPoints
             // 
-            this.pnlResults.Controls.Add(this.chartResults);
-            this.pnlResults.Location = new System.Drawing.Point(218, 266);
-            this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(328, 218);
-            this.pnlResults.TabIndex = 4;
+            this.txtTemplateThresholdPoints.Location = new System.Drawing.Point(118, 90);
+            this.txtTemplateThresholdPoints.Name = "txtTemplateThresholdPoints";
+            this.txtTemplateThresholdPoints.Size = new System.Drawing.Size(32, 20);
+            this.txtTemplateThresholdPoints.TabIndex = 54;
             // 
-            // chartResults
+            // lblTemplateThresholds
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartResults.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartResults.Legends.Add(legend1);
-            this.chartResults.Location = new System.Drawing.Point(3, 3);
-            this.chartResults.Name = "chartResults";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "SeriesTrue";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "SeriesNotExact";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "SeriesFalse";
-            this.chartResults.Series.Add(series1);
-            this.chartResults.Series.Add(series2);
-            this.chartResults.Series.Add(series3);
-            this.chartResults.Size = new System.Drawing.Size(319, 212);
-            this.chartResults.TabIndex = 0;
-            // 
-            // btnLoadFaceTemplate
-            // 
-            this.btnLoadFaceTemplate.Location = new System.Drawing.Point(87, 3);
-            this.btnLoadFaceTemplate.Name = "btnLoadFaceTemplate";
-            this.btnLoadFaceTemplate.Size = new System.Drawing.Size(101, 23);
-            this.btnLoadFaceTemplate.TabIndex = 0;
-            this.btnLoadFaceTemplate.Text = "Face Template";
-            this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
-            this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
-            // 
-            // lblAdaptiveThresholdUpper
-            // 
-            this.lblAdaptiveThresholdUpper.AutoSize = true;
-            this.lblAdaptiveThresholdUpper.Location = new System.Drawing.Point(3, 29);
-            this.lblAdaptiveThresholdUpper.Name = "lblAdaptiveThresholdUpper";
-            this.lblAdaptiveThresholdUpper.Size = new System.Drawing.Size(134, 13);
-            this.lblAdaptiveThresholdUpper.TabIndex = 1;
-            this.lblAdaptiveThresholdUpper.Text = "Upper Adaptive Threshold:";
-            // 
-            // txtAdaptiveThresholdUpper
-            // 
-            this.txtAdaptiveThresholdUpper.Location = new System.Drawing.Point(143, 26);
-            this.txtAdaptiveThresholdUpper.Name = "txtAdaptiveThresholdUpper";
-            this.txtAdaptiveThresholdUpper.Size = new System.Drawing.Size(45, 20);
-            this.txtAdaptiveThresholdUpper.TabIndex = 2;
-            // 
-            // txtAdaptiveThresholdLower
-            // 
-            this.txtAdaptiveThresholdLower.Location = new System.Drawing.Point(143, 53);
-            this.txtAdaptiveThresholdLower.Name = "txtAdaptiveThresholdLower";
-            this.txtAdaptiveThresholdLower.Size = new System.Drawing.Size(45, 20);
-            this.txtAdaptiveThresholdLower.TabIndex = 4;
-            // 
-            // lblAdaptiveThresholdLower
-            // 
-            this.lblAdaptiveThresholdLower.AutoSize = true;
-            this.lblAdaptiveThresholdLower.Location = new System.Drawing.Point(3, 56);
-            this.lblAdaptiveThresholdLower.Name = "lblAdaptiveThresholdLower";
-            this.lblAdaptiveThresholdLower.Size = new System.Drawing.Size(134, 13);
-            this.lblAdaptiveThresholdLower.TabIndex = 3;
-            this.lblAdaptiveThresholdLower.Text = "Lower Adaptive Threshold:";
-            // 
-            // txtAdaptiveThresholdStep
-            // 
-            this.txtAdaptiveThresholdStep.Location = new System.Drawing.Point(143, 79);
-            this.txtAdaptiveThresholdStep.Name = "txtAdaptiveThresholdStep";
-            this.txtAdaptiveThresholdStep.Size = new System.Drawing.Size(45, 20);
-            this.txtAdaptiveThresholdStep.TabIndex = 6;
-            // 
-            // lblAdaptiveThresholdStep
-            // 
-            this.lblAdaptiveThresholdStep.AutoSize = true;
-            this.lblAdaptiveThresholdStep.Location = new System.Drawing.Point(3, 82);
-            this.lblAdaptiveThresholdStep.Name = "lblAdaptiveThresholdStep";
-            this.lblAdaptiveThresholdStep.Size = new System.Drawing.Size(127, 13);
-            this.lblAdaptiveThresholdStep.TabIndex = 5;
-            this.lblAdaptiveThresholdStep.Text = "Adaptive Threshold Step:";
-            // 
-            // txtSkinRegionMinHoles
-            // 
-            this.txtSkinRegionMinHoles.Location = new System.Drawing.Point(143, 106);
-            this.txtSkinRegionMinHoles.Name = "txtSkinRegionMinHoles";
-            this.txtSkinRegionMinHoles.Size = new System.Drawing.Size(45, 20);
-            this.txtSkinRegionMinHoles.TabIndex = 8;
-            // 
-            // lblSkinRegionMinHoles
-            // 
-            this.lblSkinRegionMinHoles.AutoSize = true;
-            this.lblSkinRegionMinHoles.Location = new System.Drawing.Point(3, 109);
-            this.lblSkinRegionMinHoles.Name = "lblSkinRegionMinHoles";
-            this.lblSkinRegionMinHoles.Size = new System.Drawing.Size(129, 13);
-            this.lblSkinRegionMinHoles.TabIndex = 7;
-            this.lblSkinRegionMinHoles.Text = "Min Holes in Skin Region:";
-            // 
-            // txtSkinRegionMinRatio
-            // 
-            this.txtSkinRegionMinRatio.Location = new System.Drawing.Point(118, 132);
-            this.txtSkinRegionMinRatio.Name = "txtSkinRegionMinRatio";
-            this.txtSkinRegionMinRatio.Size = new System.Drawing.Size(32, 20);
-            this.txtSkinRegionMinRatio.TabIndex = 10;
-            // 
-            // lblSkinRegionRation
-            // 
-            this.lblSkinRegionRation.AutoSize = true;
-            this.lblSkinRegionRation.Location = new System.Drawing.Point(3, 135);
-            this.lblSkinRegionRation.Name = "lblSkinRegionRation";
-            this.lblSkinRegionRation.Size = new System.Drawing.Size(96, 13);
-            this.lblSkinRegionRation.TabIndex = 9;
-            this.lblSkinRegionRation.Text = "Skin Region Ratio:";
-            // 
-            // txtSkinRegionCrsCrltn
-            // 
-            this.txtSkinRegionCrsCrltn.Location = new System.Drawing.Point(158, 158);
-            this.txtSkinRegionCrsCrltn.Name = "txtSkinRegionCrsCrltn";
-            this.txtSkinRegionCrsCrltn.Size = new System.Drawing.Size(30, 20);
-            this.txtSkinRegionCrsCrltn.TabIndex = 12;
-            // 
-            // lblSkinRegionCrsCrltn
-            // 
-            this.lblSkinRegionCrsCrltn.AutoSize = true;
-            this.lblSkinRegionCrsCrltn.Location = new System.Drawing.Point(3, 161);
-            this.lblSkinRegionCrsCrltn.Name = "lblSkinRegionCrsCrltn";
-            this.lblSkinRegionCrsCrltn.Size = new System.Drawing.Size(149, 13);
-            this.lblSkinRegionCrsCrltn.TabIndex = 11;
-            this.lblSkinRegionCrsCrltn.Text = "Skin Region Cross-Corellation:";
-            // 
-            // txtSkinRegionMaxRatio
-            // 
-            this.txtSkinRegionMaxRatio.Location = new System.Drawing.Point(156, 132);
-            this.txtSkinRegionMaxRatio.Name = "txtSkinRegionMaxRatio";
-            this.txtSkinRegionMaxRatio.Size = new System.Drawing.Size(32, 20);
-            this.txtSkinRegionMaxRatio.TabIndex = 13;
-            // 
-            // btnLoadModel
-            // 
-            this.btnLoadModel.Location = new System.Drawing.Point(6, 3);
-            this.btnLoadModel.Name = "btnLoadModel";
-            this.btnLoadModel.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadModel.TabIndex = 14;
-            this.btnLoadModel.Text = "Model";
-            this.btnLoadModel.UseVisualStyleBackColor = true;
-            this.btnLoadModel.Click += new System.EventHandler(this.btnLoadModel_Click);
+            this.lblTemplateThresholds.AutoSize = true;
+            this.lblTemplateThresholds.Location = new System.Drawing.Point(3, 93);
+            this.lblTemplateThresholds.Name = "lblTemplateThresholds";
+            this.lblTemplateThresholds.Size = new System.Drawing.Size(109, 13);
+            this.lblTemplateThresholds.TabIndex = 53;
+            this.lblTemplateThresholds.Text = "Template Thresholds:";
             // 
             // txtTestTemplateBStep
             // 
@@ -553,83 +519,122 @@
             this.lblTestTemplateX0.TabIndex = 37;
             this.lblTestTemplateX0.Text = "X0:";
             // 
-            // txtTemplateThresholdRate
+            // pnlImg
             // 
-            this.txtTemplateThresholdRate.Location = new System.Drawing.Point(156, 90);
-            this.txtTemplateThresholdRate.Name = "txtTemplateThresholdRate";
-            this.txtTemplateThresholdRate.Size = new System.Drawing.Size(32, 20);
-            this.txtTemplateThresholdRate.TabIndex = 55;
+            this.pnlImg.Controls.Add(this.lblStats);
+            this.pnlImg.Controls.Add(this.btnStop);
+            this.pnlImg.Controls.Add(this.btnFalse);
+            this.pnlImg.Controls.Add(this.btnInExact);
+            this.pnlImg.Controls.Add(this.btnTrue);
+            this.pnlImg.Controls.Add(this.pbImgTest);
+            this.pnlImg.Controls.Add(this.btnLoad);
+            this.pnlImg.Location = new System.Drawing.Point(218, 12);
+            this.pnlImg.Name = "pnlImg";
+            this.pnlImg.Size = new System.Drawing.Size(328, 248);
+            this.pnlImg.TabIndex = 3;
             // 
-            // txtTemplateThresholdPoints
+            // lblStats
             // 
-            this.txtTemplateThresholdPoints.Location = new System.Drawing.Point(118, 90);
-            this.txtTemplateThresholdPoints.Name = "txtTemplateThresholdPoints";
-            this.txtTemplateThresholdPoints.Size = new System.Drawing.Size(32, 20);
-            this.txtTemplateThresholdPoints.TabIndex = 54;
+            this.lblStats.AutoSize = true;
+            this.lblStats.Location = new System.Drawing.Point(126, 10);
+            this.lblStats.Name = "lblStats";
+            this.lblStats.Size = new System.Drawing.Size(35, 13);
+            this.lblStats.TabIndex = 6;
+            this.lblStats.Text = "label1";
             // 
-            // lblTemplateThresholds
+            // btnStop
             // 
-            this.lblTemplateThresholds.AutoSize = true;
-            this.lblTemplateThresholds.Location = new System.Drawing.Point(3, 93);
-            this.lblTemplateThresholds.Name = "lblTemplateThresholds";
-            this.lblTemplateThresholds.Size = new System.Drawing.Size(109, 13);
-            this.lblTemplateThresholds.TabIndex = 53;
-            this.lblTemplateThresholds.Text = "Template Thresholds:";
+            this.btnStop.Location = new System.Drawing.Point(247, 222);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 5;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // txtMedianSmoothSize
+            // btnFalse
             // 
-            this.txtMedianSmoothSize.Location = new System.Drawing.Point(118, 9);
-            this.txtMedianSmoothSize.Name = "txtMedianSmoothSize";
-            this.txtMedianSmoothSize.Size = new System.Drawing.Size(70, 20);
-            this.txtMedianSmoothSize.TabIndex = 57;
+            this.btnFalse.Location = new System.Drawing.Point(247, 92);
+            this.btnFalse.Name = "btnFalse";
+            this.btnFalse.Size = new System.Drawing.Size(75, 23);
+            this.btnFalse.TabIndex = 4;
+            this.btnFalse.Text = "False";
+            this.btnFalse.UseVisualStyleBackColor = true;
+            this.btnFalse.Click += new System.EventHandler(this.btnFalse_Click);
             // 
-            // lblMedianSmoothSize
+            // btnInExact
             // 
-            this.lblMedianSmoothSize.AutoSize = true;
-            this.lblMedianSmoothSize.Location = new System.Drawing.Point(3, 12);
-            this.lblMedianSmoothSize.Name = "lblMedianSmoothSize";
-            this.lblMedianSmoothSize.Size = new System.Drawing.Size(107, 13);
-            this.lblMedianSmoothSize.TabIndex = 56;
-            this.lblMedianSmoothSize.Text = "Median Smooth Size:";
+            this.btnInExact.Location = new System.Drawing.Point(247, 63);
+            this.btnInExact.Name = "btnInExact";
+            this.btnInExact.Size = new System.Drawing.Size(75, 23);
+            this.btnInExact.TabIndex = 3;
+            this.btnInExact.Text = "Not Exact";
+            this.btnInExact.UseVisualStyleBackColor = true;
+            this.btnInExact.Click += new System.EventHandler(this.btnInExact_Click);
             // 
-            // txtEraseChainsA
+            // btnTrue
             // 
-            this.txtEraseChainsA.Location = new System.Drawing.Point(118, 64);
-            this.txtEraseChainsA.Name = "txtEraseChainsA";
-            this.txtEraseChainsA.Size = new System.Drawing.Size(70, 20);
-            this.txtEraseChainsA.TabIndex = 59;
+            this.btnTrue.Location = new System.Drawing.Point(247, 34);
+            this.btnTrue.Name = "btnTrue";
+            this.btnTrue.Size = new System.Drawing.Size(75, 23);
+            this.btnTrue.TabIndex = 2;
+            this.btnTrue.Text = "True";
+            this.btnTrue.UseVisualStyleBackColor = true;
+            this.btnTrue.Click += new System.EventHandler(this.btnTrue_Click);
             // 
-            // lblEraseChainsA
+            // pbImgTest
             // 
-            this.lblEraseChainsA.AutoSize = true;
-            this.lblEraseChainsA.Location = new System.Drawing.Point(3, 67);
-            this.lblEraseChainsA.Name = "lblEraseChainsA";
-            this.lblEraseChainsA.Size = new System.Drawing.Size(93, 13);
-            this.lblEraseChainsA.TabIndex = 58;
-            this.lblEraseChainsA.Text = "Chain Min Length:";
+            this.pbImgTest.Location = new System.Drawing.Point(3, 34);
+            this.pbImgTest.Name = "pbImgTest";
+            this.pbImgTest.Size = new System.Drawing.Size(238, 211);
+            this.pbImgTest.TabIndex = 1;
+            this.pbImgTest.TabStop = false;
             // 
-            // txtCannyLinkThreshold
+            // btnLoad
             // 
-            this.txtCannyLinkThreshold.Location = new System.Drawing.Point(156, 35);
-            this.txtCannyLinkThreshold.Name = "txtCannyLinkThreshold";
-            this.txtCannyLinkThreshold.Size = new System.Drawing.Size(32, 20);
-            this.txtCannyLinkThreshold.TabIndex = 62;
+            this.btnLoad.Location = new System.Drawing.Point(3, 5);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(117, 23);
+            this.btnLoad.TabIndex = 0;
+            this.btnLoad.Text = "Select Directory";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // txtCannyThreshold
+            // dlgSelectDir
             // 
-            this.txtCannyThreshold.Location = new System.Drawing.Point(118, 35);
-            this.txtCannyThreshold.Name = "txtCannyThreshold";
-            this.txtCannyThreshold.Size = new System.Drawing.Size(32, 20);
-            this.txtCannyThreshold.TabIndex = 61;
+            this.dlgSelectDir.SelectedPath = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
+                "ces94\\male";
             // 
-            // lblCannyThresholds
+            // pnlResults
             // 
-            this.lblCannyThresholds.AutoSize = true;
-            this.lblCannyThresholds.Location = new System.Drawing.Point(3, 38);
-            this.lblCannyThresholds.Name = "lblCannyThresholds";
-            this.lblCannyThresholds.Size = new System.Drawing.Size(95, 13);
-            this.lblCannyThresholds.TabIndex = 60;
-            this.lblCannyThresholds.Text = "Canny Thresholds:";
+            this.pnlResults.Controls.Add(this.chartResults);
+            this.pnlResults.Location = new System.Drawing.Point(218, 266);
+            this.pnlResults.Name = "pnlResults";
+            this.pnlResults.Size = new System.Drawing.Size(328, 218);
+            this.pnlResults.TabIndex = 4;
+            // 
+            // chartResults
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartResults.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResults.Legends.Add(legend1);
+            this.chartResults.Location = new System.Drawing.Point(3, 3);
+            this.chartResults.Name = "chartResults";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "SeriesTrue";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "SeriesNotExact";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "SeriesFalse";
+            this.chartResults.Series.Add(series1);
+            this.chartResults.Series.Add(series2);
+            this.chartResults.Series.Add(series3);
+            this.chartResults.Size = new System.Drawing.Size(319, 212);
+            this.chartResults.TabIndex = 0;
             // 
             // TestForm
             // 
