@@ -36,7 +36,7 @@ namespace SkinDetection
         {
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName).Resize(0.66, INTER.CV_INTER_AREA);
+                imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName).Resize(0.5, INTER.CV_INTER_AREA);
                 pbTestImage.Image = imgTest.ToBitmap();
             }
         }
@@ -200,7 +200,7 @@ namespace SkinDetection
             {
                 foreach (var point in contour)
                 {
-                    if (!InEllipse(point, X0, Y0, a - 20, b - 20) && InEllipse(point, X0, Y0, a + 20, b + 20))
+                    if (!InEllipse(point, X0, Y0, a - 5, b - 5) && InEllipse(point, X0, Y0, a + 5, b + 5))
                     {
                         N++;
                     }
@@ -386,7 +386,7 @@ namespace SkinDetection
         private void btnSelectTemplate_Click(object sender, EventArgs e)
         {
             double maxCount = templates.Max(t => t.N);
-            var largeTemplates = templates.Where(t => t.N > (maxCount * 2 / 3));
+            var largeTemplates = templates.Where(t => t.N > (maxCount * 3 / 5));
             var topRateTemplates = largeTemplates.OrderBy(t => 1 / t.R);
 
             int A = 0, B = 0, X0 = 0, Y0 = 0;

@@ -17,6 +17,7 @@ namespace SkinDetection
     public partial class FaceColorModelCharts : Form
     {
         private int[,] colored = new int[256, 256];
+        private int counter = 0;
 
         private ChangRobles changRobles = null;
 
@@ -41,6 +42,7 @@ namespace SkinDetection
             if (dlgLoadModel.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 CleanColored();
+                counter = 0;
 
                 using (var fileStream = File.OpenRead(dlgLoadModel.FileName))
                 {
@@ -74,14 +76,8 @@ namespace SkinDetection
                                 {
                                     for (int j1 = 0; j1 < nextRect.Width; j1++)
                                     {
-                                        if (colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] > 500)
-                                        {
-                                            colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] += 2;
-                                        }
-                                        else
-                                        {
-                                            colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] ++;
-                                        }
+                                        colored[img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 0], img.Data[i1 + nextRect.Top, j1 + nextRect.Left, 2]] ++;
+                                        counter++;
                                     }
                                 }
                             }

@@ -456,7 +456,7 @@ namespace SkinDetection
 
         private void btnFilterByTemplate_Click(object sender, EventArgs e)
         {
-            skinRegions = skinRegions.Where(sr => model.MatchTemplate(imgTest, sr, imgFaceTemplate) >= 0.6).ToList();
+            skinRegions = skinRegions.Where(sr => model.MatchTemplate(imgTest, sr, imgFaceTemplate) >= 0.7).ToList();
             FillSkinRegions();
         }
 
