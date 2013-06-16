@@ -45,5 +45,11 @@ namespace SkinDetection
             var frm = new TestForm();
             frm.Show();
         }
+
+        private void btnEllipseCutter_Click(object sender, EventArgs e)
+        {
+            var frm = new EllipseCutter();
+            frm.Show();
+        }
     }
 }

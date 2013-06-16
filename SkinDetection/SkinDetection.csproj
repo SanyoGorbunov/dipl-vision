@@ -62,6 +62,12 @@
     <Compile Include="DatabaseUtil.Designer.cs">
       <DependentUpon>DatabaseUtil.cs</DependentUpon>
     </Compile>
+    <Compile Include="EllipseCutter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EllipseCutter.Designer.cs">
+      <DependentUpon>EllipseCutter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FaceColorLib.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     <Compile Include="WangTan.cs" />
     <EmbeddedResource Include="DatabaseUtil.resx">
       <DependentUpon>DatabaseUtil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EllipseCutter.resx">
+      <DependentUpon>EllipseCutter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FaceColorLib.resx">
       <DependentUpon>FaceColorLib.cs</DependentUpon>

@@ -36,6 +36,7 @@
             this.btnFaceColorModels = new System.Windows.Forms.Button();
             this.lblTest = new System.Windows.Forms.Label();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnEllipseCutter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFaceColorLib
@@ -115,11 +116,22 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
+            // btnEllipseCutter
+            // 
+            this.btnEllipseCutter.Location = new System.Drawing.Point(105, 133);
+            this.btnEllipseCutter.Name = "btnEllipseCutter";
+            this.btnEllipseCutter.Size = new System.Drawing.Size(75, 35);
+            this.btnEllipseCutter.TabIndex = 8;
+            this.btnEllipseCutter.Text = "Ellipse Cutter";
+            this.btnEllipseCutter.UseVisualStyleBackColor = true;
+            this.btnEllipseCutter.Click += new System.EventHandler(this.btnEllipseCutter_Click);
+            // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(192, 262);
+            this.Controls.Add(this.btnEllipseCutter);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.lblTest);
             this.Controls.Add(this.btnFaceColorModels);
@@ -145,5 +157,6 @@
         private System.Windows.Forms.Button btnFaceColorModels;
         private System.Windows.Forms.Label lblTest;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnEllipseCutter;
     }
 }
