@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlLib = new System.Windows.Forms.Panel();
+            this.btnLibAddDir = new System.Windows.Forms.Button();
             this.btnSaveLib = new System.Windows.Forms.Button();
             this.btnLoadLib = new System.Windows.Forms.Button();
             this.btnLibAdd = new System.Windows.Forms.Button();
@@ -87,8 +88,10 @@
             this.pbFaceTemplate = new System.Windows.Forms.PictureBox();
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
             this.btnTest = new System.Windows.Forms.Button();
-            this.btnLibAddDir = new System.Windows.Forms.Button();
             this.dlgLibOpenDir = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblMeanTitle = new System.Windows.Forms.Label();
+            this.lblCovTitle = new System.Windows.Forms.Label();
+            this.lblSkinRegionTitle = new System.Windows.Forms.Label();
             this.pnlLib.SuspendLayout();
             this.pnlSelectRegion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).BeginInit();
@@ -111,13 +114,23 @@
             this.pnlLib.Size = new System.Drawing.Size(312, 362);
             this.pnlLib.TabIndex = 0;
             // 
+            // btnLibAddDir
+            // 
+            this.btnLibAddDir.Location = new System.Drawing.Point(210, 45);
+            this.btnLibAddDir.Name = "btnLibAddDir";
+            this.btnLibAddDir.Size = new System.Drawing.Size(99, 47);
+            this.btnLibAddDir.TabIndex = 4;
+            this.btnLibAddDir.Text = "Додати директорію";
+            this.btnLibAddDir.UseVisualStyleBackColor = true;
+            this.btnLibAddDir.Click += new System.EventHandler(this.btnLibAddDir_Click);
+            // 
             // btnSaveLib
             // 
             this.btnSaveLib.Location = new System.Drawing.Point(210, 328);
             this.btnSaveLib.Name = "btnSaveLib";
-            this.btnSaveLib.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveLib.Size = new System.Drawing.Size(99, 23);
             this.btnSaveLib.TabIndex = 3;
-            this.btnSaveLib.Text = "Save";
+            this.btnSaveLib.Text = "Зберегти";
             this.btnSaveLib.UseVisualStyleBackColor = true;
             this.btnSaveLib.Click += new System.EventHandler(this.btnSaveLib_Click);
             // 
@@ -125,9 +138,9 @@
             // 
             this.btnLoadLib.Location = new System.Drawing.Point(210, 299);
             this.btnLoadLib.Name = "btnLoadLib";
-            this.btnLoadLib.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadLib.Size = new System.Drawing.Size(99, 23);
             this.btnLoadLib.TabIndex = 2;
-            this.btnLoadLib.Text = "Load";
+            this.btnLoadLib.Text = "Завантажити";
             this.btnLoadLib.UseVisualStyleBackColor = true;
             this.btnLoadLib.Click += new System.EventHandler(this.btnLoadLib_Click);
             // 
@@ -135,9 +148,9 @@
             // 
             this.btnLibAdd.Location = new System.Drawing.Point(210, 16);
             this.btnLibAdd.Name = "btnLibAdd";
-            this.btnLibAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnLibAdd.Size = new System.Drawing.Size(99, 23);
             this.btnLibAdd.TabIndex = 1;
-            this.btnLibAdd.Text = "Add";
+            this.btnLibAdd.Text = "Додати";
             this.btnLibAdd.UseVisualStyleBackColor = true;
             this.btnLibAdd.Click += new System.EventHandler(this.btnLibAdd_Click);
             // 
@@ -168,11 +181,11 @@
             // 
             // btnApplyKernel
             // 
-            this.btnApplyKernel.Location = new System.Drawing.Point(176, 32);
+            this.btnApplyKernel.Location = new System.Drawing.Point(176, 69);
             this.btnApplyKernel.Name = "btnApplyKernel";
-            this.btnApplyKernel.Size = new System.Drawing.Size(106, 23);
+            this.btnApplyKernel.Size = new System.Drawing.Size(106, 44);
             this.btnApplyKernel.TabIndex = 8;
-            this.btnApplyKernel.Text = "Apply Kernel";
+            this.btnApplyKernel.Text = "Застосувати фільтр";
             this.btnApplyKernel.UseVisualStyleBackColor = true;
             this.btnApplyKernel.Click += new System.EventHandler(this.btnApplyKernel_Click);
             // 
@@ -192,9 +205,9 @@
             // 
             this.btnLoadTestImage.Location = new System.Drawing.Point(176, 3);
             this.btnLoadTestImage.Name = "btnLoadTestImage";
-            this.btnLoadTestImage.Size = new System.Drawing.Size(106, 23);
+            this.btnLoadTestImage.Size = new System.Drawing.Size(106, 60);
             this.btnLoadTestImage.TabIndex = 5;
-            this.btnLoadTestImage.Text = "Load Test Image";
+            this.btnLoadTestImage.Text = "Завантажити тестове зображення";
             this.btnLoadTestImage.UseVisualStyleBackColor = true;
             this.btnLoadTestImage.Click += new System.EventHandler(this.btnLoadTestImage_Click);
             // 
@@ -204,12 +217,14 @@
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(171, 43);
             this.btnCalculate.TabIndex = 3;
-            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.Text = "Розрахувати";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // pnlResults
             // 
+            this.pnlResults.Controls.Add(this.lblCovTitle);
+            this.pnlResults.Controls.Add(this.lblMeanTitle);
             this.pnlResults.Controls.Add(this.btnDisplayLikelihood);
             this.pnlResults.Controls.Add(this.btnLoadColorModel);
             this.pnlResults.Controls.Add(this.btnSaveColorModel);
@@ -218,43 +233,43 @@
             this.pnlResults.Controls.Add(this.lblMean);
             this.pnlResults.Location = new System.Drawing.Point(682, 61);
             this.pnlResults.Name = "pnlResults";
-            this.pnlResults.Size = new System.Drawing.Size(171, 194);
+            this.pnlResults.Size = new System.Drawing.Size(171, 226);
             this.pnlResults.TabIndex = 4;
             // 
             // btnDisplayLikelihood
             // 
-            this.btnDisplayLikelihood.Location = new System.Drawing.Point(23, 156);
+            this.btnDisplayLikelihood.Location = new System.Drawing.Point(14, 187);
             this.btnDisplayLikelihood.Name = "btnDisplayLikelihood";
-            this.btnDisplayLikelihood.Size = new System.Drawing.Size(105, 30);
+            this.btnDisplayLikelihood.Size = new System.Drawing.Size(141, 36);
             this.btnDisplayLikelihood.TabIndex = 5;
-            this.btnDisplayLikelihood.Text = "Test Likelihood";
+            this.btnDisplayLikelihood.Text = "Отримати імовірнісне зображення";
             this.btnDisplayLikelihood.UseVisualStyleBackColor = true;
             this.btnDisplayLikelihood.Click += new System.EventHandler(this.btnDisplayLikelihood_Click);
             // 
             // btnLoadColorModel
             // 
-            this.btnLoadColorModel.Location = new System.Drawing.Point(23, 127);
+            this.btnLoadColorModel.Location = new System.Drawing.Point(14, 158);
             this.btnLoadColorModel.Name = "btnLoadColorModel";
-            this.btnLoadColorModel.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadColorModel.Size = new System.Drawing.Size(141, 23);
             this.btnLoadColorModel.TabIndex = 4;
-            this.btnLoadColorModel.Text = "Load";
+            this.btnLoadColorModel.Text = "Завантажити модель";
             this.btnLoadColorModel.UseVisualStyleBackColor = true;
             this.btnLoadColorModel.Click += new System.EventHandler(this.btnLoadColorModel_Click);
             // 
             // btnSaveColorModel
             // 
-            this.btnSaveColorModel.Location = new System.Drawing.Point(23, 98);
+            this.btnSaveColorModel.Location = new System.Drawing.Point(14, 129);
             this.btnSaveColorModel.Name = "btnSaveColorModel";
-            this.btnSaveColorModel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveColorModel.Size = new System.Drawing.Size(141, 23);
             this.btnSaveColorModel.TabIndex = 3;
-            this.btnSaveColorModel.Text = "Save";
+            this.btnSaveColorModel.Text = "Зберегти модель";
             this.btnSaveColorModel.UseVisualStyleBackColor = true;
             this.btnSaveColorModel.Click += new System.EventHandler(this.btnSaveColorModel_Click);
             // 
             // lblCov2
             // 
             this.lblCov2.AutoSize = true;
-            this.lblCov2.Location = new System.Drawing.Point(27, 74);
+            this.lblCov2.Location = new System.Drawing.Point(26, 110);
             this.lblCov2.Name = "lblCov2";
             this.lblCov2.Size = new System.Drawing.Size(35, 13);
             this.lblCov2.TabIndex = 2;
@@ -263,7 +278,7 @@
             // lblCov1
             // 
             this.lblCov1.AutoSize = true;
-            this.lblCov1.Location = new System.Drawing.Point(27, 51);
+            this.lblCov1.Location = new System.Drawing.Point(26, 87);
             this.lblCov1.Name = "lblCov1";
             this.lblCov1.Size = new System.Drawing.Size(35, 13);
             this.lblCov1.TabIndex = 1;
@@ -272,7 +287,7 @@
             // lblMean
             // 
             this.lblMean.AutoSize = true;
-            this.lblMean.Location = new System.Drawing.Point(27, 17);
+            this.lblMean.Location = new System.Drawing.Point(26, 36);
             this.lblMean.Name = "lblMean";
             this.lblMean.Size = new System.Drawing.Size(35, 13);
             this.lblMean.TabIndex = 0;
@@ -299,9 +314,9 @@
             this.pnlThresholdingDemo.Controls.Add(this.btnSetTreshold);
             this.pnlThresholdingDemo.Controls.Add(this.txtTreshBound);
             this.pnlThresholdingDemo.Controls.Add(this.lblTreshBound);
-            this.pnlThresholdingDemo.Location = new System.Drawing.Point(683, 268);
+            this.pnlThresholdingDemo.Location = new System.Drawing.Point(682, 293);
             this.pnlThresholdingDemo.Name = "pnlThresholdingDemo";
-            this.pnlThresholdingDemo.Size = new System.Drawing.Size(170, 106);
+            this.pnlThresholdingDemo.Size = new System.Drawing.Size(170, 100);
             this.pnlThresholdingDemo.TabIndex = 6;
             // 
             // btnRunThresh
@@ -310,17 +325,17 @@
             this.btnRunThresh.Name = "btnRunThresh";
             this.btnRunThresh.Size = new System.Drawing.Size(149, 23);
             this.btnRunThresh.TabIndex = 5;
-            this.btnRunThresh.Text = "Run Thresholding";
+            this.btnRunThresh.Text = "Виконати пошук границі";
             this.btnRunThresh.UseVisualStyleBackColor = true;
             this.btnRunThresh.Click += new System.EventHandler(this.btnRunThresh_Click);
             // 
             // btnSetTreshold
             // 
-            this.btnSetTreshold.Location = new System.Drawing.Point(68, 43);
+            this.btnSetTreshold.Location = new System.Drawing.Point(6, 43);
             this.btnSetTreshold.Name = "btnSetTreshold";
-            this.btnSetTreshold.Size = new System.Drawing.Size(87, 23);
+            this.btnSetTreshold.Size = new System.Drawing.Size(149, 23);
             this.btnSetTreshold.TabIndex = 4;
-            this.btnSetTreshold.Text = "Set Threshold";
+            this.btnSetTreshold.Text = "Встановити границю";
             this.btnSetTreshold.UseVisualStyleBackColor = true;
             this.btnSetTreshold.Click += new System.EventHandler(this.btnSetTreshold_Click);
             // 
@@ -336,12 +351,13 @@
             this.lblTreshBound.AutoSize = true;
             this.lblTreshBound.Location = new System.Drawing.Point(3, 20);
             this.lblTreshBound.Name = "lblTreshBound";
-            this.lblTreshBound.Size = new System.Drawing.Size(41, 13);
+            this.lblTreshBound.Size = new System.Drawing.Size(52, 13);
             this.lblTreshBound.TabIndex = 0;
-            this.lblTreshBound.Text = "Bound:";
+            this.lblTreshBound.Text = "Границя:";
             // 
             // pnlSkinRegions
             // 
+            this.pnlSkinRegions.Controls.Add(this.lblSkinRegionTitle);
             this.pnlSkinRegions.Controls.Add(this.btnFilterByTemplate);
             this.pnlSkinRegions.Controls.Add(this.btnFilterByRatio);
             this.pnlSkinRegions.Controls.Add(this.btnShowRegion);
@@ -364,129 +380,120 @@
             // 
             // btnFilterByTemplate
             // 
-            this.btnFilterByTemplate.Location = new System.Drawing.Point(11, 344);
+            this.btnFilterByTemplate.Location = new System.Drawing.Point(11, 353);
             this.btnFilterByTemplate.Name = "btnFilterByTemplate";
-            this.btnFilterByTemplate.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByTemplate.Size = new System.Drawing.Size(157, 23);
             this.btnFilterByTemplate.TabIndex = 14;
-            this.btnFilterByTemplate.Text = "Filter by Template";
+            this.btnFilterByTemplate.Text = "Перевірка зразком";
             this.btnFilterByTemplate.UseVisualStyleBackColor = true;
             this.btnFilterByTemplate.Click += new System.EventHandler(this.btnFilterByTemplate_Click);
             // 
             // btnFilterByRatio
             // 
-            this.btnFilterByRatio.Location = new System.Drawing.Point(11, 315);
+            this.btnFilterByRatio.Location = new System.Drawing.Point(11, 324);
             this.btnFilterByRatio.Name = "btnFilterByRatio";
-            this.btnFilterByRatio.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByRatio.Size = new System.Drawing.Size(157, 23);
             this.btnFilterByRatio.TabIndex = 13;
-            this.btnFilterByRatio.Text = "Filter by Ratio";
+            this.btnFilterByRatio.Text = "Перевірка на пропорцію";
             this.btnFilterByRatio.UseVisualStyleBackColor = true;
             this.btnFilterByRatio.Click += new System.EventHandler(this.btnFilterByRatio_Click);
             // 
             // btnShowRegion
             // 
-            this.btnShowRegion.Location = new System.Drawing.Point(84, 7);
+            this.btnShowRegion.Location = new System.Drawing.Point(84, 16);
             this.btnShowRegion.Name = "btnShowRegion";
             this.btnShowRegion.Size = new System.Drawing.Size(84, 23);
             this.btnShowRegion.TabIndex = 12;
-            this.btnShowRegion.Text = "Show Region";
+            this.btnShowRegion.Text = "Зобразити";
             this.btnShowRegion.UseVisualStyleBackColor = true;
             this.btnShowRegion.Click += new System.EventHandler(this.btnShowRegion_Click);
             // 
             // lblSkinRegionRatio
             // 
             this.lblSkinRegionRatio.AutoSize = true;
-            this.lblSkinRegionRatio.Location = new System.Drawing.Point(8, 256);
+            this.lblSkinRegionRatio.Location = new System.Drawing.Point(8, 265);
             this.lblSkinRegionRatio.Name = "lblSkinRegionRatio";
-            this.lblSkinRegionRatio.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionRatio.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionRatio.TabIndex = 11;
-            this.lblSkinRegionRatio.Text = "label1";
             // 
             // lblSkinRegionInclination
             // 
             this.lblSkinRegionInclination.AutoSize = true;
-            this.lblSkinRegionInclination.Location = new System.Drawing.Point(8, 243);
+            this.lblSkinRegionInclination.Location = new System.Drawing.Point(8, 252);
             this.lblSkinRegionInclination.Name = "lblSkinRegionInclination";
-            this.lblSkinRegionInclination.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionInclination.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionInclination.TabIndex = 10;
-            this.lblSkinRegionInclination.Text = "label1";
             // 
             // lblSkinRegionCentroid
             // 
             this.lblSkinRegionCentroid.AutoSize = true;
-            this.lblSkinRegionCentroid.Location = new System.Drawing.Point(8, 230);
+            this.lblSkinRegionCentroid.Location = new System.Drawing.Point(8, 239);
             this.lblSkinRegionCentroid.Name = "lblSkinRegionCentroid";
-            this.lblSkinRegionCentroid.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionCentroid.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionCentroid.TabIndex = 9;
-            this.lblSkinRegionCentroid.Text = "label1";
             // 
             // btnFilterByHoles
             // 
-            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 286);
+            this.btnFilterByHoles.Location = new System.Drawing.Point(11, 295);
             this.btnFilterByHoles.Name = "btnFilterByHoles";
-            this.btnFilterByHoles.Size = new System.Drawing.Size(113, 23);
+            this.btnFilterByHoles.Size = new System.Drawing.Size(157, 23);
             this.btnFilterByHoles.TabIndex = 8;
-            this.btnFilterByHoles.Text = "Filter by Holes";
+            this.btnFilterByHoles.Text = "Перевірка на порожнини";
             this.btnFilterByHoles.UseVisualStyleBackColor = true;
             this.btnFilterByHoles.Click += new System.EventHandler(this.btnFilterByHoles_Click);
             // 
             // lblSkinRegionHoles
             // 
             this.lblSkinRegionHoles.AutoSize = true;
-            this.lblSkinRegionHoles.Location = new System.Drawing.Point(8, 216);
+            this.lblSkinRegionHoles.Location = new System.Drawing.Point(8, 225);
             this.lblSkinRegionHoles.Name = "lblSkinRegionHoles";
-            this.lblSkinRegionHoles.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHoles.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionHoles.TabIndex = 7;
-            this.lblSkinRegionHoles.Text = "label1";
             // 
             // lblSkinRegionHeight
             // 
             this.lblSkinRegionHeight.AutoSize = true;
-            this.lblSkinRegionHeight.Location = new System.Drawing.Point(8, 203);
+            this.lblSkinRegionHeight.Location = new System.Drawing.Point(8, 212);
             this.lblSkinRegionHeight.Name = "lblSkinRegionHeight";
-            this.lblSkinRegionHeight.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionHeight.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionHeight.TabIndex = 6;
-            this.lblSkinRegionHeight.Text = "label1";
             // 
             // lblSkinRegionTop
             // 
             this.lblSkinRegionTop.AutoSize = true;
-            this.lblSkinRegionTop.Location = new System.Drawing.Point(8, 190);
+            this.lblSkinRegionTop.Location = new System.Drawing.Point(8, 199);
             this.lblSkinRegionTop.Name = "lblSkinRegionTop";
-            this.lblSkinRegionTop.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionTop.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionTop.TabIndex = 5;
-            this.lblSkinRegionTop.Text = "label1";
             // 
             // lblSkinRegionWidth
             // 
             this.lblSkinRegionWidth.AutoSize = true;
-            this.lblSkinRegionWidth.Location = new System.Drawing.Point(8, 177);
+            this.lblSkinRegionWidth.Location = new System.Drawing.Point(8, 186);
             this.lblSkinRegionWidth.Name = "lblSkinRegionWidth";
-            this.lblSkinRegionWidth.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionWidth.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionWidth.TabIndex = 4;
-            this.lblSkinRegionWidth.Text = "label1";
             // 
             // lblSkinRegionLeft
             // 
             this.lblSkinRegionLeft.AutoSize = true;
-            this.lblSkinRegionLeft.Location = new System.Drawing.Point(8, 164);
+            this.lblSkinRegionLeft.Location = new System.Drawing.Point(8, 173);
             this.lblSkinRegionLeft.Name = "lblSkinRegionLeft";
-            this.lblSkinRegionLeft.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionLeft.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionLeft.TabIndex = 3;
-            this.lblSkinRegionLeft.Text = "label1";
             // 
             // lblSkinRegionPixels
             // 
             this.lblSkinRegionPixels.AutoSize = true;
-            this.lblSkinRegionPixels.Location = new System.Drawing.Point(8, 151);
+            this.lblSkinRegionPixels.Location = new System.Drawing.Point(8, 160);
             this.lblSkinRegionPixels.Name = "lblSkinRegionPixels";
-            this.lblSkinRegionPixels.Size = new System.Drawing.Size(35, 13);
+            this.lblSkinRegionPixels.Size = new System.Drawing.Size(0, 13);
             this.lblSkinRegionPixels.TabIndex = 2;
-            this.lblSkinRegionPixels.Text = "label1";
             // 
             // lbSkinRegions
             // 
             this.lbSkinRegions.FormattingEnabled = true;
-            this.lbSkinRegions.Location = new System.Drawing.Point(3, 36);
+            this.lbSkinRegions.Location = new System.Drawing.Point(3, 45);
             this.lbSkinRegions.Name = "lbSkinRegions";
             this.lbSkinRegions.Size = new System.Drawing.Size(165, 108);
             this.lbSkinRegions.TabIndex = 1;
@@ -494,11 +501,11 @@
             // 
             // btnFindSkinRegions
             // 
-            this.btnFindSkinRegions.Location = new System.Drawing.Point(3, 7);
+            this.btnFindSkinRegions.Location = new System.Drawing.Point(3, 16);
             this.btnFindSkinRegions.Name = "btnFindSkinRegions";
             this.btnFindSkinRegions.Size = new System.Drawing.Size(75, 23);
             this.btnFindSkinRegions.TabIndex = 0;
-            this.btnFindSkinRegions.Text = "Find";
+            this.btnFindSkinRegions.Text = "Знайти";
             this.btnFindSkinRegions.UseVisualStyleBackColor = true;
             this.btnFindSkinRegions.Click += new System.EventHandler(this.btnFindSkinRegions_Click);
             // 
@@ -533,6 +540,7 @@
             this.lblCrossCorellationValue.Size = new System.Drawing.Size(35, 13);
             this.lblCrossCorellationValue.TabIndex = 11;
             this.lblCrossCorellationValue.Text = "label1";
+            this.lblCrossCorellationValue.Visible = false;
             // 
             // btnApplyTemplate
             // 
@@ -540,7 +548,7 @@
             this.btnApplyTemplate.Name = "btnApplyTemplate";
             this.btnApplyTemplate.Size = new System.Drawing.Size(122, 23);
             this.btnApplyTemplate.TabIndex = 10;
-            this.btnApplyTemplate.Text = "Apply Template";
+            this.btnApplyTemplate.Text = "Застосувати зразок";
             this.btnApplyTemplate.UseVisualStyleBackColor = true;
             this.btnApplyTemplate.Click += new System.EventHandler(this.btnApplyTemplate_Click);
             // 
@@ -550,15 +558,15 @@
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(106, 23);
             this.btnResize.TabIndex = 9;
-            this.btnResize.Text = "Resize";
+            this.btnResize.Text = "Змінити розмір";
             this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
             // 
             // txtNewHeight
             // 
-            this.txtNewHeight.Location = new System.Drawing.Point(219, 125);
+            this.txtNewHeight.Location = new System.Drawing.Point(228, 125);
             this.txtNewHeight.Name = "txtNewHeight";
-            this.txtNewHeight.Size = new System.Drawing.Size(63, 20);
+            this.txtNewHeight.Size = new System.Drawing.Size(54, 20);
             this.txtNewHeight.TabIndex = 8;
             // 
             // lblNewHeight
@@ -566,15 +574,15 @@
             this.lblNewHeight.AutoSize = true;
             this.lblNewHeight.Location = new System.Drawing.Point(176, 128);
             this.lblNewHeight.Name = "lblNewHeight";
-            this.lblNewHeight.Size = new System.Drawing.Size(41, 13);
+            this.lblNewHeight.Size = new System.Drawing.Size(46, 13);
             this.lblNewHeight.TabIndex = 7;
-            this.lblNewHeight.Text = "Height:";
+            this.lblNewHeight.Text = "Висота:";
             // 
             // txtNewWidth
             // 
-            this.txtNewWidth.Location = new System.Drawing.Point(219, 101);
+            this.txtNewWidth.Location = new System.Drawing.Point(231, 101);
             this.txtNewWidth.Name = "txtNewWidth";
-            this.txtNewWidth.Size = new System.Drawing.Size(63, 20);
+            this.txtNewWidth.Size = new System.Drawing.Size(51, 20);
             this.txtNewWidth.TabIndex = 6;
             // 
             // lblNewWidth
@@ -582,9 +590,9 @@
             this.lblNewWidth.AutoSize = true;
             this.lblNewWidth.Location = new System.Drawing.Point(176, 104);
             this.lblNewWidth.Name = "lblNewWidth";
-            this.lblNewWidth.Size = new System.Drawing.Size(38, 13);
+            this.lblNewWidth.Size = new System.Drawing.Size(49, 13);
             this.lblNewWidth.TabIndex = 5;
-            this.lblNewWidth.Text = "Width:";
+            this.lblNewWidth.Text = "Ширина:";
             // 
             // btnRotate
             // 
@@ -592,7 +600,7 @@
             this.btnRotate.Name = "btnRotate";
             this.btnRotate.Size = new System.Drawing.Size(106, 23);
             this.btnRotate.TabIndex = 4;
-            this.btnRotate.Text = "Rotate";
+            this.btnRotate.Text = "Повернути";
             this.btnRotate.UseVisualStyleBackColor = true;
             this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             // 
@@ -608,9 +616,9 @@
             this.lblAngle.AutoSize = true;
             this.lblAngle.Location = new System.Drawing.Point(176, 49);
             this.lblAngle.Name = "lblAngle";
-            this.lblAngle.Size = new System.Drawing.Size(37, 13);
+            this.lblAngle.Size = new System.Drawing.Size(27, 13);
             this.lblAngle.TabIndex = 2;
-            this.lblAngle.Text = "Angle:";
+            this.lblAngle.Text = "Кут:";
             // 
             // btnLoadFaceTemplate
             // 
@@ -618,7 +626,7 @@
             this.btnLoadFaceTemplate.Name = "btnLoadFaceTemplate";
             this.btnLoadFaceTemplate.Size = new System.Drawing.Size(106, 37);
             this.btnLoadFaceTemplate.TabIndex = 1;
-            this.btnLoadFaceTemplate.Text = "Load Face Template";
+            this.btnLoadFaceTemplate.Text = "Завантажити зразок обличчя";
             this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
             this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
             // 
@@ -642,23 +650,41 @@
             this.btnTest.TabIndex = 9;
             this.btnTest.Text = "Test";
             this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
-            // btnLibAddDir
+            // lblMeanTitle
             // 
-            this.btnLibAddDir.Location = new System.Drawing.Point(210, 45);
-            this.btnLibAddDir.Name = "btnLibAddDir";
-            this.btnLibAddDir.Size = new System.Drawing.Size(75, 23);
-            this.btnLibAddDir.TabIndex = 4;
-            this.btnLibAddDir.Text = "Add Dir";
-            this.btnLibAddDir.UseVisualStyleBackColor = true;
-            this.btnLibAddDir.Click += new System.EventHandler(this.btnLibAddDir_Click);
+            this.lblMeanTitle.AutoSize = true;
+            this.lblMeanTitle.Location = new System.Drawing.Point(26, 13);
+            this.lblMeanTitle.Name = "lblMeanTitle";
+            this.lblMeanTitle.Size = new System.Drawing.Size(103, 13);
+            this.lblMeanTitle.TabIndex = 6;
+            this.lblMeanTitle.Text = "Середнє значення:";
+            // 
+            // lblCovTitle
+            // 
+            this.lblCovTitle.AutoSize = true;
+            this.lblCovTitle.Location = new System.Drawing.Point(26, 62);
+            this.lblCovTitle.Name = "lblCovTitle";
+            this.lblCovTitle.Size = new System.Drawing.Size(121, 13);
+            this.lblCovTitle.TabIndex = 7;
+            this.lblCovTitle.Text = "Коваріаційна матриця:";
+            // 
+            // lblSkinRegionTitle
+            // 
+            this.lblSkinRegionTitle.AutoSize = true;
+            this.lblSkinRegionTitle.Location = new System.Drawing.Point(3, -3);
+            this.lblSkinRegionTitle.Name = "lblSkinRegionTitle";
+            this.lblSkinRegionTitle.Size = new System.Drawing.Size(140, 13);
+            this.lblSkinRegionTitle.TabIndex = 15;
+            this.lblSkinRegionTitle.Text = "Робота з частинами шкіри";
             // 
             // FaceColorLib
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 416);
+            this.ClientSize = new System.Drawing.Size(1042, 398);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.pnlFaceTemplate);
             this.Controls.Add(this.pnlSkinRegions);
@@ -668,7 +694,7 @@
             this.Controls.Add(this.pnlSelectRegion);
             this.Controls.Add(this.pnlLib);
             this.Name = "FaceColorLib";
-            this.Text = "Face Color Library";
+            this.Text = "Метод на основі кольору шкіри";
             this.pnlLib.ResumeLayout(false);
             this.pnlSelectRegion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbFace)).EndInit();
@@ -748,6 +774,9 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnLibAddDir;
         private System.Windows.Forms.FolderBrowserDialog dlgLibOpenDir;
+        private System.Windows.Forms.Label lblCovTitle;
+        private System.Windows.Forms.Label lblMeanTitle;
+        private System.Windows.Forms.Label lblSkinRegionTitle;
 
     }
 }

@@ -27,7 +27,6 @@ namespace SkinDetection
 
         private void btnEqualizeTestImage_Click(object sender, EventArgs e)
         {
-            imgActualTest = imgTest.Convert<Gray, byte>();
             imgActualTest._EqualizeHist();
             pbTestImage.Image = imgActualTest.ToBitmap();
         }
@@ -57,6 +56,8 @@ namespace SkinDetection
         private List<Contour<Point>> contours;
         private void btnDetectEdges_Click(object sender, EventArgs e)
         {
+            WangTan wt = new WangTan();
+
             double th0 = double.Parse(txtCannyInitialThresh.Text);
             double eth = double.Parse(txtCannyEdgeThresh.Text);
             var imgEdges = imgActualTest.Canny(th0, eth);
@@ -70,11 +71,11 @@ namespace SkinDetection
             {
                 contours.Add(firstContour);
                 i++;
-                lbContours.Items.Add("Contour #" + i);
+                lbContours.Items.Add("Контур #" + i);
                 firstContour = firstContour.HNext;
             } while (firstContour != null);
 
-            lblContourCount.Text = string.Format("Contours: {0}", contours.Count);
+            lblContourCount.Text = string.Format("Контурів: {0}", contours.Count);
         }
 
         private void lbContours_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,10 +116,10 @@ namespace SkinDetection
             contours = contours.Where(c => GetArcLength(c) > minArc).ToList();
 
             lbContours.Items.Clear();
-            lblContourCount.Text = string.Format("Contours: {0}", contours.Count);
+            lblContourCount.Text = string.Format("Контурів: {0}", contours.Count);
             for (int i = 0; i < contours.Count; i++)
             {
-                lbContours.Items.Add("Contour #" + (i + 1));
+                lbContours.Items.Add("Контур #" + (i + 1));
             }
         }
 
@@ -134,10 +135,10 @@ namespace SkinDetection
             contours = divided;
 
             lbContours.Items.Clear();
-            lblContourCount.Text = string.Format("Contours: {0}", contours.Count);
+            lblContourCount.Text = string.Format("Контури: {0}", contours.Count);
             for (int i = 0; i < contours.Count; i++)
             {
-                lbContours.Items.Add("Contour #" + (i + 1));
+                lbContours.Items.Add("Контур #" + (i + 1));
             }
         }
 
@@ -206,7 +207,7 @@ namespace SkinDetection
             {
                 foreach (var point in contour)
                 {
-                    if (!InEllipse(point, X0, Y0, a - 5, b - 5) && InEllipse(point, X0, Y0, a + 5, b + 5))
+                    if (!InEllipse(point, X0, Y0, a, b) && InEllipse(point, X0, Y0, a + 5, b + 5))
                     {
                         N++;
 
@@ -242,7 +243,7 @@ namespace SkinDetection
                 X0, Y0, a, b,
                 imgFinalContours.Sobel(1, 0, 3), imgFinalContours.Sobel(0, 1, 3),
                 out G, out N);
-            lblTemplateRate.Text = string.Format("Rate: {0}", rate);
+            lblTemplateRate.Text = string.Format("Якість: {0}", rate);
             lblTemplateG.Text = string.Format("G: {0}", G);
             lblTemplateN.Text = string.Format("N: {0}", N);
 

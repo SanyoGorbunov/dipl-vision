@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
             this.btnLoadModel = new System.Windows.Forms.Button();
             this.chartColored = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -50,34 +50,34 @@
             // 
             this.btnLoadModel.Location = new System.Drawing.Point(12, 12);
             this.btnLoadModel.Name = "btnLoadModel";
-            this.btnLoadModel.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadModel.Size = new System.Drawing.Size(136, 23);
             this.btnLoadModel.TabIndex = 0;
-            this.btnLoadModel.Text = "Load Model";
+            this.btnLoadModel.Text = "Завантажити набір";
             this.btnLoadModel.UseVisualStyleBackColor = true;
             this.btnLoadModel.Click += new System.EventHandler(this.btnLoadModel_Click);
             // 
             // chartColored
             // 
-            chartArea1.Area3DStyle.Enable3D = true;
-            chartArea1.Area3DStyle.IsRightAngleAxes = false;
-            chartArea1.Area3DStyle.WallWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            this.chartColored.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartColored.Legends.Add(legend1);
+            chartArea3.Area3DStyle.Enable3D = true;
+            chartArea3.Area3DStyle.IsRightAngleAxes = false;
+            chartArea3.Area3DStyle.WallWidth = 0;
+            chartArea3.Name = "ChartArea1";
+            this.chartColored.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartColored.Legends.Add(legend3);
             this.chartColored.Location = new System.Drawing.Point(12, 41);
             this.chartColored.Name = "chartColored";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 6;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chartColored.Series.Add(series1);
-            this.chartColored.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            series5.YValuesPerPoint = 6;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Legend = "Legend1";
+            series6.Name = "Series2";
+            this.chartColored.Series.Add(series5);
+            this.chartColored.Series.Add(series6);
             this.chartColored.Size = new System.Drawing.Size(810, 446);
             this.chartColored.TabIndex = 1;
             this.chartColored.Text = "chart1";
@@ -85,21 +85,21 @@
             // chkSwitchModel
             // 
             this.chkSwitchModel.AutoSize = true;
-            this.chkSwitchModel.Location = new System.Drawing.Point(595, 16);
+            this.chkSwitchModel.Location = new System.Drawing.Point(482, 16);
             this.chkSwitchModel.Name = "chkSwitchModel";
-            this.chkSwitchModel.Size = new System.Drawing.Size(70, 17);
+            this.chkSwitchModel.Size = new System.Drawing.Size(137, 17);
             this.chkSwitchModel.TabIndex = 2;
-            this.chkSwitchModel.Text = "Gaussian";
+            this.chkSwitchModel.Text = "Нормальний розподіл";
             this.chkSwitchModel.UseVisualStyleBackColor = true;
             this.chkSwitchModel.CheckedChanged += new System.EventHandler(this.chkSwitchModel_CheckedChanged);
             // 
             // btnSaveModel
             // 
-            this.btnSaveModel.Location = new System.Drawing.Point(671, 12);
+            this.btnSaveModel.Location = new System.Drawing.Point(625, 12);
             this.btnSaveModel.Name = "btnSaveModel";
-            this.btnSaveModel.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveModel.Size = new System.Drawing.Size(116, 23);
             this.btnSaveModel.TabIndex = 3;
-            this.btnSaveModel.Text = "Save";
+            this.btnSaveModel.Text = "Завантажити";
             this.btnSaveModel.UseVisualStyleBackColor = true;
             this.btnSaveModel.Visible = false;
             this.btnSaveModel.Click += new System.EventHandler(this.btnSaveModel_Click);
@@ -110,7 +110,7 @@
             this.btnLoadCalc.Name = "btnLoadCalc";
             this.btnLoadCalc.Size = new System.Drawing.Size(75, 23);
             this.btnLoadCalc.TabIndex = 4;
-            this.btnLoadCalc.Text = "Load";
+            this.btnLoadCalc.Text = "Зберегти";
             this.btnLoadCalc.UseVisualStyleBackColor = true;
             this.btnLoadCalc.Click += new System.EventHandler(this.btnLoadCalc_Click);
             // 
@@ -125,7 +125,7 @@
             this.Controls.Add(this.chartColored);
             this.Controls.Add(this.btnLoadModel);
             this.Name = "FaceColorModelCharts";
-            this.Text = "FaceColorModelCharts";
+            this.Text = "Перевірка кольорових моделей";
             ((System.ComponentModel.ISupportInitialize)(this.chartColored)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

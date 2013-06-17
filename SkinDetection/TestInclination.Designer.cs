@@ -48,7 +48,7 @@
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 0;
-            this.btnLoad.Text = "Load";
+            this.btnLoad.Text = "Завантажити";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -65,9 +65,8 @@
             this.lblInclination.AutoSize = true;
             this.lblInclination.Location = new System.Drawing.Point(12, 236);
             this.lblInclination.Name = "lblInclination";
-            this.lblInclination.Size = new System.Drawing.Size(35, 13);
+            this.lblInclination.Size = new System.Drawing.Size(0, 13);
             this.lblInclination.TabIndex = 2;
-            this.lblInclination.Text = "label1";
             // 
             // btnCalc
             // 
@@ -75,7 +74,7 @@
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(75, 23);
             this.btnCalc.TabIndex = 3;
-            this.btnCalc.Text = "Calc";
+            this.btnCalc.Text = "Обчислити";
             this.btnCalc.UseVisualStyleBackColor = true;
             this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
             // 
@@ -98,7 +97,7 @@
             this.Controls.Add(this.pb);
             this.Controls.Add(this.btnLoad);
             this.Name = "TestInclination";
-            this.Text = "TestInclination";
+            this.Text = "Перевірка відхилення";
             ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTest)).EndInit();
             this.ResumeLayout(false);

@@ -51,5 +51,23 @@ namespace SkinDetection
             var frm = new EllipseCutter();
             frm.Show();
         }
+
+        private void btnTestInclination_Click(object sender, EventArgs e)
+        {
+            var frm = new TestInclination();
+            frm.Show();
+        }
+
+        private void btnTestEdgeLinking_Click(object sender, EventArgs e)
+        {
+            var frm = new TestEdgeLinking();
+            frm.Show();
+        }
+
+        private void btnFloodFill_Click(object sender, EventArgs e)
+        {
+            var frm = new ImageCutter();
+            frm.Show();
+        }
     }
 }

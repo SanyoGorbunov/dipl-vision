@@ -55,9 +55,9 @@
             // 
             this.btnLoad.Location = new System.Drawing.Point(241, 12);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnLoad.Size = new System.Drawing.Size(89, 23);
             this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "Load";
+            this.btnLoad.Text = "Завантажити";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -69,9 +69,9 @@
             // 
             this.btnApplyFilters.Location = new System.Drawing.Point(241, 41);
             this.btnApplyFilters.Name = "btnApplyFilters";
-            this.btnApplyFilters.Size = new System.Drawing.Size(75, 23);
+            this.btnApplyFilters.Size = new System.Drawing.Size(89, 23);
             this.btnApplyFilters.TabIndex = 2;
-            this.btnApplyFilters.Text = "Apply";
+            this.btnApplyFilters.Text = "Застосувати";
             this.btnApplyFilters.UseVisualStyleBackColor = true;
             this.btnApplyFilters.Click += new System.EventHandler(this.btnApplyFilters_Click);
             // 
@@ -79,9 +79,9 @@
             // 
             this.btnDetectEdges.Location = new System.Drawing.Point(241, 191);
             this.btnDetectEdges.Name = "btnDetectEdges";
-            this.btnDetectEdges.Size = new System.Drawing.Size(75, 40);
+            this.btnDetectEdges.Size = new System.Drawing.Size(89, 40);
             this.btnDetectEdges.TabIndex = 3;
-            this.btnDetectEdges.Text = "Detect Edges";
+            this.btnDetectEdges.Text = "Знайти границі";
             this.btnDetectEdges.UseVisualStyleBackColor = true;
             this.btnDetectEdges.Click += new System.EventHandler(this.btnDetectEdges_Click);
             // 
@@ -89,9 +89,9 @@
             // 
             this.lblThreshold.Location = new System.Drawing.Point(241, 67);
             this.lblThreshold.Name = "lblThreshold";
-            this.lblThreshold.Size = new System.Drawing.Size(75, 15);
+            this.lblThreshold.Size = new System.Drawing.Size(89, 15);
             this.lblThreshold.TabIndex = 4;
-            this.lblThreshold.Text = "Threshold";
+            this.lblThreshold.Text = "Нижня межа";
             this.lblThreshold.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tbThreshold
@@ -99,7 +99,7 @@
             this.tbThreshold.Location = new System.Drawing.Point(241, 85);
             this.tbThreshold.Maximum = 255;
             this.tbThreshold.Name = "tbThreshold";
-            this.tbThreshold.Size = new System.Drawing.Size(75, 45);
+            this.tbThreshold.Size = new System.Drawing.Size(89, 45);
             this.tbThreshold.TabIndex = 5;
             this.tbThreshold.TickFrequency = 25;
             // 
@@ -108,7 +108,7 @@
             this.tbLinkThreshold.Location = new System.Drawing.Point(241, 145);
             this.tbLinkThreshold.Maximum = 255;
             this.tbLinkThreshold.Name = "tbLinkThreshold";
-            this.tbLinkThreshold.Size = new System.Drawing.Size(75, 45);
+            this.tbLinkThreshold.Size = new System.Drawing.Size(89, 45);
             this.tbLinkThreshold.TabIndex = 7;
             this.tbLinkThreshold.TickFrequency = 25;
             // 
@@ -116,18 +116,18 @@
             // 
             this.lblLinkThreshold.Location = new System.Drawing.Point(241, 115);
             this.lblLinkThreshold.Name = "lblLinkThreshold";
-            this.lblLinkThreshold.Size = new System.Drawing.Size(75, 27);
+            this.lblLinkThreshold.Size = new System.Drawing.Size(89, 27);
             this.lblLinkThreshold.TabIndex = 6;
-            this.lblLinkThreshold.Text = "Link Threshold";
+            this.lblLinkThreshold.Text = "Верхня межа";
             this.lblLinkThreshold.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnLinkEdges
             // 
             this.btnLinkEdges.Location = new System.Drawing.Point(241, 237);
             this.btnLinkEdges.Name = "btnLinkEdges";
-            this.btnLinkEdges.Size = new System.Drawing.Size(75, 40);
+            this.btnLinkEdges.Size = new System.Drawing.Size(89, 40);
             this.btnLinkEdges.TabIndex = 8;
-            this.btnLinkEdges.Text = "Link Edges";
+            this.btnLinkEdges.Text = "З\'єднати границі";
             this.btnLinkEdges.UseVisualStyleBackColor = true;
             this.btnLinkEdges.Click += new System.EventHandler(this.btnLinkEdges_Click);
             // 
@@ -135,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 408);
+            this.ClientSize = new System.Drawing.Size(339, 285);
             this.Controls.Add(this.btnLinkEdges);
             this.Controls.Add(this.tbLinkThreshold);
             this.Controls.Add(this.lblLinkThreshold);
@@ -146,7 +146,7 @@
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.pbTest);
             this.Name = "TestEdgeLinking";
-            this.Text = "TestEdgeLinking";
+            this.Text = "Перевірка з\'єднання границь";
             ((System.ComponentModel.ISupportInitialize)(this.pbTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLinkThreshold)).EndInit();

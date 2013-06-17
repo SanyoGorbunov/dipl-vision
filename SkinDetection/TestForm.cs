@@ -61,8 +61,8 @@ namespace SkinDetection
             if (wt != null)
             {
                 WangTanOptions wtOpts = new WangTanOptions();
-                wtOpts.CannyLinkThreshold = byte.Parse(txtCannyLinkThreshold.Text);
-                wtOpts.CannyThreshold = byte.Parse(txtCannyThreshold.Text);
+                wtOpts.CannyLinkThreshold = double.Parse(txtCannyLinkThreshold.Text);
+                wtOpts.CannyThreshold = double.Parse(txtCannyThreshold.Text);
                 wtOpts.EdgeErasingA = int.Parse(txtEraseChainsA.Text);
                 wtOpts.SmoothMedianSize = int.Parse(txtMedianSmoothSize.Text);
                 wtOpts.ThresholdPoints = int.Parse(txtTemplateThresholdPoints.Text);

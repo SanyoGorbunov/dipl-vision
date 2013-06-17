@@ -7,6 +7,7 @@ using System.Drawing;
 
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 
 namespace SkinDetection
 {
@@ -25,7 +26,7 @@ namespace SkinDetection
         public static bool InEllipse(this Point point, int X0, int Y0, int a, int b)
         {
             double v = (point.X - X0) * (point.X - X0) / a / a + (point.Y - Y0) * (point.Y - Y0) / b / b;
-            return v <= 1;
+            return v < 1;
         }
     }
 
@@ -46,7 +47,7 @@ namespace SkinDetection
         public Image<Gray, byte> Equalize(Image<Bgr, byte> img)
         {
             var imgGray = img.Convert<Gray, byte>();
-            imgGray[0]._EqualizeHist();
+            imgGray._EqualizeHist();
             return imgGray;
         }
 
@@ -55,10 +56,10 @@ namespace SkinDetection
             return img.SmoothMedian(size);
         }
 
-        public List<Contour<Point>> DetectEdges(Image<Gray, byte> img, byte t, byte tlink)
+        public List<Contour<Point>> DetectEdges(Image<Gray, byte> img, double t, double tlink)
         {
             var imgCanny = img.Canny(t, tlink);
-            var contour = imgCanny.FindContours();
+            var contour = imgCanny.FindContours(CHAIN_APPROX_METHOD.CV_LINK_RUNS, RETR_TYPE.CV_RETR_LIST);
 
             List<Contour<Point>> contours = new List<Contour<Point>>();
             do
@@ -100,15 +101,11 @@ namespace SkinDetection
                     {
                         for (int b = opts.B.Start; b < opts.B.End; b += opts.B.Step)
                         {
-                            if (j - a >= 0 && j + a < s.Width &&
-                                i - b >= 0 && i + b < s.Height)
+                            TemplateEntry entry = new TemplateEntry(j, i, a, b);
+                            if (entry.FindPoints(points, tN) &&
+                                entry.FindRate(points, xSobel, ySobel, tR))
                             {
-                                TemplateEntry entry = new TemplateEntry(j, i, a, b);
-                                if (entry.FindPoints(points, tN) &&
-                                    entry.FindRate(points, xSobel, ySobel, tR))
-                                {
-                                    templates.Add(entry);
-                                }
+                                templates.Add(entry);
                             }
                         }
                     }
@@ -125,8 +122,8 @@ namespace SkinDetection
         public double ThresholdRate { get; set; }
         public int EdgeErasingA { get; set; }
         public int SmoothMedianSize { get; set; }
-        public byte CannyThreshold { get; set; }
-        public byte CannyLinkThreshold { get; set; }
+        public double CannyThreshold { get; set; }
+        public double CannyLinkThreshold { get; set; }
     }
 
     class TemplateOptions {
@@ -149,7 +146,7 @@ namespace SkinDetection
         {
             get
             {
-                return new Rectangle(X0 - A, Y0 - B, 2 * A, 2 * B);
+                return new Rectangle(X0 - B, Y0 - A, 2 * B, 2 * A);
             }
         }
 
@@ -158,7 +155,7 @@ namespace SkinDetection
             return double.IsNaN(n) || n == 0 ? double.Epsilon : n;
         }
 
-        const int Boundary = 20;
+        const int Boundary = 5;
 
         public TemplateEntry()
         {
@@ -178,7 +175,9 @@ namespace SkinDetection
             N = 0;
             foreach (var point in points)
             {
-                if (!point.InEllipse(X0, Y0, A - Boundary, B - Boundary) &&
+                //if (!point.InEllipse(X0, Y0, A - Boundary, B - Boundary) &&
+                //    point.InEllipse(X0, Y0, A + Boundary, B + Boundary))
+                if (!point.InEllipse(X0, Y0, A, B) &&
                     point.InEllipse(X0, Y0, A + Boundary, B + Boundary))
                 {
                     N++;
@@ -189,19 +188,23 @@ namespace SkinDetection
 
         public bool FindRate(List<Point> points, Image<Gray, float> xSobel, Image<Gray, float> ySobel, double t)
         {
-            double c = 1.0 * B / A;
+            double c = 1.0 * A / B;
             foreach (var point in points)
             {
-                int x = point.X, y = point.Y;
-                double teta = Math.Atan(-c * c * sf(x - X0) / sf(y - Y0));
-                double r2i = Math.Cos(teta), r2j = Math.Sin(teta);
-                double sum = Math.Sqrt(xSobel[y, x].Intensity * xSobel[y, x].Intensity + ySobel[y, x].Intensity * ySobel[y, x].Intensity);
-                double r1i = sf(xSobel[y, x].Intensity / sum), r1j = sf(ySobel[y, x].Intensity / sum);
+                if (!point.InEllipse(X0, Y0, A, B) &&
+                    point.InEllipse(X0, Y0, A + Boundary, B + Boundary))
+                {
+                    int x = point.X, y = point.Y;
+                    double teta = Math.Atan(-c * c * sf(x - X0) / sf(y - Y0));
+                    double r2i = Math.Cos(teta), r2j = Math.Sin(teta);
+                    double sum = Math.Sqrt(xSobel[y, x].Intensity * xSobel[y, x].Intensity + ySobel[y, x].Intensity * ySobel[y, x].Intensity);
+                    double r1i = sf(xSobel[y, x].Intensity / sum), r1j = sf(ySobel[y, x].Intensity / sum);
 
-                G += Math.Abs(r1i * r2i + r1j * r2j);
+                    G += Math.Abs(r1i * r2i + r1j * r2j);
+                }
             }
 
-            R = G / N;
+            R = 1 - G / N;
             return R > t;
         }
 

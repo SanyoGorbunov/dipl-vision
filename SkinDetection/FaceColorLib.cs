@@ -306,7 +306,7 @@ namespace SkinDetection
             lbSkinRegions.Items.Clear();
             for (int i = 0; i < skinRegions.Count; i++)
             {
-                lbSkinRegions.Items.Add("SkinRegion #" + i);
+                lbSkinRegions.Items.Add("Область шкіри #" + i);
             }
         }
 
@@ -317,15 +317,15 @@ namespace SkinDetection
             {
                 pbFace.Image = skinRegions[selectedIndex].Region.ToBitmap();
 
-                lblSkinRegionPixels.Text = string.Format("Skin Region has {0} pixels.", skinRegions[selectedIndex].Pixels);
-                lblSkinRegionLeft.Text = string.Format("Skin Region Left is {0}.", skinRegions[selectedIndex].Left);
-                lblSkinRegionWidth.Text = string.Format("Skin Region Width is {0}.", skinRegions[selectedIndex].Width);
-                lblSkinRegionTop.Text = string.Format("Skin Region Top is {0}.", skinRegions[selectedIndex].Top);
-                lblSkinRegionHeight.Text = string.Format("Skin Region Height is {0}.", skinRegions[selectedIndex].Height);
-                lblSkinRegionHoles.Text = string.Format("Skin Region has {0} holes.", skinRegions[selectedIndex].Holes);
-                lblSkinRegionCentroid.Text = string.Format("Skin Region centroid is ({0},{1}).", skinRegions[selectedIndex].Centroid.X, skinRegions[selectedIndex].Centroid.Y);
-                lblSkinRegionInclination.Text = string.Format("Skin Region inclination is {0}.", skinRegions[selectedIndex].Inclination);
-                lblSkinRegionRatio.Text = string.Format("Skin Region ratio is {0}.", skinRegions[selectedIndex].Ratio);
+                lblSkinRegionPixels.Text = string.Format("Площа: {0}.", skinRegions[selectedIndex].Pixels);
+                lblSkinRegionLeft.Text = string.Format("Відступ зліва: {0}.", skinRegions[selectedIndex].Left);
+                lblSkinRegionWidth.Text = string.Format("Ширина: {0}.", skinRegions[selectedIndex].Width);
+                lblSkinRegionTop.Text = string.Format("Відступ зверху: {0}.", skinRegions[selectedIndex].Top);
+                lblSkinRegionHeight.Text = string.Format("Висота: {0}.", skinRegions[selectedIndex].Height);
+                lblSkinRegionHoles.Text = string.Format("Порожнин: {0}.", skinRegions[selectedIndex].Holes);
+                lblSkinRegionCentroid.Text = string.Format("Центроїд: ({0},{1}).", skinRegions[selectedIndex].Centroid.X, skinRegions[selectedIndex].Centroid.Y);
+                lblSkinRegionInclination.Text = string.Format("Кут нахилу: {0}.", skinRegions[selectedIndex].Inclination);
+                lblSkinRegionRatio.Text = string.Format("Пропорція: {0}.", skinRegions[selectedIndex].Ratio);
             }
         }
 

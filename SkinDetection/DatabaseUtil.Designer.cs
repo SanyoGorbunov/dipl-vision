@@ -50,15 +50,15 @@
             this.btnSelectDir.Name = "btnSelectDir";
             this.btnSelectDir.Size = new System.Drawing.Size(75, 23);
             this.btnSelectDir.TabIndex = 0;
-            this.btnSelectDir.Text = "Select";
+            this.btnSelectDir.Text = "Обрати";
             this.btnSelectDir.UseVisualStyleBackColor = true;
             this.btnSelectDir.Click += new System.EventHandler(this.btnSelectDir_Click);
             // 
             // txtDir
             // 
-            this.txtDir.Location = new System.Drawing.Point(66, 12);
+            this.txtDir.Location = new System.Drawing.Point(78, 12);
             this.txtDir.Name = "txtDir";
-            this.txtDir.Size = new System.Drawing.Size(250, 20);
+            this.txtDir.Size = new System.Drawing.Size(238, 20);
             this.txtDir.TabIndex = 1;
             // 
             // lblDir
@@ -66,18 +66,18 @@
             this.lblDir.AutoSize = true;
             this.lblDir.Location = new System.Drawing.Point(4, 15);
             this.lblDir.Name = "lblDir";
-            this.lblDir.Size = new System.Drawing.Size(56, 13);
+            this.lblDir.Size = new System.Drawing.Size(68, 13);
             this.lblDir.TabIndex = 2;
-            this.lblDir.Text = "Select Dir:";
+            this.lblDir.Text = "Директорія:";
             // 
             // lblCount
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Location = new System.Drawing.Point(4, 47);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(38, 13);
+            this.lblCount.Size = new System.Drawing.Size(56, 13);
             this.lblCount.TabIndex = 3;
-            this.lblCount.Text = "Count:";
+            this.lblCount.Text = "Кількість:";
             // 
             // txtCount
             // 
@@ -92,15 +92,15 @@
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 23);
             this.btnRun.TabIndex = 5;
-            this.btnRun.Text = "Run";
+            this.btnRun.Text = "Почати";
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // txtNewDir
             // 
-            this.txtNewDir.Location = new System.Drawing.Point(198, 44);
+            this.txtNewDir.Location = new System.Drawing.Point(221, 44);
             this.txtNewDir.Name = "txtNewDir";
-            this.txtNewDir.Size = new System.Drawing.Size(118, 20);
+            this.txtNewDir.Size = new System.Drawing.Size(95, 20);
             this.txtNewDir.TabIndex = 7;
             // 
             // lblNewDir
@@ -108,15 +108,15 @@
             this.lblNewDir.AutoSize = true;
             this.lblNewDir.Location = new System.Drawing.Point(146, 47);
             this.lblNewDir.Name = "lblNewDir";
-            this.lblNewDir.Size = new System.Drawing.Size(48, 13);
+            this.lblNewDir.Size = new System.Drawing.Size(69, 13);
             this.lblNewDir.TabIndex = 6;
-            this.lblNewDir.Text = "New Dir:";
+            this.lblNewDir.Text = "Нова папка:";
             // 
             // DatabaseUtil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 372);
+            this.ClientSize = new System.Drawing.Size(409, 82);
             this.Controls.Add(this.txtNewDir);
             this.Controls.Add(this.lblNewDir);
             this.Controls.Add(this.btnRun);
@@ -126,7 +126,7 @@
             this.Controls.Add(this.txtDir);
             this.Controls.Add(this.btnSelectDir);
             this.Name = "DatabaseUtil";
-            this.Text = "DatabaseUtil";
+            this.Text = "Створення тестового набору";
             this.ResumeLayout(false);
             this.PerformLayout();
 

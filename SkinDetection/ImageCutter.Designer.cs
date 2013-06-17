@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.cbColorSet = new System.Windows.Forms.ComboBox();
+            this.chkFloodFill = new System.Windows.Forms.CheckBox();
+            this.pbImgMix = new System.Windows.Forms.PictureBox();
+            this.btnSetThreshold = new System.Windows.Forms.Button();
+            this.lblThreshold = new System.Windows.Forms.Label();
+            this.txtThreshold = new System.Windows.Forms.TextBox();
             this.pbImgChrR = new System.Windows.Forms.PictureBox();
             this.pbImgChrB = new System.Windows.Forms.PictureBox();
             this.btnImgLoad = new System.Windows.Forms.Button();
             this.pbImgStart = new System.Windows.Forms.PictureBox();
             this.dlgImgLoad = new System.Windows.Forms.OpenFileDialog();
-            this.txtThreshold = new System.Windows.Forms.TextBox();
-            this.lblThreshold = new System.Windows.Forms.Label();
-            this.btnSetThreshold = new System.Windows.Forms.Button();
-            this.pbImgMix = new System.Windows.Forms.PictureBox();
-            this.chkFloodFill = new System.Windows.Forms.CheckBox();
-            this.cbColorSet = new System.Windows.Forms.ComboBox();
             this.pnlMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgMix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgMix)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -63,6 +63,61 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(533, 370);
             this.pnlMain.TabIndex = 0;
+            // 
+            // cbColorSet
+            // 
+            this.cbColorSet.FormattingEnabled = true;
+            this.cbColorSet.Items.AddRange(new object[] {
+            "RGB",
+            "Chromatic"});
+            this.cbColorSet.Location = new System.Drawing.Point(398, 6);
+            this.cbColorSet.Name = "cbColorSet";
+            this.cbColorSet.Size = new System.Drawing.Size(121, 21);
+            this.cbColorSet.TabIndex = 8;
+            // 
+            // chkFloodFill
+            // 
+            this.chkFloodFill.AutoSize = true;
+            this.chkFloodFill.Location = new System.Drawing.Point(109, 8);
+            this.chkFloodFill.Name = "chkFloodFill";
+            this.chkFloodFill.Size = new System.Drawing.Size(87, 17);
+            this.chkFloodFill.TabIndex = 7;
+            this.chkFloodFill.Text = "Заповнення";
+            this.chkFloodFill.UseVisualStyleBackColor = true;
+            // 
+            // pbImgMix
+            // 
+            this.pbImgMix.Location = new System.Drawing.Point(177, 197);
+            this.pbImgMix.Name = "pbImgMix";
+            this.pbImgMix.Size = new System.Drawing.Size(168, 159);
+            this.pbImgMix.TabIndex = 6;
+            this.pbImgMix.TabStop = false;
+            // 
+            // btnSetThreshold
+            // 
+            this.btnSetThreshold.Location = new System.Drawing.Point(302, 5);
+            this.btnSetThreshold.Name = "btnSetThreshold";
+            this.btnSetThreshold.Size = new System.Drawing.Size(90, 23);
+            this.btnSetThreshold.TabIndex = 5;
+            this.btnSetThreshold.Text = "Встановити";
+            this.btnSetThreshold.UseVisualStyleBackColor = true;
+            this.btnSetThreshold.Click += new System.EventHandler(this.btnSetThreshold_Click);
+            // 
+            // lblThreshold
+            // 
+            this.lblThreshold.AutoSize = true;
+            this.lblThreshold.Location = new System.Drawing.Point(202, 9);
+            this.lblThreshold.Name = "lblThreshold";
+            this.lblThreshold.Size = new System.Drawing.Size(37, 13);
+            this.lblThreshold.TabIndex = 4;
+            this.lblThreshold.Text = "Поріг:";
+            // 
+            // txtThreshold
+            // 
+            this.txtThreshold.Location = new System.Drawing.Point(245, 6);
+            this.txtThreshold.Name = "txtThreshold";
+            this.txtThreshold.Size = new System.Drawing.Size(51, 20);
+            this.txtThreshold.TabIndex = 3;
             // 
             // pbImgChrR
             // 
@@ -84,9 +139,9 @@
             // 
             this.btnImgLoad.Location = new System.Drawing.Point(3, 3);
             this.btnImgLoad.Name = "btnImgLoad";
-            this.btnImgLoad.Size = new System.Drawing.Size(75, 23);
+            this.btnImgLoad.Size = new System.Drawing.Size(100, 23);
             this.btnImgLoad.TabIndex = 1;
-            this.btnImgLoad.Text = "Load Image";
+            this.btnImgLoad.Text = "Завантажити";
             this.btnImgLoad.UseVisualStyleBackColor = true;
             this.btnImgLoad.Click += new System.EventHandler(this.btnImgLoad_Click);
             // 
@@ -99,61 +154,6 @@
             this.pbImgStart.TabStop = false;
             this.pbImgStart.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbImgStart_MouseClick);
             // 
-            // txtThreshold
-            // 
-            this.txtThreshold.Location = new System.Drawing.Point(245, 8);
-            this.txtThreshold.Name = "txtThreshold";
-            this.txtThreshold.Size = new System.Drawing.Size(51, 20);
-            this.txtThreshold.TabIndex = 3;
-            // 
-            // lblThreshold
-            // 
-            this.lblThreshold.AutoSize = true;
-            this.lblThreshold.Location = new System.Drawing.Point(182, 11);
-            this.lblThreshold.Name = "lblThreshold";
-            this.lblThreshold.Size = new System.Drawing.Size(57, 13);
-            this.lblThreshold.TabIndex = 4;
-            this.lblThreshold.Text = "Threshold:";
-            // 
-            // btnSetThreshold
-            // 
-            this.btnSetThreshold.Location = new System.Drawing.Point(302, 6);
-            this.btnSetThreshold.Name = "btnSetThreshold";
-            this.btnSetThreshold.Size = new System.Drawing.Size(41, 23);
-            this.btnSetThreshold.TabIndex = 5;
-            this.btnSetThreshold.Text = "Set";
-            this.btnSetThreshold.UseVisualStyleBackColor = true;
-            this.btnSetThreshold.Click += new System.EventHandler(this.btnSetThreshold_Click);
-            // 
-            // pbImgMix
-            // 
-            this.pbImgMix.Location = new System.Drawing.Point(177, 197);
-            this.pbImgMix.Name = "pbImgMix";
-            this.pbImgMix.Size = new System.Drawing.Size(168, 159);
-            this.pbImgMix.TabIndex = 6;
-            this.pbImgMix.TabStop = false;
-            // 
-            // chkFloodFill
-            // 
-            this.chkFloodFill.AutoSize = true;
-            this.chkFloodFill.Location = new System.Drawing.Point(84, 9);
-            this.chkFloodFill.Name = "chkFloodFill";
-            this.chkFloodFill.Size = new System.Drawing.Size(67, 17);
-            this.chkFloodFill.TabIndex = 7;
-            this.chkFloodFill.Text = "Flood Fill";
-            this.chkFloodFill.UseVisualStyleBackColor = true;
-            // 
-            // cbColorSet
-            // 
-            this.cbColorSet.FormattingEnabled = true;
-            this.cbColorSet.Items.AddRange(new object[] {
-            "RGB",
-            "Chromatic"});
-            this.cbColorSet.Location = new System.Drawing.Point(398, 7);
-            this.cbColorSet.Name = "cbColorSet";
-            this.cbColorSet.Size = new System.Drawing.Size(121, 21);
-            this.cbColorSet.TabIndex = 8;
-            // 
             // ImageCutter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,13 +161,13 @@
             this.ClientSize = new System.Drawing.Size(570, 394);
             this.Controls.Add(this.pnlMain);
             this.Name = "ImageCutter";
-            this.Text = "ImageCutter";
+            this.Text = "Перевірка алгоритму заповнення";
             this.pnlMain.ResumeLayout(false);
             this.pnlMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImgMix)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgChrB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImgStart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImgMix)).EndInit();
             this.ResumeLayout(false);
 
         }

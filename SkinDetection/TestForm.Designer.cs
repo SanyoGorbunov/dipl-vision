@@ -92,6 +92,7 @@
             this.chartResults = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dlgLoadFaceTemplate = new System.Windows.Forms.OpenFileDialog();
             this.dlgLoadModel = new System.Windows.Forms.OpenFileDialog();
+            this.lblAdaptiveTitle = new System.Windows.Forms.Label();
             this.pnlChooseAlg.SuspendLayout();
             this.pnlSkinOptions.SuspendLayout();
             this.pnlGeoOptions.SuspendLayout();
@@ -114,8 +115,8 @@
             // 
             this.cbAlg.FormattingEnabled = true;
             this.cbAlg.Items.AddRange(new object[] {
-            "Skin Approach",
-            "Geometric Approach"});
+            "Кольор шкіри",
+            "Контури зображення"});
             this.cbAlg.Location = new System.Drawing.Point(67, 7);
             this.cbAlg.Name = "cbAlg";
             this.cbAlg.Size = new System.Drawing.Size(121, 21);
@@ -127,12 +128,13 @@
             this.lblAlg.AutoSize = true;
             this.lblAlg.Location = new System.Drawing.Point(3, 10);
             this.lblAlg.Name = "lblAlg";
-            this.lblAlg.Size = new System.Drawing.Size(58, 13);
+            this.lblAlg.Size = new System.Drawing.Size(59, 13);
             this.lblAlg.TabIndex = 0;
-            this.lblAlg.Text = "Select Alg:";
+            this.lblAlg.Text = "Алгоритм:";
             // 
             // pnlSkinOptions
             // 
+            this.pnlSkinOptions.Controls.Add(this.lblAdaptiveTitle);
             this.pnlSkinOptions.Controls.Add(this.btnLoadModel);
             this.pnlSkinOptions.Controls.Add(this.txtSkinRegionMaxRatio);
             this.pnlSkinOptions.Controls.Add(this.txtSkinRegionCrsCrltn);
@@ -159,7 +161,7 @@
             this.btnLoadModel.Name = "btnLoadModel";
             this.btnLoadModel.Size = new System.Drawing.Size(75, 23);
             this.btnLoadModel.TabIndex = 14;
-            this.btnLoadModel.Text = "Model";
+            this.btnLoadModel.Text = "Модель";
             this.btnLoadModel.UseVisualStyleBackColor = true;
             this.btnLoadModel.Click += new System.EventHandler(this.btnLoadModel_Click);
             // 
@@ -172,9 +174,9 @@
             // 
             // txtSkinRegionCrsCrltn
             // 
-            this.txtSkinRegionCrsCrltn.Location = new System.Drawing.Point(158, 158);
+            this.txtSkinRegionCrsCrltn.Location = new System.Drawing.Point(137, 158);
             this.txtSkinRegionCrsCrltn.Name = "txtSkinRegionCrsCrltn";
-            this.txtSkinRegionCrsCrltn.Size = new System.Drawing.Size(30, 20);
+            this.txtSkinRegionCrsCrltn.Size = new System.Drawing.Size(51, 20);
             this.txtSkinRegionCrsCrltn.TabIndex = 12;
             // 
             // lblSkinRegionCrsCrltn
@@ -182,9 +184,9 @@
             this.lblSkinRegionCrsCrltn.AutoSize = true;
             this.lblSkinRegionCrsCrltn.Location = new System.Drawing.Point(3, 161);
             this.lblSkinRegionCrsCrltn.Name = "lblSkinRegionCrsCrltn";
-            this.lblSkinRegionCrsCrltn.Size = new System.Drawing.Size(149, 13);
+            this.lblSkinRegionCrsCrltn.Size = new System.Drawing.Size(128, 13);
             this.lblSkinRegionCrsCrltn.TabIndex = 11;
-            this.lblSkinRegionCrsCrltn.Text = "Skin Region Cross-Corellation:";
+            this.lblSkinRegionCrsCrltn.Text = "Мін показник кореляції:";
             // 
             // txtSkinRegionMinRatio
             // 
@@ -198,15 +200,15 @@
             this.lblSkinRegionRation.AutoSize = true;
             this.lblSkinRegionRation.Location = new System.Drawing.Point(3, 135);
             this.lblSkinRegionRation.Name = "lblSkinRegionRation";
-            this.lblSkinRegionRation.Size = new System.Drawing.Size(96, 13);
+            this.lblSkinRegionRation.Size = new System.Drawing.Size(85, 13);
             this.lblSkinRegionRation.TabIndex = 9;
-            this.lblSkinRegionRation.Text = "Skin Region Ratio:";
+            this.lblSkinRegionRation.Text = "Межі пропорції:";
             // 
             // txtSkinRegionMinHoles
             // 
-            this.txtSkinRegionMinHoles.Location = new System.Drawing.Point(143, 106);
+            this.txtSkinRegionMinHoles.Location = new System.Drawing.Point(148, 106);
             this.txtSkinRegionMinHoles.Name = "txtSkinRegionMinHoles";
-            this.txtSkinRegionMinHoles.Size = new System.Drawing.Size(45, 20);
+            this.txtSkinRegionMinHoles.Size = new System.Drawing.Size(40, 20);
             this.txtSkinRegionMinHoles.TabIndex = 8;
             // 
             // lblSkinRegionMinHoles
@@ -214,13 +216,13 @@
             this.lblSkinRegionMinHoles.AutoSize = true;
             this.lblSkinRegionMinHoles.Location = new System.Drawing.Point(3, 109);
             this.lblSkinRegionMinHoles.Name = "lblSkinRegionMinHoles";
-            this.lblSkinRegionMinHoles.Size = new System.Drawing.Size(129, 13);
+            this.lblSkinRegionMinHoles.Size = new System.Drawing.Size(144, 13);
             this.lblSkinRegionMinHoles.TabIndex = 7;
-            this.lblSkinRegionMinHoles.Text = "Min Holes in Skin Region:";
+            this.lblSkinRegionMinHoles.Text = "Мінімальна кількість дірок:";
             // 
             // txtAdaptiveThresholdStep
             // 
-            this.txtAdaptiveThresholdStep.Location = new System.Drawing.Point(143, 79);
+            this.txtAdaptiveThresholdStep.Location = new System.Drawing.Point(143, 76);
             this.txtAdaptiveThresholdStep.Name = "txtAdaptiveThresholdStep";
             this.txtAdaptiveThresholdStep.Size = new System.Drawing.Size(45, 20);
             this.txtAdaptiveThresholdStep.TabIndex = 6;
@@ -228,43 +230,43 @@
             // lblAdaptiveThresholdStep
             // 
             this.lblAdaptiveThresholdStep.AutoSize = true;
-            this.lblAdaptiveThresholdStep.Location = new System.Drawing.Point(3, 82);
+            this.lblAdaptiveThresholdStep.Location = new System.Drawing.Point(145, 56);
             this.lblAdaptiveThresholdStep.Name = "lblAdaptiveThresholdStep";
-            this.lblAdaptiveThresholdStep.Size = new System.Drawing.Size(127, 13);
+            this.lblAdaptiveThresholdStep.Size = new System.Drawing.Size(35, 13);
             this.lblAdaptiveThresholdStep.TabIndex = 5;
-            this.lblAdaptiveThresholdStep.Text = "Adaptive Threshold Step:";
+            this.lblAdaptiveThresholdStep.Text = "Крок:";
             // 
             // txtAdaptiveThresholdLower
             // 
-            this.txtAdaptiveThresholdLower.Location = new System.Drawing.Point(143, 53);
+            this.txtAdaptiveThresholdLower.Location = new System.Drawing.Point(87, 76);
             this.txtAdaptiveThresholdLower.Name = "txtAdaptiveThresholdLower";
-            this.txtAdaptiveThresholdLower.Size = new System.Drawing.Size(45, 20);
+            this.txtAdaptiveThresholdLower.Size = new System.Drawing.Size(50, 20);
             this.txtAdaptiveThresholdLower.TabIndex = 4;
             // 
             // lblAdaptiveThresholdLower
             // 
             this.lblAdaptiveThresholdLower.AutoSize = true;
-            this.lblAdaptiveThresholdLower.Location = new System.Drawing.Point(3, 56);
+            this.lblAdaptiveThresholdLower.Location = new System.Drawing.Point(3, 79);
             this.lblAdaptiveThresholdLower.Name = "lblAdaptiveThresholdLower";
-            this.lblAdaptiveThresholdLower.Size = new System.Drawing.Size(134, 13);
+            this.lblAdaptiveThresholdLower.Size = new System.Drawing.Size(74, 13);
             this.lblAdaptiveThresholdLower.TabIndex = 3;
-            this.lblAdaptiveThresholdLower.Text = "Lower Adaptive Threshold:";
+            this.lblAdaptiveThresholdLower.Text = "Нижній поріг:";
             // 
             // txtAdaptiveThresholdUpper
             // 
-            this.txtAdaptiveThresholdUpper.Location = new System.Drawing.Point(143, 26);
+            this.txtAdaptiveThresholdUpper.Location = new System.Drawing.Point(87, 53);
             this.txtAdaptiveThresholdUpper.Name = "txtAdaptiveThresholdUpper";
-            this.txtAdaptiveThresholdUpper.Size = new System.Drawing.Size(45, 20);
+            this.txtAdaptiveThresholdUpper.Size = new System.Drawing.Size(50, 20);
             this.txtAdaptiveThresholdUpper.TabIndex = 2;
             // 
             // lblAdaptiveThresholdUpper
             // 
             this.lblAdaptiveThresholdUpper.AutoSize = true;
-            this.lblAdaptiveThresholdUpper.Location = new System.Drawing.Point(3, 29);
+            this.lblAdaptiveThresholdUpper.Location = new System.Drawing.Point(5, 56);
             this.lblAdaptiveThresholdUpper.Name = "lblAdaptiveThresholdUpper";
-            this.lblAdaptiveThresholdUpper.Size = new System.Drawing.Size(134, 13);
+            this.lblAdaptiveThresholdUpper.Size = new System.Drawing.Size(76, 13);
             this.lblAdaptiveThresholdUpper.TabIndex = 1;
-            this.lblAdaptiveThresholdUpper.Text = "Upper Adaptive Threshold:";
+            this.lblAdaptiveThresholdUpper.Text = "Верхній поріг:";
             // 
             // btnLoadFaceTemplate
             // 
@@ -272,7 +274,7 @@
             this.btnLoadFaceTemplate.Name = "btnLoadFaceTemplate";
             this.btnLoadFaceTemplate.Size = new System.Drawing.Size(101, 23);
             this.btnLoadFaceTemplate.TabIndex = 0;
-            this.btnLoadFaceTemplate.Text = "Face Template";
+            this.btnLoadFaceTemplate.Text = "Зразок";
             this.btnLoadFaceTemplate.UseVisualStyleBackColor = true;
             this.btnLoadFaceTemplate.Click += new System.EventHandler(this.btnLoadFaceTemplate_Click);
             // 
@@ -328,15 +330,15 @@
             this.lblCannyThresholds.AutoSize = true;
             this.lblCannyThresholds.Location = new System.Drawing.Point(3, 38);
             this.lblCannyThresholds.Name = "lblCannyThresholds";
-            this.lblCannyThresholds.Size = new System.Drawing.Size(95, 13);
+            this.lblCannyThresholds.Size = new System.Drawing.Size(77, 13);
             this.lblCannyThresholds.TabIndex = 60;
-            this.lblCannyThresholds.Text = "Canny Thresholds:";
+            this.lblCannyThresholds.Text = "Пороги Кенні:";
             // 
             // txtEraseChainsA
             // 
-            this.txtEraseChainsA.Location = new System.Drawing.Point(118, 64);
+            this.txtEraseChainsA.Location = new System.Drawing.Point(129, 64);
             this.txtEraseChainsA.Name = "txtEraseChainsA";
-            this.txtEraseChainsA.Size = new System.Drawing.Size(70, 20);
+            this.txtEraseChainsA.Size = new System.Drawing.Size(59, 20);
             this.txtEraseChainsA.TabIndex = 59;
             // 
             // lblEraseChainsA
@@ -344,15 +346,15 @@
             this.lblEraseChainsA.AutoSize = true;
             this.lblEraseChainsA.Location = new System.Drawing.Point(3, 67);
             this.lblEraseChainsA.Name = "lblEraseChainsA";
-            this.lblEraseChainsA.Size = new System.Drawing.Size(93, 13);
+            this.lblEraseChainsA.Size = new System.Drawing.Size(120, 13);
             this.lblEraseChainsA.TabIndex = 58;
-            this.lblEraseChainsA.Text = "Chain Min Length:";
+            this.lblEraseChainsA.Text = "Мін довжина ланцюга:";
             // 
             // txtMedianSmoothSize
             // 
-            this.txtMedianSmoothSize.Location = new System.Drawing.Point(118, 9);
+            this.txtMedianSmoothSize.Location = new System.Drawing.Point(142, 9);
             this.txtMedianSmoothSize.Name = "txtMedianSmoothSize";
-            this.txtMedianSmoothSize.Size = new System.Drawing.Size(70, 20);
+            this.txtMedianSmoothSize.Size = new System.Drawing.Size(46, 20);
             this.txtMedianSmoothSize.TabIndex = 57;
             // 
             // lblMedianSmoothSize
@@ -360,9 +362,9 @@
             this.lblMedianSmoothSize.AutoSize = true;
             this.lblMedianSmoothSize.Location = new System.Drawing.Point(3, 12);
             this.lblMedianSmoothSize.Name = "lblMedianSmoothSize";
-            this.lblMedianSmoothSize.Size = new System.Drawing.Size(107, 13);
+            this.lblMedianSmoothSize.Size = new System.Drawing.Size(138, 13);
             this.lblMedianSmoothSize.TabIndex = 56;
-            this.lblMedianSmoothSize.Text = "Median Smooth Size:";
+            this.lblMedianSmoothSize.Text = "Вікно медіанного фільтру:";
             // 
             // txtTemplateThresholdRate
             // 
@@ -383,9 +385,9 @@
             this.lblTemplateThresholds.AutoSize = true;
             this.lblTemplateThresholds.Location = new System.Drawing.Point(3, 93);
             this.lblTemplateThresholds.Name = "lblTemplateThresholds";
-            this.lblTemplateThresholds.Size = new System.Drawing.Size(109, 13);
+            this.lblTemplateThresholds.Size = new System.Drawing.Size(103, 13);
             this.lblTemplateThresholds.TabIndex = 53;
-            this.lblTemplateThresholds.Text = "Template Thresholds:";
+            this.lblTemplateThresholds.Text = "Пороги алгоритму:";
             // 
             // txtTestTemplateBStep
             // 
@@ -393,7 +395,7 @@
             this.txtTestTemplateBStep.Name = "txtTestTemplateBStep";
             this.txtTestTemplateBStep.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateBStep.TabIndex = 52;
-            this.txtTestTemplateBStep.Text = "3";
+            this.txtTestTemplateBStep.Text = "5";
             // 
             // txtTestTemplateBEnd
             // 
@@ -401,7 +403,7 @@
             this.txtTestTemplateBEnd.Name = "txtTestTemplateBEnd";
             this.txtTestTemplateBEnd.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateBEnd.TabIndex = 51;
-            this.txtTestTemplateBEnd.Text = "60";
+            this.txtTestTemplateBEnd.Text = "80";
             // 
             // txtTestTemplateBStart
             // 
@@ -417,7 +419,7 @@
             this.txtTestTemplateAStep.Name = "txtTestTemplateAStep";
             this.txtTestTemplateAStep.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateAStep.TabIndex = 49;
-            this.txtTestTemplateAStep.Text = "3";
+            this.txtTestTemplateAStep.Text = "5";
             // 
             // txtTestTemplateAEnd
             // 
@@ -425,7 +427,7 @@
             this.txtTestTemplateAEnd.Name = "txtTestTemplateAEnd";
             this.txtTestTemplateAEnd.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateAEnd.TabIndex = 48;
-            this.txtTestTemplateAEnd.Text = "65";
+            this.txtTestTemplateAEnd.Text = "80";
             // 
             // txtTestTemplateAStart
             // 
@@ -441,7 +443,7 @@
             this.txtTestTemplateY0Step.Name = "txtTestTemplateY0Step";
             this.txtTestTemplateY0Step.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateY0Step.TabIndex = 46;
-            this.txtTestTemplateY0Step.Text = "5";
+            this.txtTestTemplateY0Step.Text = "10";
             // 
             // txtTestTemplateY0End
             // 
@@ -449,7 +451,7 @@
             this.txtTestTemplateY0End.Name = "txtTestTemplateY0End";
             this.txtTestTemplateY0End.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateY0End.TabIndex = 45;
-            this.txtTestTemplateY0End.Text = "90";
+            this.txtTestTemplateY0End.Text = "160";
             // 
             // txtTestTemplateY0Start
             // 
@@ -465,7 +467,7 @@
             this.txtTestTemplateX0Step.Name = "txtTestTemplateX0Step";
             this.txtTestTemplateX0Step.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateX0Step.TabIndex = 43;
-            this.txtTestTemplateX0Step.Text = "5";
+            this.txtTestTemplateX0Step.Text = "10";
             // 
             // txtTestTemplateX0End
             // 
@@ -473,7 +475,7 @@
             this.txtTestTemplateX0End.Name = "txtTestTemplateX0End";
             this.txtTestTemplateX0End.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateX0End.TabIndex = 42;
-            this.txtTestTemplateX0End.Text = "80";
+            this.txtTestTemplateX0End.Text = "140";
             // 
             // txtTestTemplateX0Start
             // 
@@ -538,9 +540,8 @@
             this.lblStats.AutoSize = true;
             this.lblStats.Location = new System.Drawing.Point(126, 10);
             this.lblStats.Name = "lblStats";
-            this.lblStats.Size = new System.Drawing.Size(35, 13);
+            this.lblStats.Size = new System.Drawing.Size(0, 13);
             this.lblStats.TabIndex = 6;
-            this.lblStats.Text = "label1";
             // 
             // btnStop
             // 
@@ -548,7 +549,7 @@
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 5;
-            this.btnStop.Text = "Stop";
+            this.btnStop.Text = "Закінчити";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
@@ -558,7 +559,7 @@
             this.btnFalse.Name = "btnFalse";
             this.btnFalse.Size = new System.Drawing.Size(75, 23);
             this.btnFalse.TabIndex = 4;
-            this.btnFalse.Text = "False";
+            this.btnFalse.Text = "Не вірно";
             this.btnFalse.UseVisualStyleBackColor = true;
             this.btnFalse.Click += new System.EventHandler(this.btnFalse_Click);
             // 
@@ -570,6 +571,7 @@
             this.btnInExact.TabIndex = 3;
             this.btnInExact.Text = "Not Exact";
             this.btnInExact.UseVisualStyleBackColor = true;
+            this.btnInExact.Visible = false;
             this.btnInExact.Click += new System.EventHandler(this.btnInExact_Click);
             // 
             // btnTrue
@@ -578,7 +580,7 @@
             this.btnTrue.Name = "btnTrue";
             this.btnTrue.Size = new System.Drawing.Size(75, 23);
             this.btnTrue.TabIndex = 2;
-            this.btnTrue.Text = "True";
+            this.btnTrue.Text = "Вірно";
             this.btnTrue.UseVisualStyleBackColor = true;
             this.btnTrue.Click += new System.EventHandler(this.btnTrue_Click);
             // 
@@ -596,7 +598,7 @@
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(117, 23);
             this.btnLoad.TabIndex = 0;
-            this.btnLoad.Text = "Select Directory";
+            this.btnLoad.Text = "Обрати директорію";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -636,6 +638,15 @@
             this.chartResults.Size = new System.Drawing.Size(319, 212);
             this.chartResults.TabIndex = 0;
             // 
+            // lblAdaptiveTitle
+            // 
+            this.lblAdaptiveTitle.AutoSize = true;
+            this.lblAdaptiveTitle.Location = new System.Drawing.Point(5, 37);
+            this.lblAdaptiveTitle.Name = "lblAdaptiveTitle";
+            this.lblAdaptiveTitle.Size = new System.Drawing.Size(147, 13);
+            this.lblAdaptiveTitle.TabIndex = 15;
+            this.lblAdaptiveTitle.Text = "Параметри підбору порогів:";
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -647,7 +658,7 @@
             this.Controls.Add(this.pnlSkinOptions);
             this.Controls.Add(this.pnlChooseAlg);
             this.Name = "TestForm";
-            this.Text = "TestForm";
+            this.Text = "Тестування";
             this.pnlChooseAlg.ResumeLayout(false);
             this.pnlChooseAlg.PerformLayout();
             this.pnlSkinOptions.ResumeLayout(false);
@@ -724,5 +735,6 @@
         private System.Windows.Forms.TextBox txtCannyLinkThreshold;
         private System.Windows.Forms.TextBox txtCannyThreshold;
         private System.Windows.Forms.Label lblCannyThresholds;
+        private System.Windows.Forms.Label lblAdaptiveTitle;
     }
 }
