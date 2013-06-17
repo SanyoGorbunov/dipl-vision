@@ -52,6 +52,7 @@
             this.lblContourPoints = new System.Windows.Forms.Label();
             this.lbContours = new System.Windows.Forms.ListBox();
             this.pnlEllipticalTemplate = new System.Windows.Forms.Panel();
+            this.btnSelectTemplate = new System.Windows.Forms.Button();
             this.btnTemplateRemoveOutborders = new System.Windows.Forms.Button();
             this.btnTemplateRemoveByMinCount = new System.Windows.Forms.Button();
             this.txtTemplateMinCount = new System.Windows.Forms.TextBox();
@@ -90,7 +91,6 @@
             this.txtTemplateX0 = new System.Windows.Forms.TextBox();
             this.lblTemplateX0 = new System.Windows.Forms.Label();
             this.dlgSaveTestTemplate = new System.Windows.Forms.SaveFileDialog();
-            this.btnSelectTemplate = new System.Windows.Forms.Button();
             this.pnlTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
             this.pnlContours.SuspendLayout();
@@ -362,6 +362,16 @@
             this.pnlEllipticalTemplate.Size = new System.Drawing.Size(200, 374);
             this.pnlEllipticalTemplate.TabIndex = 2;
             // 
+            // btnSelectTemplate
+            // 
+            this.btnSelectTemplate.Location = new System.Drawing.Point(7, 348);
+            this.btnSelectTemplate.Name = "btnSelectTemplate";
+            this.btnSelectTemplate.Size = new System.Drawing.Size(176, 23);
+            this.btnSelectTemplate.TabIndex = 45;
+            this.btnSelectTemplate.Text = "Select Average";
+            this.btnSelectTemplate.UseVisualStyleBackColor = true;
+            this.btnSelectTemplate.Click += new System.EventHandler(this.btnSelectTemplate_Click);
+            // 
             // btnTemplateRemoveOutborders
             // 
             this.btnTemplateRemoveOutborders.Location = new System.Drawing.Point(136, 306);
@@ -444,7 +454,7 @@
             this.txtTestTemplateBStep.Name = "txtTestTemplateBStep";
             this.txtTestTemplateBStep.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateBStep.TabIndex = 36;
-            this.txtTestTemplateBStep.Text = "3";
+            this.txtTestTemplateBStep.Text = "5";
             // 
             // txtTestTemplateBEnd
             // 
@@ -452,7 +462,7 @@
             this.txtTestTemplateBEnd.Name = "txtTestTemplateBEnd";
             this.txtTestTemplateBEnd.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateBEnd.TabIndex = 35;
-            this.txtTestTemplateBEnd.Text = "60";
+            this.txtTestTemplateBEnd.Text = "80";
             // 
             // txtTestTemplateBStart
             // 
@@ -468,7 +478,7 @@
             this.txtTestTemplateAStep.Name = "txtTestTemplateAStep";
             this.txtTestTemplateAStep.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateAStep.TabIndex = 33;
-            this.txtTestTemplateAStep.Text = "3";
+            this.txtTestTemplateAStep.Text = "5";
             // 
             // txtTestTemplateAEnd
             // 
@@ -476,7 +486,7 @@
             this.txtTestTemplateAEnd.Name = "txtTestTemplateAEnd";
             this.txtTestTemplateAEnd.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateAEnd.TabIndex = 32;
-            this.txtTestTemplateAEnd.Text = "65";
+            this.txtTestTemplateAEnd.Text = "80";
             // 
             // txtTestTemplateAStart
             // 
@@ -484,7 +494,7 @@
             this.txtTestTemplateAStart.Name = "txtTestTemplateAStart";
             this.txtTestTemplateAStart.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateAStart.TabIndex = 31;
-            this.txtTestTemplateAStart.Text = "50";
+            this.txtTestTemplateAStart.Text = "40";
             // 
             // txtTestTemplateY0Step
             // 
@@ -492,7 +502,7 @@
             this.txtTestTemplateY0Step.Name = "txtTestTemplateY0Step";
             this.txtTestTemplateY0Step.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateY0Step.TabIndex = 30;
-            this.txtTestTemplateY0Step.Text = "5";
+            this.txtTestTemplateY0Step.Text = "10";
             // 
             // txtTestTemplateY0End
             // 
@@ -500,7 +510,7 @@
             this.txtTestTemplateY0End.Name = "txtTestTemplateY0End";
             this.txtTestTemplateY0End.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateY0End.TabIndex = 29;
-            this.txtTestTemplateY0End.Text = "90";
+            this.txtTestTemplateY0End.Text = "160";
             // 
             // txtTestTemplateY0Start
             // 
@@ -516,7 +526,7 @@
             this.txtTestTemplateX0Step.Name = "txtTestTemplateX0Step";
             this.txtTestTemplateX0Step.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateX0Step.TabIndex = 27;
-            this.txtTestTemplateX0Step.Text = "5";
+            this.txtTestTemplateX0Step.Text = "10";
             // 
             // txtTestTemplateX0End
             // 
@@ -524,7 +534,7 @@
             this.txtTestTemplateX0End.Name = "txtTestTemplateX0End";
             this.txtTestTemplateX0End.Size = new System.Drawing.Size(42, 20);
             this.txtTestTemplateX0End.TabIndex = 26;
-            this.txtTestTemplateX0End.Text = "80";
+            this.txtTestTemplateX0End.Text = "140";
             // 
             // txtTestTemplateX0Start
             // 
@@ -684,16 +694,6 @@
             this.lblTemplateX0.Size = new System.Drawing.Size(23, 13);
             this.lblTemplateX0.TabIndex = 8;
             this.lblTemplateX0.Text = "X0:";
-            // 
-            // btnSelectTemplate
-            // 
-            this.btnSelectTemplate.Location = new System.Drawing.Point(7, 348);
-            this.btnSelectTemplate.Name = "btnSelectTemplate";
-            this.btnSelectTemplate.Size = new System.Drawing.Size(176, 23);
-            this.btnSelectTemplate.TabIndex = 45;
-            this.btnSelectTemplate.Text = "Select Average";
-            this.btnSelectTemplate.UseVisualStyleBackColor = true;
-            this.btnSelectTemplate.Click += new System.EventHandler(this.btnSelectTemplate_Click);
             // 
             // ShapeInfoLib
             // 

@@ -34,10 +34,16 @@ namespace SkinDetection
 
         private void btnLoadTestImage_Click(object sender, EventArgs e)
         {
+            //imgTest = new Image<Bgr, byte>(180, 200, new Bgr(Color.White));
+            //imgTest.Draw(new Ellipse(new PointF(90, 100), new SizeF(60, 40), 0), new Bgr(Color.Black), 1);
+            //imgActualTest = imgTest.Convert<Gray, byte>();
+            //pbTestImage.Image = imgActualTest.ToBitmap();
+            //    pbTestImage.Image = imgActualTest.ToBitmap();
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName).Resize(0.5, INTER.CV_INTER_AREA);
-                pbTestImage.Image = imgTest.ToBitmap();
+                imgTest = new Image<Bgr, byte>(dlgLoadTestImage.FileName);//.Resize(0.66, INTER.CV_INTER_AREA);
+                imgActualTest = imgTest.Convert<Gray, byte>();
+                pbTestImage.Image = imgActualTest.ToBitmap();
             }
         }
 
@@ -180,7 +186,7 @@ namespace SkinDetection
 
         private double GetRate(int w, int h, int X0, int Y0, int a, int b, Image<Gray, float> xSobel, Image<Gray, float> ySobel, out double G, out double N)
         {
-            double c = 1.0*b/a;
+            double c = 1.0*a/b;
             G = 0;
             N = 0;
             //for (int y = 0; y < h; y++)
@@ -203,25 +209,25 @@ namespace SkinDetection
                     if (!InEllipse(point, X0, Y0, a - 5, b - 5) && InEllipse(point, X0, Y0, a + 5, b + 5))
                     {
                         N++;
+
+                        int x = point.X, y = point.Y;
+
+                        double teta = Math.Atan(-c * c * sf(x - X0) / sf(y - Y0));
+                        double r2i = Math.Cos(teta), r2j = Math.Sin(teta);
+                        double sum = Math.Sqrt(xSobel[y, x].Intensity * xSobel[y, x].Intensity + ySobel[y, x].Intensity * ySobel[y, x].Intensity);
+                        double r1i = sf(xSobel[y, x].Intensity / sum), r1j = sf(ySobel[y, x].Intensity / sum);
+
+                        G += Math.Abs(r1i * r2i + r1j * r2j);
                     }
-
-                    int x = point.X, y = point.Y;
-
-                    double teta = Math.Atan(-c * c * sf(x - X0) / sf(y - Y0));
-                    double r2i = Math.Cos(teta), r2j = Math.Sin(teta);
-                    double sum = Math.Sqrt(xSobel[y, x].Intensity * xSobel[y, x].Intensity + ySobel[y, x].Intensity * ySobel[y, x].Intensity);
-                    double r1i = sf(xSobel[y, x].Intensity / sum), r1j = sf(ySobel[y, x].Intensity / sum);
-
-                    G += Math.Abs(r1i * r2i + r1j * r2j);
                 }
             }
 
-            return G / N;
+            return 1 - (G / N);
         }
         private bool InEllipse(Point point, int X0, int Y0, int a, int b)
         {
-            double v = (point.X - X0) * (point.X - X0) / a / a + (point.Y - Y0) * (point.Y - Y0) / b / b;
-            return v <= 1;
+            double v = 1.0 * (point.X - X0) * (point.X - X0) / a / a + 1.0 * (point.Y - Y0) * (point.Y - Y0) / b / b;
+            return v < 1;
         }
 
         private void btnTemplateFind_Click(object sender, EventArgs e)
@@ -241,7 +247,7 @@ namespace SkinDetection
             lblTemplateN.Text = string.Format("N: {0}", N);
 
             var img = imgFinalContours.Clone();
-            img.Draw(new Ellipse(new PointF(X0, Y0), new SizeF(2 * a, 2 * b), 0), new Gray(255), 2);
+            img.Draw(new Ellipse(new PointF(X0, Y0), new SizeF(2 * b, 2 * a), 0), new Gray(255), 2);
             pbTestImage.Image = img.ToBitmap();
         }
 
@@ -372,7 +378,7 @@ namespace SkinDetection
         {
             var template = templates[lbTemplates.SelectedIndex];
             var img = imgFinalContours.Clone();
-            img.Draw(new Ellipse(new PointF(template.X0, template.Y0), new SizeF(2 * template.A, 2 * template.B), 0), new Gray(255), 2);
+            img.Draw(new Ellipse(new PointF(template.X0, template.Y0), new SizeF(2 * template.B, 2 * template.A), 0), new Gray(255), 2);
             pbTestImage.Image = img.ToBitmap();
         }
 
