@@ -15,6 +15,7 @@ namespace SkinDetection
     public partial class TestTrace : Form
     {
         private TraceTransform tt = new TraceTransform();
+        private Image<Gray, byte> imgTest;
 
         public TestTrace()
         {
@@ -27,14 +28,17 @@ namespace SkinDetection
             int nAngles = int.Parse(txtConfigTraceAngles.Text);
             int width = int.Parse(txtConfigTraceImgWidth.Text);
             int height = int.Parse(txtConfigTraceImgHeight.Text);
+
             tt.TraceLines = tt.CreateTraceLines(height, width, dist, nAngles);
+            tt.NAngles = nAngles;
+            tt.Dist = dist;
         }
 
         private void btnLoadTraceLines_Click(object sender, EventArgs e)
         {
             if (dlgLoadTraceLines.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                tt.TraceLines = tt.LoadTraceLines(dlgLoadTraceLines.FileName);
+                tt = TraceTransform.LoadTraceLines(dlgLoadTraceLines.FileName);
             }
         }
 
@@ -42,8 +46,22 @@ namespace SkinDetection
         {
             if (dlgSaveTraceLines.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                tt.SaveTraceLines(tt.TraceLines, dlgSaveTraceLines.FileName);
+                tt.SaveTraceLines(tt.NAngles, tt.Dist, tt.TraceLines, dlgSaveTraceLines.FileName);
             }
+        }
+
+        private void btnLoadTestImage_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                imgTest = new Image<Gray, byte>(dlgLoadTestImage.FileName);
+                pbTestImage.Image = imgTest.ToBitmap();
+            }
+        }
+
+        private void btnTransformImage_Click(object sender, EventArgs e)
+        {
+            pbTrasformImage.Image = tt.GetTransformImage(imgTest, tt.Dist, tt.NAngles, tt.TraceLines, TraceTransformFunctional.Sum).ToBitmap();
         }
     }
 }

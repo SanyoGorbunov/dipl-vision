@@ -43,7 +43,19 @@
             this.lblConfigTraceImgWidth = new System.Windows.Forms.Label();
             this.txtConfigTraceImgHeight = new System.Windows.Forms.TextBox();
             this.lblConfigTraceImgHeight = new System.Windows.Forms.Label();
+            this.pnlTestImage = new System.Windows.Forms.Panel();
+            this.lblLoadTestImage = new System.Windows.Forms.Label();
+            this.pbTestImage = new System.Windows.Forms.PictureBox();
+            this.btnLoadTestImage = new System.Windows.Forms.Button();
+            this.dlgLoadTestImage = new System.Windows.Forms.OpenFileDialog();
+            this.pnlTransformImage = new System.Windows.Forms.Panel();
+            this.btnTransformImage = new System.Windows.Forms.Button();
+            this.pbTrasformImage = new System.Windows.Forms.PictureBox();
             this.pnlConfigTraceLines.SuspendLayout();
+            this.pnlTestImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
+            this.pnlTransformImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrasformImage)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlConfigTraceLines
@@ -139,6 +151,8 @@
             // dlgLoadTraceLines
             // 
             this.dlgLoadTraceLines.FileName = "openFileDialog1";
+            this.dlgLoadTraceLines.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\Trace" +
+                "Transform";
             // 
             // txtConfigTraceImgWidth
             // 
@@ -172,16 +186,93 @@
             this.lblConfigTraceImgHeight.TabIndex = 9;
             this.lblConfigTraceImgHeight.Text = "Test image height:";
             // 
+            // pnlTestImage
+            // 
+            this.pnlTestImage.Controls.Add(this.btnLoadTestImage);
+            this.pnlTestImage.Controls.Add(this.pbTestImage);
+            this.pnlTestImage.Controls.Add(this.lblLoadTestImage);
+            this.pnlTestImage.Location = new System.Drawing.Point(258, 10);
+            this.pnlTestImage.Name = "pnlTestImage";
+            this.pnlTestImage.Size = new System.Drawing.Size(231, 263);
+            this.pnlTestImage.TabIndex = 1;
+            // 
+            // lblLoadTestImage
+            // 
+            this.lblLoadTestImage.AutoSize = true;
+            this.lblLoadTestImage.Location = new System.Drawing.Point(13, 14);
+            this.lblLoadTestImage.Name = "lblLoadTestImage";
+            this.lblLoadTestImage.Size = new System.Drawing.Size(116, 13);
+            this.lblLoadTestImage.TabIndex = 0;
+            this.lblLoadTestImage.Text = "Please load test image:";
+            // 
+            // pbTestImage
+            // 
+            this.pbTestImage.Location = new System.Drawing.Point(29, 42);
+            this.pbTestImage.Name = "pbTestImage";
+            this.pbTestImage.Size = new System.Drawing.Size(180, 200);
+            this.pbTestImage.TabIndex = 1;
+            this.pbTestImage.TabStop = false;
+            // 
+            // btnLoadTestImage
+            // 
+            this.btnLoadTestImage.Location = new System.Drawing.Point(144, 9);
+            this.btnLoadTestImage.Name = "btnLoadTestImage";
+            this.btnLoadTestImage.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadTestImage.TabIndex = 2;
+            this.btnLoadTestImage.Text = "Load";
+            this.btnLoadTestImage.UseVisualStyleBackColor = true;
+            this.btnLoadTestImage.Click += new System.EventHandler(this.btnLoadTestImage_Click);
+            // 
+            // dlgLoadTestImage
+            // 
+            this.dlgLoadTestImage.FileName = "openFileDialog1";
+            this.dlgLoadTestImage.InitialDirectory = "C:\\Users\\Sanyo\\Documents\\GitHub\\univer-projects\\MasterDiploma\\MasterDiploma\\db\\fa" +
+                "ces94";
+            // 
+            // pnlTransformImage
+            // 
+            this.pnlTransformImage.Controls.Add(this.pbTrasformImage);
+            this.pnlTransformImage.Controls.Add(this.btnTransformImage);
+            this.pnlTransformImage.Location = new System.Drawing.Point(495, 10);
+            this.pnlTransformImage.Name = "pnlTransformImage";
+            this.pnlTransformImage.Size = new System.Drawing.Size(496, 263);
+            this.pnlTransformImage.TabIndex = 2;
+            // 
+            // btnTransformImage
+            // 
+            this.btnTransformImage.Location = new System.Drawing.Point(3, 9);
+            this.btnTransformImage.Name = "btnTransformImage";
+            this.btnTransformImage.Size = new System.Drawing.Size(75, 23);
+            this.btnTransformImage.TabIndex = 0;
+            this.btnTransformImage.Text = "Transform";
+            this.btnTransformImage.UseVisualStyleBackColor = true;
+            this.btnTransformImage.Click += new System.EventHandler(this.btnTransformImage_Click);
+            // 
+            // pbTrasformImage
+            // 
+            this.pbTrasformImage.Location = new System.Drawing.Point(3, 42);
+            this.pbTrasformImage.Name = "pbTrasformImage";
+            this.pbTrasformImage.Size = new System.Drawing.Size(490, 200);
+            this.pbTrasformImage.TabIndex = 1;
+            this.pbTrasformImage.TabStop = false;
+            // 
             // TestTrace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 377);
+            this.ClientSize = new System.Drawing.Size(1017, 377);
+            this.Controls.Add(this.pnlTransformImage);
+            this.Controls.Add(this.pnlTestImage);
             this.Controls.Add(this.pnlConfigTraceLines);
             this.Name = "TestTrace";
             this.Text = "Метод на основі перетворення сліду";
             this.pnlConfigTraceLines.ResumeLayout(false);
             this.pnlConfigTraceLines.PerformLayout();
+            this.pnlTestImage.ResumeLayout(false);
+            this.pnlTestImage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).EndInit();
+            this.pnlTransformImage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbTrasformImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,5 +294,13 @@
         private System.Windows.Forms.Label lblConfigTraceImgWidth;
         private System.Windows.Forms.TextBox txtConfigTraceImgHeight;
         private System.Windows.Forms.Label lblConfigTraceImgHeight;
+        private System.Windows.Forms.Panel pnlTestImage;
+        private System.Windows.Forms.Button btnLoadTestImage;
+        private System.Windows.Forms.PictureBox pbTestImage;
+        private System.Windows.Forms.Label lblLoadTestImage;
+        private System.Windows.Forms.OpenFileDialog dlgLoadTestImage;
+        private System.Windows.Forms.Panel pnlTransformImage;
+        private System.Windows.Forms.PictureBox pbTrasformImage;
+        private System.Windows.Forms.Button btnTransformImage;
     }
 }

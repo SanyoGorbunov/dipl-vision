@@ -13,7 +13,7 @@ namespace SkinDetection
     class TraceLine
     {
         public int Distance { get; set; }
-        public double Angle { get; set; }
+        public int AngleIndex { get; set; }
 
         public List<Point> Points { get; set; }
         public void CreatePoints(byte[, ,] data, int height, int width)
@@ -43,14 +43,14 @@ namespace SkinDetection
 
         public void Save(StreamWriter sw)
         {
-            sw.WriteLine(string.Format("{0} {1} {2}", Distance, Angle, Points.Count));
+            sw.WriteLine(string.Format("{0} {1} {2}", Distance, AngleIndex, Points.Count));
             sw.WriteLine(string.Join(";", Points.Select(p => p.X + " "+ p.Y)));
         }
         public void Load(StreamReader sr)
         {
             string[] metadata = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             Distance = int.Parse(metadata[0]);
-            Angle = double.Parse(metadata[1]);
+            AngleIndex = int.Parse(metadata[1]);
             Points = new List<Point>();
 
             foreach (var pair in sr.ReadLine().Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
@@ -59,11 +59,34 @@ namespace SkinDetection
                 Points.Add(new Point(int.Parse(pairPoints[0]), int.Parse(pairPoints[1])));
             }
         }
+
+        public List<byte> GetValues(byte[, ,] data, int height, int width)
+        {
+            List<byte> values = new List<byte>();
+
+            foreach (var point in Points)
+            {
+                int x = point.X + width / 2, y = point.Y + height / 2;
+                if (x >= 0 && x < width && y >= 0 && y < height)
+                {
+                    values.Add(data[y, x, 0]);
+                }
+            }
+
+            return values;
+        }
+    }
+
+    enum TraceTransformFunctional
+    {
+        Sum
     }
 
     class TraceTransform
     {
         public List<TraceLine> TraceLines { get; set; }
+        public int NAngles { get; set; }
+        public int Dist { get; set; }
 
         public PointF GetBound(PointF p, float dx, float dy, int width, int height)
         {
@@ -97,12 +120,13 @@ namespace SkinDetection
             for (int i = 0; i < nAngles; i++)
             {
                 double angle = i * 2 * Math.PI / nAngles;
-                for (int j = 1; j < dist; j++)
+                for (int j = 0; j < dist; j++)
                 {
-                    TraceLine traceLine = new TraceLine { Angle = angle, Distance = j };
-                    float tx = j * (float) Math.Cos(angle), ty = j * (float) Math.Sin(angle);
+                    TraceLine traceLine = new TraceLine { AngleIndex = i, Distance = j };
+                    int k = j == 0 ? 1 : j;
+                    float tx = k * (float) Math.Cos(angle), ty = k * (float) Math.Sin(angle);
 
-                    PointF t = new PointF(width / 2 + tx, height / 2 + ty);
+                    PointF t = j == 0 ? new PointF(width / 2, height / 2) : new PointF(width / 2 + tx, height / 2 + ty);
                     img.Draw(new LineSegment2DF(t, GetBound(t, -tx, ty, width, height)), new Gray(255), 1);
                     img.Draw(new LineSegment2DF(t, GetBound(t, tx, -ty, width, height)), new Gray(255), 1);
                     
@@ -118,23 +142,28 @@ namespace SkinDetection
 
             return traceLines;
         }
-        public void SaveTraceLines(List<TraceLine> traceLines, string path)
+        public void SaveTraceLines(int nAngles, int dist, List<TraceLine> traceLines, string path)
         {
             using (StreamWriter sw = new StreamWriter(path))
             {
-                sw.WriteLine(traceLines.Count);
+                sw.WriteLine(string.Format("{0} {1} {2}", dist, nAngles, traceLines.Count));
                 foreach (var traceLine in traceLines)
                 {
                     traceLine.Save(sw);
                 }
             }
         }
-        public List<TraceLine> LoadTraceLines(string path)
+        public static TraceTransform LoadTraceLines(string path)
         {
+            TraceTransform tt = new TraceTransform();
+
             List<TraceLine> traceLines = new List<TraceLine>();
             using (StreamReader sr = new StreamReader(path))
             {
-                int nTraceLines = int.Parse(sr.ReadLine());
+                string[] metadata = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                tt.Dist = int.Parse(metadata[0]);
+                tt.NAngles = int.Parse(metadata[1]);
+                int nTraceLines = int.Parse(metadata[2]);
                 for (int i = 0; i < nTraceLines; i++)
                 {
                     TraceLine traceLine = new TraceLine();
@@ -142,7 +171,69 @@ namespace SkinDetection
                     traceLines.Add(traceLine);
                 }
             }
-            return traceLines;
+            tt.TraceLines = traceLines;
+
+            return tt;
+        }
+
+        public byte ApplyFunctional(byte[, ,] data, int width, int height, TraceLine traceLine, TraceTransformFunctional functional)
+        {
+            List<byte> values = traceLine.GetValues(data, height, width);
+            byte res = 0;
+            
+            switch (functional)
+            {
+                case TraceTransformFunctional.Sum:
+                    if (values.Count > 0)
+                    {
+                        long sum = 0;
+                        foreach (var val in values)
+                        {
+                            sum += val;
+                        }
+                        res = (byte)(sum / values.Count);
+                    }
+                    break;
+            }
+
+            return res;
+        }
+
+        public byte[,] GetTransformMatrix(Image<Gray, byte> imgTest, int dist, int nAngles,
+            List<TraceLine> traceLines, TraceTransformFunctional functional)
+        {
+            byte[,] matrix = new byte[dist, nAngles];
+
+            byte[,,] data = imgTest.Data;
+            int width = imgTest.Width;
+            int height = imgTest.Height;
+
+            foreach (var traceLine in traceLines)
+            {
+                if (traceLine.Distance < dist && traceLine.AngleIndex < nAngles)
+                {
+                    matrix[traceLine.Distance, traceLine.AngleIndex] = ApplyFunctional(data, width, height, traceLine, functional);
+                }
+            }
+
+            return matrix;
+        }
+        public Image<Gray, byte> GetTransformImage(Image<Gray, byte> imgTest, int dist, int nAngles,
+            List<TraceLine> traceLines, TraceTransformFunctional functional)
+        {
+            Image<Gray, byte> img = new Image<Gray, byte>(nAngles, dist);
+            byte[, ,] data = img.Data;
+            byte[,] matrix = GetTransformMatrix(imgTest, dist, nAngles, traceLines, functional);
+
+            for (int i = 0; i < dist; i++)
+            {
+                for (int j = 0; j < nAngles; j++)
+                {
+                    data[i, j, 0] = matrix[i, j];
+                }
+            }
+
+            return img;
         }
     }
 }
