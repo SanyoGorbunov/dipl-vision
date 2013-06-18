@@ -119,6 +119,13 @@
     <Compile Include="TestInclination.Designer.cs">
       <DependentUpon>TestInclination.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestTrace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestTrace.Designer.cs">
+      <DependentUpon>TestTrace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TraceTransform.cs" />
     <Compile Include="WangTan.cs" />
     <EmbeddedResource Include="DatabaseUtil.resx">
       <DependentUpon>DatabaseUtil.cs</DependentUpon>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestInclination.resx">
       <DependentUpon>TestInclination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestTrace.resx">
+      <DependentUpon>TestTrace.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
