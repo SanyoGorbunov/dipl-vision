@@ -124,6 +124,7 @@
             this.btnLoadTraceLines.TabIndex = 7;
             this.btnLoadTraceLines.Text = "Load";
             this.btnLoadTraceLines.UseVisualStyleBackColor = true;
+            this.btnLoadTraceLines.Click += new System.EventHandler(this.btnLoadTraceLines_Click);
             // 
             // btnSaveTraceLines
             // 
@@ -133,6 +134,7 @@
             this.btnSaveTraceLines.TabIndex = 8;
             this.btnSaveTraceLines.Text = "Save";
             this.btnSaveTraceLines.UseVisualStyleBackColor = true;
+            this.btnSaveTraceLines.Click += new System.EventHandler(this.btnSaveTraceLines_Click);
             // 
             // dlgLoadTraceLines
             // 
