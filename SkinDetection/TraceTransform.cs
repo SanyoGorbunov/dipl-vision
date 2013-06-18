@@ -330,5 +330,53 @@ namespace SkinDetection
             CvInvoke.cvCopy(img.Ptr, imgMask.Ptr, IntPtr.Zero);
             return imgMask;
         }
+
+        public byte[,] GetTraceWeightMatrix(byte[,] m1, byte[,] m2, byte t, out int flags)
+        {
+            int height = m1.GetLength(0), width = m1.GetLength(1);
+            byte[,] wm = new byte[height, width];
+            flags = 0;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    byte dif = m1[i, j] > m2[i, j] ? (byte)(m1[i, j] - m2[i, j]) : (byte)(m2[i, j] - m1[i, j]);
+                    if (dif > t)
+                    {
+                        wm[i, j] = 1;
+                        flags++;
+                    }
+                }
+            }
+
+            return wm;
+        }
+        public double GetTraceDistance(byte[,] mTest, byte[,] mRef, byte[,] weights, int flags)
+        {
+            int dist = mTest.GetLength(0), nAngles = mTest.GetLength(1);
+
+            double d = 0;
+            for (int i = 0; i < dist; i++)
+            {
+                for (int j = 0; j < nAngles; j++)
+                {
+                    if (weights[i, j] == 1)
+                    {
+                        byte min = 255;
+                        for (int k = 0; k < nAngles; k++)
+                        {
+                            byte dif = mTest[i, j] > mRef[i, k] ? (byte)(mTest[i, j] - mRef[i, k]) : (byte)(mRef[i, k] - mTest[i, j]);
+                            if (dif < min)
+                            {
+                                min = dif;
+                            }
+                        }
+                        d += min;
+                    }
+                }
+            }
+            return 1.0 / Math.Exp(d / flags);
+        }
     }
 }
