@@ -75,6 +75,19 @@ namespace SkinDetection
 
             return values;
         }
+
+        public bool IsApplicable(int width, int height)
+        {
+            foreach (var p in Points)
+            {
+                int x = p.X + width / 2, y = p.Y + height / 2;
+                if (x >= 0 && x < width && y >= 0 && y < height)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     enum TraceTransformFunctional
@@ -234,6 +247,88 @@ namespace SkinDetection
             }
 
             return img;
+        }
+
+        public List<TraceLine> GetApplicableTraces(List<TraceLine> traceLines, int width, int height)
+        {
+            List<TraceLine> applicableTraceLines = new List<TraceLine>();
+            foreach (var traceLine in traceLines)
+            {
+                if (traceLine.IsApplicable(width, height))
+                {
+                    applicableTraceLines.Add(traceLine);
+                }
+            }
+            return applicableTraceLines;
+        }
+        public Rectangle DetectMaskedShape(Image<Gray, byte> img)
+        {
+            byte[, ,] data = img.Data;
+
+            int right = 0, left = int.MaxValue, bottom = 0, top = int.MaxValue;
+            bool colDetect = false, rowDetect = false;
+            for (int i = 0; i < img.Height; i++)
+            {
+                rowDetect = false;
+                for (int j = 0; j < img.Width; j++)
+                {
+                    if (data[i, j, 0] != 0)
+                    {
+                        if (!rowDetect)
+                        {
+                            if (left > j)
+                            {
+                                left = j;
+                            }
+                            rowDetect = true;
+                        }
+                        else
+                        {
+                            if (j > right)
+                            {
+                                right = j;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (rowDetect)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (rowDetect)
+                {
+                    if (!colDetect)
+                    {
+                        top = i;
+                        colDetect = true;
+                    }
+                    else
+                    {
+                        bottom = i;
+                    }
+                }
+                else
+                {
+                    if (colDetect)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return new Rectangle(left, top, right - top + 1, bottom - top + 1);
+        }
+        public Image<Gray, byte> GetMaskedShape(Image<Gray, byte> img)
+        {
+            Rectangle mask = DetectMaskedShape(img);
+            img.ROI = mask;
+
+            Image<Gray, byte> imgMask = new Image<Gray, byte>(mask.Size);
+            CvInvoke.cvCopy(img.Ptr, imgMask.Ptr, IntPtr.Zero);
+            return imgMask;
         }
     }
 }

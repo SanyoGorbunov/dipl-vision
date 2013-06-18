@@ -51,6 +51,7 @@
             this.pnlTransformImage = new System.Windows.Forms.Panel();
             this.btnTransformImage = new System.Windows.Forms.Button();
             this.pbTrasformImage = new System.Windows.Forms.PictureBox();
+            this.chkTestImageIsMask = new System.Windows.Forms.CheckBox();
             this.pnlConfigTraceLines.SuspendLayout();
             this.pnlTestImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
@@ -188,12 +189,13 @@
             // 
             // pnlTestImage
             // 
+            this.pnlTestImage.Controls.Add(this.chkTestImageIsMask);
             this.pnlTestImage.Controls.Add(this.btnLoadTestImage);
             this.pnlTestImage.Controls.Add(this.pbTestImage);
             this.pnlTestImage.Controls.Add(this.lblLoadTestImage);
             this.pnlTestImage.Location = new System.Drawing.Point(258, 10);
             this.pnlTestImage.Name = "pnlTestImage";
-            this.pnlTestImage.Size = new System.Drawing.Size(231, 263);
+            this.pnlTestImage.Size = new System.Drawing.Size(231, 272);
             this.pnlTestImage.TabIndex = 1;
             // 
             // lblLoadTestImage
@@ -256,6 +258,16 @@
             this.pbTrasformImage.TabIndex = 1;
             this.pbTrasformImage.TabStop = false;
             // 
+            // chkTestImageIsMask
+            // 
+            this.chkTestImageIsMask.AutoSize = true;
+            this.chkTestImageIsMask.Location = new System.Drawing.Point(16, 252);
+            this.chkTestImageIsMask.Name = "chkTestImageIsMask";
+            this.chkTestImageIsMask.Size = new System.Drawing.Size(63, 17);
+            this.chkTestImageIsMask.TabIndex = 3;
+            this.chkTestImageIsMask.Text = "Is Mask";
+            this.chkTestImageIsMask.UseVisualStyleBackColor = true;
+            // 
             // TestTrace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,5 +314,6 @@
         private System.Windows.Forms.Panel pnlTransformImage;
         private System.Windows.Forms.PictureBox pbTrasformImage;
         private System.Windows.Forms.Button btnTransformImage;
+        private System.Windows.Forms.CheckBox chkTestImageIsMask;
     }
 }

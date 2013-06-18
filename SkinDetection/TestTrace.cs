@@ -55,6 +55,10 @@ namespace SkinDetection
             if (dlgLoadTestImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 imgTest = new Image<Gray, byte>(dlgLoadTestImage.FileName);
+                if (chkTestImageIsMask.Checked)
+                {
+                    imgTest = tt.GetMaskedShape(imgTest);
+                }
                 pbTestImage.Image = imgTest.ToBitmap();
             }
         }
