@@ -59,6 +59,10 @@ namespace SkinDetection
                 {
                     imgTest = tt.GetMaskedShape(imgTest);
                 }
+                var fs = new List<TraceTransformFunctional>();
+                fs.Add(TraceTransformFunctional.SimpleSquareRoot); fs.Add(TraceTransformFunctional.Sum);
+                //fs.Add(TraceTransformFunctional.Delta);
+                var p = db.FindPerson(tt, imgTest, fs);
                 pbTestImage.Image = imgTest.ToBitmap();
             }
         }
@@ -66,6 +70,80 @@ namespace SkinDetection
         private void btnTransformImage_Click(object sender, EventArgs e)
         {
             pbTrasformImage.Image = tt.GetTransformImage(imgTest, tt.Dist, tt.NAngles, tt.TraceLines, TraceTransformFunctional.Sum).ToBitmap();
+        }
+
+        private string dbPath;
+        private void btnOpenDatabaseDir_Click(object sender, EventArgs e)
+        {
+            if (dlgOpenDatabaseDir.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                dbPath = dlgOpenDatabaseDir.SelectedPath;
+            }
+        }
+
+        private TraceTransformDb db;
+        private void btnDatabaseLearn_Click(object sender, EventArgs e)
+        {
+            byte t = byte.Parse(txtDatabaseWeightThreshold.Text);
+
+            List<TraceTransformFunctional> functionals = new List<TraceTransformFunctional>();
+            foreach (var item in lbDatabaseFunctionals.CheckedIndices)
+            {
+                functionals.Add((TraceTransformFunctional)((int)item));
+            }
+
+            db = tt.Learn(db, tt, t, functionals);
+        }
+
+        private void btnSaveTransforms_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveTransformed.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                db.SaveTransformedImages(dlgSaveTransformed.FileName);
+            }
+        }
+
+        private void btnSaveWeights_Click(object sender, EventArgs e)
+        {
+            if (dlgSaveWeights.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                db.SaveWeights(dlgSaveWeights.FileName);
+            }
+        }
+
+        private void btnDatabaseCreate_Click(object sender, EventArgs e)
+        {
+            int nImages = int.Parse(txtDatabaseLearnImages.Text);
+
+            db = tt.Create(dbPath, nImages);
+        }
+
+        private void btnLoadTransforms_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadTransforms.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                db.LoadTransformedImages(dlgLoadTransforms.FileName);
+            }
+        }
+
+        private void btnLoadWeights_Click(object sender, EventArgs e)
+        {
+            if (dlgLoadWeights.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void btnTestDb_Click(object sender, EventArgs e)
+        {
+            List<TraceTransformFunctional> functionals = new List<TraceTransformFunctional>();
+            foreach (var item in lbDatabaseFunctionals.CheckedIndices)
+            {
+                functionals.Add((TraceTransformFunctional)((int)item));
+            }
+
+
+            lblRate.Text = string.Format("Correct Rate: {0}", db.TestDb(dbPath, tt, functionals));
         }
     }
 }

@@ -92,7 +92,263 @@ namespace SkinDetection
 
     enum TraceTransformFunctional
     {
-        Sum
+        Sum, SimpleSquareRoot, Delta, Median
+    }
+
+    class Constants
+    {
+        public static char[] Separators = new char[] { ' ', '\r', '\n' };
+    }
+
+    class TraceTransformDb
+    {
+        public TraceTransformDb(string filename, int nImages)
+        {
+            Persons = new List<Person>();
+            foreach (var dir in Directory.GetDirectories(filename))
+            {
+                Person p = new Person() { Path = dir };
+                p.Images = new List<string>(Directory.GetFiles(dir).Take(nImages));
+                Persons.Add(p);
+            }
+        }
+
+        public double TestDb(string filename, TraceTransform tt, List<TraceTransformFunctional> funcs)
+        {
+            int cnt = 0;
+            double val = 0;
+            foreach (var dir in Directory.GetDirectories(filename))
+            {
+                foreach (var pict in Directory.GetFiles(dir))
+                {
+                    cnt++;
+                    Person p = FindPerson(tt, new Image<Gray, byte>(pict), funcs);
+                    if (p.Path == dir)
+                    {
+                        val++;
+                    }
+                }
+            }
+            return val / cnt;
+        }
+
+        public void Calc(TraceTransform tt, List<TraceTransformFunctional> funcs, byte t)
+        {
+            foreach (var person in Persons)
+            {
+                person.CountTransformed(tt, funcs);
+                person.CountWeights(tt, funcs, t);
+            }
+        }
+
+        public List<Person> Persons { get; set; }
+
+        public class Person {
+            public string Path { get; set; }
+            public string Name
+            {
+                get
+                {
+                    string dir = System.IO.Path.GetDirectoryName(Path);
+                    return dir.Substring(dir.LastIndexOf('\\') + 1);
+                }
+            }
+
+            public Dictionary<TraceTransformFunctional, WeightMatrix> Weights { get; set; }
+            public Dictionary<string, List<TransformedImage>> Transformed { get; set; }
+
+            public List<string> Images { get; set; }
+            public void CountWeights(TraceTransform tt, List<TraceTransformFunctional> functionals, byte t)
+            {
+                Weights = new Dictionary<TraceTransformFunctional, WeightMatrix>();
+
+                foreach (var functional in functionals)
+                {
+                    List<byte[,]> transformed = Images.Select(img =>
+                        Transformed[img].Where(x=>x.Functional == functional).First().Data).ToList();
+                    int flags;
+                    byte[,] wm = tt.GetTraceWeightMatrix(transformed, t, out flags);
+                    Weights.Add(functional, new WeightMatrix { Matrix = wm, Flags = flags });
+                }
+            }
+            public void CountTransformed(TraceTransform tt, List<TraceTransformFunctional> functionals)
+            {
+                Transformed = new Dictionary<string, List<TransformedImage>>();
+                foreach (var img in Images)
+                {
+                    byte[, ,] imgData = (new Image<Gray, byte>(img)).Data;
+                    List<TransformedImage> imgTransformed = new List<TransformedImage>();
+                    foreach (var func in functionals)
+                    {
+                        TransformedImage ti = new TransformedImage();
+                        ti.Calc(tt, imgData, func);
+                        imgTransformed.Add(ti);
+                    }
+                    Transformed.Add(img, imgTransformed);
+                }
+            }
+        }
+
+        public class WeightMatrix
+        {
+            public byte[,] Matrix { get; set; }
+            public int Flags { get; set; }
+
+            public void Save(StreamWriter sw, TraceTransformFunctional functional)
+            {
+                sw.WriteLine(string.Format("{0} {1} {2} {3}", Matrix.GetLength(0), Matrix.GetLength(1), Flags, functional));
+                for (int i = 0; i < Matrix.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Matrix.GetLength(1); j++)
+                    {
+                        sw.Write(Matrix[i, j]);
+                        if (j < Matrix.GetLength(1) - 1)
+                        {
+                            sw.Write(" ");
+                        }
+                        else
+                        {
+                            sw.Write("\r\n");
+                        }
+                    }
+                }
+            }
+            public void Load(StreamReader sr, out TraceTransformFunctional functional)
+            {
+                string[] metadata = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                Matrix = new byte[int.Parse(metadata[0]), int.Parse(metadata[1])];
+                Flags = int.Parse(metadata[2]);
+                functional = (TraceTransformFunctional)int.Parse(metadata[3]);
+                for (int i = 0; i < Matrix.GetLength(0); i++)
+                {
+                    string[] line = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int j = 0; j < Matrix.GetLength(1); j++)
+                    {
+                        Matrix[i, j] = byte.Parse(line[j]);
+                    }
+                }
+            }
+        }
+
+        public class TransformedImage
+        {
+            public byte[,] Data { get; set; }
+            public TraceTransformFunctional Functional { get; set; }
+
+            public void Calc(TraceTransform tt, byte[,,] data, TraceTransformFunctional functional)
+            {
+                Functional = functional;
+                Data = tt.GetTransformMatrix(data, tt.Dist, tt.NAngles, tt.TraceLines, functional);
+            }
+
+            public void Save(StreamWriter sw)
+            {
+                sw.WriteLine(string.Format("{0} {1} {2}", Data.GetLength(0), Data.GetLength(1), Functional));
+                for (int i = 0; i < Data.GetLength(0); i++)
+                {
+                    for (int j = 0; j < Data.GetLength(1); j++)
+                    {
+                        sw.Write(Data[i, j]);
+                        if (j < Data.GetLength(1) - 1)
+                        {
+                            sw.Write(" ");
+                        }
+                        else
+                        {
+                            sw.Write("\r\n");
+                        }
+                    }
+                }
+            }
+            public void Load(StreamReader sr)
+            {
+                string[] metadata = sr.ReadLine().Split(Constants.Separators, StringSplitOptions.RemoveEmptyEntries);
+                Data = new byte[int.Parse(metadata[0]), int.Parse(metadata[1])];
+                Functional = (TraceTransformFunctional)int.Parse(metadata[2]);
+                for (int i = 0; i < Data.GetLength(0); i++)
+                {
+                    string[] line = sr.ReadLine().Split(Constants.Separators, StringSplitOptions.RemoveEmptyEntries);
+                    for (int j = 0; j < Data.GetLength(1); j++)
+                    {
+                        Data[i, j] = byte.Parse(line[j]);
+                    }
+                }
+            }
+        }
+
+        public void SaveWeights(string filename)
+        {
+            using (StreamWriter sw = new StreamWriter(filename))
+            {
+                foreach (var person in Persons)
+                {
+                    sw.WriteLine(string.Format("{0} {1}", person.Path, person.Weights.Count));
+                    foreach (var wm in person.Weights)
+                    {
+                        wm.Value.Save(sw, wm.Key);
+                    }
+                }
+            }
+        }
+
+        public void SaveTransformedImages(string filename)
+        {
+            using (StreamWriter sw = new StreamWriter(filename))
+            {
+                foreach (var person in Persons)
+                {
+                    sw.WriteLine(string.Format("{0} {1}", person.Path, person.Transformed.Count));
+                    foreach (var tis in person.Transformed)
+                    {
+                        sw.WriteLine(string.Format("{0} {1}", tis.Key, tis.Value.Count));
+                        foreach (var ti in tis.Value)
+                        {
+                            ti.Save(sw);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void LoadTransformedImages(string filename)
+        {
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                string[] metadata = sr.ReadLine().Split(Constants.Separators, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < int.Parse(metadata[2]); i++)
+                {
+                    string[] metadata2 = sr.ReadLine().Split(Constants.Separators, StringSplitOptions.RemoveEmptyEntries);
+                    Persons[i].Transformed = new Dictionary<string, List<TransformedImage>>();
+                }
+            }
+        }
+
+        public Person FindPerson(TraceTransform tt, Image<Gray, byte> imgTest, List<TraceTransformFunctional> funcs)
+        {
+            List<byte[,]> transforms = funcs.Select(f => tt.GetTransformMatrix(imgTest, tt.Dist, tt.NAngles, tt.TraceLines, f)).ToList();
+            Person p = null;
+
+            double dMax = 0;
+            foreach (var person in Persons)
+            {
+                foreach (var func in funcs)
+                {
+                    var wm = person.Weights[func];
+                    var lst = person.Images.Select(img => person.Transformed[img].Where(x => x.Functional == func).First());
+                    foreach (var imgRef in lst)
+                    {
+                        var d = tt.GetTraceDistance(transforms[(int)func], imgRef.Data, wm.Matrix, wm.Flags);
+                        if (d > dMax)
+                        {
+                            p = person;
+                            dMax = d;
+                        }
+                    }
+                }
+            }
+
+            return p;
+        }
     }
 
     class TraceTransform
@@ -100,6 +356,9 @@ namespace SkinDetection
         public List<TraceLine> TraceLines { get; set; }
         public int NAngles { get; set; }
         public int Dist { get; set; }
+
+        public List<string> Persons { get; set; }
+        public List<byte[,][,]> WeightMatrixes { get; set; }
 
         public PointF GetBound(PointF p, float dx, float dy, int width, int height)
         {
@@ -207,6 +466,37 @@ namespace SkinDetection
                         res = (byte)(sum / values.Count);
                     }
                     break;
+                case TraceTransformFunctional.SimpleSquareRoot:
+                    if (values.Count > 0)
+                    {
+                        long sum = 0;
+                        foreach (var val in values)
+                        {
+                            sum += val * val;
+                        }
+                        res = (byte)Math.Sqrt(sum / values.Count);
+                    }
+                    break;
+                case TraceTransformFunctional.Delta:
+                    if (values.Count > 0)
+                    {
+                        long sum = 0;
+                        for (int i = 1; i < values.Count; i++)
+                        {
+                            sum += Math.Abs(values[i] - values[i - 1]);
+                        }
+                        if (values.Count == 1)
+                        {
+                            res = 0;
+                        }
+                        else
+                        {
+                            res = (byte)(sum / (values.Count - 1));
+                        }
+                    }
+                    break;
+                case TraceTransformFunctional.Median:
+                    break;
             }
 
             return res;
@@ -220,6 +510,24 @@ namespace SkinDetection
             byte[,,] data = imgTest.Data;
             int width = imgTest.Width;
             int height = imgTest.Height;
+
+            foreach (var traceLine in traceLines)
+            {
+                if (traceLine.Distance < dist && traceLine.AngleIndex < nAngles)
+                {
+                    matrix[traceLine.Distance, traceLine.AngleIndex] = ApplyFunctional(data, width, height, traceLine, functional);
+                }
+            }
+
+            return matrix;
+        }
+        public byte[,] GetTransformMatrix(byte[, ,] data, int dist, int nAngles,
+    List<TraceLine> traceLines, TraceTransformFunctional functional)
+        {
+            byte[,] matrix = new byte[dist, nAngles];
+
+            int width = data.GetLength(1);
+            int height = data.GetLength(0);
 
             foreach (var traceLine in traceLines)
             {
@@ -331,9 +639,9 @@ namespace SkinDetection
             return imgMask;
         }
 
-        public byte[,] GetTraceWeightMatrix(byte[,] m1, byte[,] m2, byte t, out int flags)
+        public byte[,] GetTraceWeightMatrix(List<byte[,]> ms, byte t, out int flags)
         {
-            int height = m1.GetLength(0), width = m1.GetLength(1);
+            int height = ms[0].GetLength(0), width = ms[0].GetLength(1);
             byte[,] wm = new byte[height, width];
             flags = 0;
 
@@ -341,11 +649,24 @@ namespace SkinDetection
             {
                 for (int j = 0; j < width; j++)
                 {
-                    byte dif = m1[i, j] > m2[i, j] ? (byte)(m1[i, j] - m2[i, j]) : (byte)(m2[i, j] - m1[i, j]);
-                    if (dif > t)
+                    bool fnd = false;
+                    for (int i1 = 0; i1 < ms.Count - 1; i1++)
                     {
-                        wm[i, j] = 1;
-                        flags++;
+                        for (int j1 = i1 + 1; j1 < ms.Count; j1++)
+                        {
+                            byte dif = ms[i1][i, j] > ms[j1][i, j] ? (byte)(ms[i1][i, j] - ms[j1][i, j]) : (byte)(ms[j1][i, j] - ms[i1][i, j]);
+                            if (dif > t)
+                            {
+                                wm[i, j] = 1;
+                                flags++;
+                                fnd = true;
+                                break;
+                            }
+                        }
+                        if (fnd)
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -377,6 +698,17 @@ namespace SkinDetection
                 }
             }
             return 1.0 / Math.Exp(d / flags);
+        }
+
+        public TraceTransformDb Create(string dbDir, int nImages)
+        {
+            return new TraceTransformDb(dbDir, nImages);
+        }
+
+        public TraceTransformDb Learn(TraceTransformDb db, TraceTransform tt, byte t, List<TraceTransformFunctional> functionals)
+        {
+            db.Calc(tt, functionals, t);
+            return db;
         }
     }
 }

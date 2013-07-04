@@ -23,7 +23,10 @@ namespace SkinDetection
         private string[] files;
         private int fileIndex;
 
-        private int x, y, a = 5, b = 5;
+        private string newPath;
+        private int numFolders;
+
+        private int x, y, a = 100, b = 120;
 
         private Image<Bgr, byte> imgCurrent;
 
@@ -42,10 +45,16 @@ namespace SkinDetection
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            int numFolders = int.Parse(txtNumFolders.Text);
+            numFolders = int.Parse(txtNumFolders.Text);
 
             if (Directory.Exists(path))
             {
+                newPath = path + "/ellipse";
+                if (!Directory.Exists(newPath))
+                {
+                    Directory.CreateDirectory(newPath);
+                }
+
                 dirs = Directory.GetDirectories(path);
                 dirIndex = 0;
                 GetFiles();
@@ -75,19 +84,30 @@ namespace SkinDetection
 
         private void CutImage()
         {
+            Ellipse e = new Ellipse(new PointF(x + a / 2, y + b / 2), new SizeF(b, a), 0);
+            Rectangle rect = new Rectangle(new Point(x, y), new Size(a, b));
+
             var ell = new Image<Bgr, byte>(imgCurrent.Size);
             ell.Draw(new Ellipse(new PointF(x + a / 2, y + b / 2), new SizeF(b, a), 0), new Bgr(Color.White), -1);
+
             var imgSave = imgCurrent.And(ell);
-            
-            string newFileName = dirs[dirIndex] + "/" + Path.GetFileNameWithoutExtension(files[fileIndex]) + "_ellipse" +
-                Path.GetExtension(files[fileIndex]);
+            imgSave.ROI = rect;
+            imgSave = imgSave.Resize(100, 120, Emgu.CV.CvEnum.INTER.CV_INTER_AREA);
+
+            string dirName = Path.GetDirectoryName(files[fileIndex]);
+            dirName = dirName.Substring(dirName.LastIndexOf('\\') + 1);
+            if (!Directory.Exists(newPath + "/" + dirName))
+            {
+                Directory.CreateDirectory(newPath + "/" + dirName);
+            }
+            string newFileName = newPath + "/" + dirName + "/" + Path.GetFileName(files[fileIndex]);
             imgSave.Save(newFileName);
 
             fileIndex++;
             if (fileIndex == files.Length)
             {
                 dirIndex++;
-                if (dirIndex != dirs.Length)
+                if (dirIndex != dirs.Length && dirIndex < numFolders)
                 {
                     GetFiles();
                 }
